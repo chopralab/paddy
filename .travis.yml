@@ -22,13 +22,13 @@ install:
   - python setup.py build
   - pip install pytest>=3.6 pytest-cov pep8 pytest-pep8
 
-#script:
-#  - |
-#    if [[ "${DEPLOY_DOCS}" == "ON" ]]; then
-#        cd docs
-#        make html
-#        touch _build/html/.nojekyll
-#    fi
+script:
+  - |
+    if [[ "${DEPLOY_DOCS}" == "ON" ]]; then
+        cd docs
+        make html
+        touch _build/html/.nojekyll
+    fi
 
 deploy:
   - provider: pages
