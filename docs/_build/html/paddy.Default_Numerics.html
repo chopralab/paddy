@@ -1,0 +1,444 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>paddy.Default_Numerics module &mdash; Paddy Field Algortihm 3.63 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript">
+          var DOCUMENTATION_OPTIONS = {
+              URL_ROOT:'./',
+              VERSION:'3.63',
+              LANGUAGE:'None',
+              COLLAPSE_INDEX:false,
+              FILE_SUFFIX:'.html',
+              HAS_SOURCE:  true,
+              SOURCELINK_SUFFIX: '.txt'
+          };
+      </script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="paddy.utils module" href="paddy.utils.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Paddy Field Algortihm
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="paddy.html">Paddy Python Package</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="paddy.html#parameter-optimization-package-for-python">Parameter optimization package for Python</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="paddy.html#modules">Modules</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="paddy.Paddy_Runner.html">paddy.Paddy_Runner module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="paddy.Paddy_Parameter.html">paddy.PaddyParameter module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="paddy.writer.html">paddy.writer module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="paddy.utils.html">paddy.utils module</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">paddy.Default_Numerics module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#routine-listings">Routine listings</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#see-also">See Also</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#notes">Notes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#examples">Examples</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Paddy Field Algortihm</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="paddy.html">Paddy Python Package</a> &raquo;</li>
+        
+      <li>paddy.Default_Numerics module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/paddy.Default_Numerics.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-paddy.Default_Numerics">
+<span id="paddy-default-numerics-module"></span><h1>paddy.Default_Numerics module<a class="headerlink" href="#module-paddy.Default_Numerics" title="Permalink to this headline">¶</a></h1>
+<p>The <a class="reference internal" href="#module-paddy.Default_Numerics" title="paddy.Default_Numerics"><code class="xref py py-mod docutils literal"><span class="pre">paddy.Default_Numerics</span></code></a> module contains functions for numeric
+problems.</p>
+<div class="section" id="routine-listings">
+<h2>Routine listings<a class="headerlink" href="#routine-listings" title="Permalink to this headline">¶</a></h2>
+<p>eval_numeric(object)</p>
+<p>polynomial(object)</p>
+<p>poly(x,seed)</p>
+<p>trig_inter(x,seed)</p>
+<p>mse_func(target, output)</p>
+<p>gramacy_lee()</p>
+</div>
+<div class="section" id="see-also">
+<h2>See Also<a class="headerlink" href="#see-also" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference internal" href="paddy.Paddy_Runner.html#module-paddy.Paddy_Runner" title="paddy.Paddy_Runner"><code class="xref py py-mod docutils literal"><span class="pre">paddy.Paddy_Runner</span></code></a></p>
+</div>
+<div class="section" id="notes">
+<h2>Notes<a class="headerlink" href="#notes" title="Permalink to this headline">¶</a></h2>
+<p>The background information regarding how general functions and classes used to
+initiate an instance of <a class="reference internal" href="paddy.Paddy_Runner.html#paddy.Paddy_Runner.PFARunner" title="paddy.Paddy_Runner.PFARunner"><code class="xref py py-class docutils literal"><span class="pre">PFARunner</span></code></a> that are also
+provided as builtins in the <a class="reference internal" href="#module-paddy.Default_Numerics" title="paddy.Default_Numerics"><code class="xref py py-mod docutils literal"><span class="pre">Default_Numerics</span></code></a> module is described
+in the <a class="reference internal" href="paddy.Paddy_Runner.html#module-paddy.Paddy_Runner" title="paddy.Paddy_Runner"><code class="xref py py-mod docutils literal"><span class="pre">Paddy_Runner</span></code></a> module.</p>
+</div>
+<div class="section" id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="paddy.Default_Numerics.EvalNumeric">
+<em class="property">class </em><code class="descclassname">paddy.Default_Numerics.</code><code class="descname">EvalNumeric</code><span class="sig-paren">(</span><em>error_func=&lt;function mse_func&gt;</em>, <em>t_func=&lt;function gramacy_lee&gt;</em>, <em>f_func=&lt;function trig_inter&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/paddy/Default_Numerics.html#EvalNumeric"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#paddy.Default_Numerics.EvalNumeric" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>Return error after evaluating a numeric function.</p>
+<p>This class can be used to evaluate an optimization problem where fiting
+to a numeric value is the goal.  This can range from interpolation to
+min-max optimization.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>seed</strong> : array-like, shape = (parameters,2)</p>
+<blockquote>
+<div><p>A numpy array of parameters generated by paddy.  Refer to
+<code class="xref py py-mod docutils literal"><span class="pre">Paddy_runner</span></code> for details regarding generation of the
+array.</p>
+</div></blockquote>
+<p><strong>error_func</strong> : function, optional (default</p>
+<blockquote>
+<div><p>An error function thats output is minimized by paddy.  If user defined
+, make sure to note the internal sign change used to maximize the
+negative error value returned by <cite>eval_numeric</cite>.</p>
+</div></blockquote>
+<p><strong>t_func</strong> : function, optional (default</p>
+<blockquote>
+<div><p>A target function that provides the input and target value(s) for the
+error and fitting functions.</p>
+</div></blockquote>
+<p><strong>f_func</strong> : function, optional (default</p>
+<blockquote>
+<div><p>A fitting function that recieves an input generated by the target
+function, and returns an output to compate with the desired answer
+being optimized twards.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>error</strong> : float</p>
+<blockquote class="last">
+<div><p>A numeric value that serves as the fitness value for the seed
+evaluated.  This is defined as the negative output of the error
+function.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference internal" href="#paddy.Default_Numerics.mse_func" title="paddy.Default_Numerics.mse_func"><code class="xref py py-func docutils literal"><span class="pre">mse_func()</span></code></a>, <a class="reference internal" href="#paddy.Default_Numerics.gramacy_lee" title="paddy.Default_Numerics.gramacy_lee"><code class="xref py py-func docutils literal"><span class="pre">gramacy_lee()</span></code></a>, <a class="reference internal" href="#paddy.Default_Numerics.trig_inter" title="paddy.Default_Numerics.trig_inter"><code class="xref py py-func docutils literal"><span class="pre">trig_inter()</span></code></a></p>
+</div>
+<p class="rubric">Notes</p>
+<p>The default functionalities of this function is evaluation of seed values
+as the coeficents of a trigonometric polynomial used to interpolate the
+Gramacy and Lee function, where the evaluation metric function is the
+mean squared error of the x-y coordinates of Gramacy and Lee and the
+generated polynomial where <span class="math">\(x\in[ -0.5,2.5 ]\)</span> with a resolution of
+0.001.  The default and user defined instances of this class use the
+method <cite>eval(seed)</cite> to evaluate and return results.</p>
+<p class="rubric">Methods</p>
+<dl class="method">
+<dt id="paddy.Default_Numerics.EvalNumeric.eval">
+<code class="descname">eval</code><span class="sig-paren">(</span><em>seed</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/paddy/Default_Numerics.html#EvalNumeric.eval"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#paddy.Default_Numerics.EvalNumeric.eval" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method of <cite>eval_numeric</cite>.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="paddy.Default_Numerics.Polynomial">
+<em class="property">class </em><code class="descclassname">paddy.Default_Numerics.</code><code class="descname">Polynomial</code><span class="sig-paren">(</span><em>length</em>, <em>scope</em>, <em>gausian_type</em>, <em>normalization=True</em>, <em>limits=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/paddy/Default_Numerics.html#Polynomial"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#paddy.Default_Numerics.Polynomial" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>Generate paddy space that is apt for polynomial fitting.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><code class="xref py py-class docutils literal"><span class="pre">eval_numeric</span></code>, <a class="reference internal" href="paddy.Paddy_Parameter.html#paddy.Paddy_Parameter.PaddyParameter" title="paddy.Paddy_Parameter.PaddyParameter"><code class="xref py py-class docutils literal"><span class="pre">paddy.Paddy_Parameter.PaddyParameter</span></code></a></p>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="paddy.Default_Numerics.gramacy_lee">
+<code class="descclassname">paddy.Default_Numerics.</code><code class="descname">gramacy_lee</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/paddy/Default_Numerics.html#gramacy_lee"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#paddy.Default_Numerics.gramacy_lee" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return Gramacy and Lee function coordinates.</p>
+<p>This function generates the <em>x-y</em> coordinates used to evaluate
+interpolation of the Gramacy and Lee function via a default or user
+defined intrerpolation function.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><code class="xref py py-func docutils literal"><span class="pre">eval_numeric()</span></code></p>
+</div>
+<p class="rubric">References</p>
+<table class="docutils citation" frame="void" id="r11" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[R11]</a></td><td>Gramacy, R. B., &amp; Lee, H. K. (2012). Cases for the nugget in
+modeling computer experiments. Statistics and Computing, 22(3), 713-722
+.</td></tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="paddy.Default_Numerics.mse_func">
+<code class="descclassname">paddy.Default_Numerics.</code><code class="descname">mse_func</code><span class="sig-paren">(</span><em>target</em>, <em>mse_input</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/paddy/Default_Numerics.html#mse_func"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#paddy.Default_Numerics.mse_func" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return error of interpolation.</p>
+<p>This function returns eval_numeric()the mean squared error for two sequences of
+numeric values.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="paddy.Default_Numerics.poly">
+<code class="descclassname">paddy.Default_Numerics.</code><code class="descname">poly</code><span class="sig-paren">(</span><em>x_list</em>, <em>seed</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/paddy/Default_Numerics.html#poly"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#paddy.Default_Numerics.poly" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return cordinates of a polynomial.</p>
+<p>This function returns the 2-D cordinates of a polynomial, and is used
+for interpolation problems.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>x_list</strong> : list</p>
+<blockquote>
+<div><p>A list of numerics that defines the x values evaluated over.</p>
+</div></blockquote>
+<p><strong>seed</strong> : array-like, shape = (parameters, 2)</p>
+<blockquote>
+<div><p>A numpy array of parameters generated by paddy.  Refer to
+<code class="xref py py-mod docutils literal"><span class="pre">Paddy_runner</span></code> for details regarding generation of the
+array.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>output</strong> : list of floats</p>
+<blockquote class="last">
+<div><p>A list of float values representing the y values of the input x.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><code class="xref py py-func docutils literal"><span class="pre">eval_numeric()</span></code></p>
+</div>
+<p class="rubric">Notes</p>
+<p>The polynomial is defined as:</p>
+<div class="math">
+\[\sum_{k=0}^{n}a_{k}x^k\]</div>
+<p>Where <code class="docutils literal"><span class="pre">a</span></code> represents the sequence of parameter values generated by
+paddy.  <code class="docutils literal"><span class="pre">x</span></code> is simply the <cite>x</cite> parameter of numeric values that the
+polynomial is evaluated over.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="paddy.Default_Numerics.trig_inter">
+<code class="descclassname">paddy.Default_Numerics.</code><code class="descname">trig_inter</code><span class="sig-paren">(</span><em>x_list</em>, <em>seed</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/paddy/Default_Numerics.html#trig_inter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#paddy.Default_Numerics.trig_inter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return cordinates of a trigonometric polynomial.</p>
+<p>This function returns the 2-D cordinates of a trigonometric polynomial,
+and is used for interpolation problems.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>x_list</strong> : list</p>
+<blockquote>
+<div><p>A list of numerics that defines the x values evaluated over.</p>
+</div></blockquote>
+<p><strong>seed</strong> : array-like, shape = (parameters,2)</p>
+<blockquote class="last">
+<div><p>A numpy array of parameters generated by paddy.  Refer to
+<code class="xref py py-mod docutils literal"><span class="pre">Paddy_runner</span></code> for details regarding generation of the
+array.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><code class="xref py py-func docutils literal"><span class="pre">eval_numeric()</span></code></p>
+</div>
+<p class="rubric">Notes</p>
+<p>The trigonometric polynomial is defined as:</p>
+<div class="math">
+\[t(x)=a_{0}+\sum_{n=1}^{N}a_{n}\cos(nx)+\sum_{n=1}^{N}b_{n}\sin(
+nx)\]</div>
+<p>Where <code class="docutils literal"><span class="pre">a</span></code> represents the sequence of parameter values generated by
+paddy and are passed as the odd indices of <cite>seed</cite> and <code class="docutils literal"><span class="pre">b</span></code> being even.
+Notice that this would mean that a trigonometric polynomial of the 10th
+degree would be defined by a paddy space of 11 individual parameters.</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="paddy.utils.html" class="btn btn-neutral float-left" title="paddy.utils module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Armen Beck and Jonathan Fine
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

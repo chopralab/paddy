@@ -1,0 +1,1528 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>paddy.Paddy_Runner module &mdash; Paddy Field Algortihm 3.63 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript">
+          var DOCUMENTATION_OPTIONS = {
+              URL_ROOT:'./',
+              VERSION:'3.63',
+              LANGUAGE:'None',
+              COLLAPSE_INDEX:false,
+              FILE_SUFFIX:'.html',
+              HAS_SOURCE:  true,
+              SOURCELINK_SUFFIX: '.txt'
+          };
+      </script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="paddy.PaddyParameter module" href="paddy.Paddy_Parameter.html" />
+    <link rel="prev" title="Paddy Python Package" href="paddy.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Paddy Field Algortihm
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="paddy.html">Paddy Python Package</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="paddy.html#parameter-optimization-package-for-python">Parameter optimization package for Python</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="paddy.html#modules">Modules</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">paddy.Paddy_Runner module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#routine-listings">Routine listings</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#see-also">See Also</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#notes">Notes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="paddy.Paddy_Parameter.html">paddy.PaddyParameter module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="paddy.writer.html">paddy.writer module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="paddy.utils.html">paddy.utils module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="paddy.Default_Numerics.html">paddy.Default_Numerics module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Paddy Field Algortihm</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="paddy.html">Paddy Python Package</a> &raquo;</li>
+        
+      <li>paddy.Paddy_Runner module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/paddy.Paddy_Runner.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-paddy.Paddy_Runner">
+<span id="paddy-paddy-runner-module"></span><h1>paddy.Paddy_Runner module<a class="headerlink" href="#module-paddy.Paddy_Runner" title="Permalink to this headline">¶</a></h1>
+<p>The <a class="reference internal" href="#module-paddy.Paddy_Runner" title="paddy.Paddy_Runner"><code class="xref py py-mod docutils literal"><span class="pre">paddy.Paddy_Runner</span></code></a> module contains the
+<a class="reference internal" href="#paddy.Paddy_Runner.PFARunner" title="paddy.Paddy_Runner.PFARunner"><code class="xref py py-class docutils literal"><span class="pre">PFARunner</span></code></a> class and its associated methods.</p>
+<div class="section" id="routine-listings">
+<h2>Routine listings<a class="headerlink" href="#routine-listings" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>PFARunner(object)</dt>
+<dd>Paddy class that runs the paddy field algorithm.</dd>
+</dl>
+<p>PFARunner.random_step()</p>
+<p>PFARunner.run_paddy(self, file_name=None, verbose=None )</p>
+</div>
+<div class="section" id="see-also">
+<h2>See Also<a class="headerlink" href="#see-also" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference internal" href="paddy.utils.html#module-paddy.utils" title="paddy.utils"><code class="xref py py-mod docutils literal"><span class="pre">paddy.utils</span></code></a></p>
+<p><a class="reference internal" href="paddy.Paddy_Parameter.html#module-paddy.Paddy_Parameter" title="paddy.Paddy_Parameter"><code class="xref py py-mod docutils literal"><span class="pre">paddy.Paddy_Parameter</span></code></a></p>
+</div>
+<div class="section" id="notes">
+<h2>Notes<a class="headerlink" href="#notes" title="Permalink to this headline">¶</a></h2>
+<p>The two user defined <a class="reference internal" href="#paddy.Paddy_Runner.PFARunner" title="paddy.Paddy_Runner.PFARunner"><code class="xref py py-class docutils literal"><span class="pre">PFARunner</span></code></a> parameters
+<code class="docutils literal"><span class="pre">space</span></code> and <code class="docutils literal"><span class="pre">eval_func</span></code> must be defined such that they are consistent with
+the internal operations of paddy.  Refer to their specific documentation
+detailed in the <strong>Parameters</strong> section of
+<a class="reference internal" href="#paddy.Paddy_Runner.PFARunner" title="paddy.Paddy_Runner.PFARunner"><code class="xref py py-class docutils literal"><span class="pre">PFARunner</span></code></a> for more information.</p>
+</div>
+<div class="section" id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<p>A generic example of using the <a class="reference internal" href="#module-paddy.Paddy_Runner" title="paddy.Paddy_Runner"><code class="xref py py-mod docutils literal"><span class="pre">paddy.Paddy_Runner</span></code></a> module
+<a class="reference internal" href="#paddy.Paddy_Runner.PFARunner" title="paddy.Paddy_Runner.PFARunner"><code class="xref py py-class docutils literal"><span class="pre">PFARunner</span></code></a> and associated methods in a typical
+manner.  In this case, we are setting up a <cite>PFARunner</cite> to optimize (x,y)
+coordinates for a paraboloid of <span class="math">\(z=-\frac{x^2}{7}-\frac{y^2}{2}+1\)</span>.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">paddy</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">parabola</span><span class="p">(</span><span class="nb">input</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="n">x</span> <span class="o">=</span> <span class="nb">input</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="gp">... </span>    <span class="n">y</span> <span class="o">=</span> <span class="nb">input</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="gp">... </span>    <span class="k">return</span><span class="p">(((</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="mi">7</span><span class="p">)</span><span class="o">-</span><span class="p">((</span><span class="n">y</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="c1"># The maximum is when x and y are 0</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># now we need to set our parameter space for x and y</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x_param</span> <span class="o">=</span> <span class="n">paddy</span><span class="o">.</span><span class="n">PaddyParameter</span><span class="p">(</span><span class="n">param_range</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="o">.</span><span class="mi">2</span><span class="p">],</span>
+<span class="gp">... </span>                               <span class="n">param_type</span><span class="o">=</span><span class="s1">&#39;continuous&#39;</span><span class="p">,</span>
+<span class="gp">... </span>                               <span class="n">limits</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">gaussian</span><span class="o">=</span><span class="s1">&#39;scaled&#39;</span><span class="p">,</span>
+<span class="gp">... </span>                               <span class="n">normalization</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y_param</span> <span class="o">=</span> <span class="n">paddy</span><span class="o">.</span><span class="n">PaddyParameter</span><span class="p">(</span><span class="n">param_range</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">7</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="o">.</span><span class="mi">2</span><span class="p">],</span>
+<span class="gp">... </span>                               <span class="n">param_type</span><span class="o">=</span><span class="s1">&#39;continuous&#39;</span><span class="p">,</span>
+<span class="gp">... </span>                               <span class="n">limits</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">gaussian</span><span class="o">=</span><span class="s1">&#39;scaled&#39;</span><span class="p">,</span>
+<span class="gp">... </span>                               <span class="n">normalization</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># now we make a class with the parameter spaces we defined</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">paraboloid_space</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="gp">... </span>        <span class="bp">self</span><span class="o">.</span><span class="n">xp</span> <span class="o">=</span> <span class="n">x_param</span>
+<span class="gp">... </span>        <span class="bp">self</span><span class="o">.</span><span class="n">yp</span> <span class="o">=</span> <span class="n">y_param</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># now we need to initialize a `PFARunner`</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">example_space</span> <span class="o">=</span> <span class="n">paraboloid_space</span><span class="p">()</span> <span class="c1">#the space parameter</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">example_runner</span> <span class="o">=</span> <span class="n">paddy</span><span class="o">.</span><span class="n">PFARunner</span><span class="p">(</span><span class="n">space</span><span class="o">=</span><span class="n">example_space</span><span class="p">,</span>
+<span class="gp">... </span>                                 <span class="n">eval_func</span><span class="o">=</span><span class="n">parabola</span><span class="p">,</span>
+<span class="gp">... </span>                                 <span class="n">paddy_type</span><span class="o">=</span><span class="s1">&#39;population&#39;</span><span class="p">,</span>
+<span class="gp">... </span>                                 <span class="n">rand_seed_number</span> <span class="o">=</span> <span class="mi">20</span><span class="p">,</span>
+<span class="gp">... </span>                                 <span class="n">yt</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span>
+<span class="gp">... </span>                                 <span class="n">Qmax</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span>
+<span class="gp">... </span>                                 <span class="n">r</span><span class="o">=.</span><span class="mi">2</span><span class="p">,</span>
+<span class="gp">... </span>                                 <span class="n">iterations</span> <span class="o">=</span> <span class="mi">5</span><span class="p">)</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">example_runner</span><span class="o">.</span><span class="n">run_paddy</span><span class="p">(</span><span class="n">file_name</span><span class="o">=</span><span class="s1">&#39;paddy_example&#39;</span><span class="p">)</span>
+<span class="go">paddy is done!</span>
+</pre></div>
+</div>
+<p>Lets load the <a class="reference internal" href="#module-paddy.Paddy_Runner" title="paddy.Paddy_Runner"><code class="xref py py-mod docutils literal"><span class="pre">Paddy_Runner</span></code></a> and run it some more</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">paddy</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># we need to define the dependent evaluation function</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">parabola</span><span class="p">(</span><span class="nb">input</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="n">x</span> <span class="o">=</span> <span class="nb">input</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="gp">... </span>    <span class="n">y</span> <span class="o">=</span> <span class="nb">input</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="gp">... </span>    <span class="k">return</span><span class="p">(((</span><span class="o">-</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="mi">7</span><span class="p">)</span><span class="o">-</span><span class="p">((</span><span class="n">y</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="c1"># The maximum is when x and y are 0</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">recovered_example</span> <span class="o">=</span> <span class="n">paddy</span><span class="o">.</span><span class="n">paddy_recover</span><span class="p">(</span><span class="s1">&#39;paddy_example&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">recovered_example</span><span class="o">.</span><span class="n">recover_run</span><span class="p">()</span>
+<span class="go">recovered paddy run was already completed, use extend_paddy</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># woops! Wrong method, lets use `extend_paddy`!</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">recovered_example</span><span class="o">.</span><span class="n">extend_paddy</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="go">paddy is done!</span>
+</pre></div>
+</div>
+<p>Lets graph the results using
+<a class="reference internal" href="#paddy.Paddy_Runner.PFARunner.paddy_plot_and_print" title="paddy.Paddy_Runner.PFARunner.paddy_plot_and_print"><code class="xref py py-meth docutils literal"><span class="pre">paddy_plot_and_print()</span></code></a></p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">example_runner</span><span class="o">.</span><span class="n">paddy_plot_and_print</span><span class="p">((</span><span class="s1">&#39;scatter&#39;</span><span class="p">,</span>
+<span class="gp">... </span>                                     <span class="s1">&#39;average_gen&#39;</span><span class="p">,</span>
+<span class="gp">... </span>                                     <span class="s1">&#39;average_population&#39;</span><span class="p">))</span>
+<span class="gp">...</span>
+</pre></div>
+</div>
+<img alt="_images/example_figure.png" src="_images/example_figure.png" />
+<p>Looks good!  But what parameters do the top seed have?</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">example_runner</span><span class="o">.</span><span class="n">get_top_seed</span><span class="p">()</span>
+<span class="go">[&#39;seed_116&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">example_runner</span><span class="o">.</span><span class="n">seed_fitness</span><span class="p">[</span><span class="mi">116</span><span class="p">]</span>
+<span class="go">0.9961291072913099</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">example_runner</span><span class="o">.</span><span class="n">seed_params</span><span class="p">[]</span>
+<span class="go">array([[-0.29531996, -0.02205951],</span>
+<span class="go">       [-0.25822639,  0.01529183]])</span>
+</pre></div>
+</div>
+<dl class="class">
+<dt id="paddy.Paddy_Runner.PFARunner">
+<em class="property">class </em><code class="descclassname">paddy.Paddy_Runner.</code><code class="descname">PFARunner</code><span class="sig-paren">(</span><em>space</em>, <em>eval_func</em>, <em>rand_seed_number</em>, <em>yt</em>, <em>Qmax</em>, <em>paddy_type</em>, <em>r</em>, <em>iterations</em>, <em>error_handling=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/paddy/Paddy_Runner.html#PFARunner"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#paddy.Paddy_Runner.PFARunner" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class that runs PFA.</p>
+<p><cite>PFARunner</cite> handles the user defined parameters, and exicutes
+the paddy field algorithm for a defined amount of iterations.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>space</strong> : class</p>
+<blockquote>
+<div><p>A user defined class that is comprised of <cite>PaddyParameter</cite>
+instances for attributes.</p>
+</div></blockquote>
+<p><strong>eval_func</strong> : function, or method</p>
+<blockquote>
+<div><p>A function or method that returns a value to be maximized.
+The function must accept an array-type input where
+shape = (parameters,2) and reads the zeroth index of every
+two index lenght slice as a the parameter value where the
+first index position is the gaussian value which should be
+ignored.</p>
+</div></blockquote>
+<p><strong>paddy_type: string</strong></p>
+<blockquote>
+<div><p>The string ‘population’ or ‘generational’ to specify which
+method is used during the selection step.</p>
+</div></blockquote>
+<p><strong>rand_seed</strong> : integer</p>
+<blockquote>
+<div><p>A numeric that defines the number of random seeds generated.</p>
+</div></blockquote>
+<p><strong>yt</strong> : integer</p>
+<blockquote>
+<div><p>A numeric that defines the threshold operator for the
+evaluation step.</p>
+</div></blockquote>
+<p><strong>Qmax</strong> : integer</p>
+<blockquote>
+<div><p>A numeric that defines the maximum number of seeds posible
+that a plant can produce.</p>
+</div></blockquote>
+<p><strong>iterations</strong> : integer</p>
+<blockquote>
+<div><p>A numeric that defines the amount of iterations that paddy
+will run.</p>
+</div></blockquote>
+<p><strong>error_handling</strong> : bool, optional (default: True)</p>
+<blockquote>
+<div><p>A boolean that allows the user to bypass built in error
+handlings.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first"><strong>PaddyRunnerError</strong></p>
+<blockquote class="last">
+<div><p>If parameter value(s) used to initialize an instance of <cite>PFARunner</cite>
+would raise an exception when calling methods of <cite>PFARunner</cite>.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Attributes</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="12%" />
+<col width="88%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><strong>yt_prime</strong></td>
+<td>(integer or float) A numeric that is defined by the origional <cite>yt</cite> parameter and is called to reset <cite>yt</cite> if <cite>yt</cite> is modified otherwise while running paddy.</td>
+</tr>
+<tr class="row-even"><td><strong>seed_counter</strong></td>
+<td>(integer) A numeric that tracks the number of seeds generated.</td>
+</tr>
+<tr class="row-odd"><td><strong>paddy_counter</strong></td>
+<td>(integer) A numeric that tracks the number of iteration run.</td>
+</tr>
+<tr class="row-even"><td><strong>seed_params</strong></td>
+<td>(list) A list of seed parameters generated while running paddy.</td>
+</tr>
+<tr class="row-odd"><td><strong>seed_fitness: list</strong></td>
+<td>A list of seed fitness values.</td>
+</tr>
+<tr class="row-even"><td><strong>generation_data</strong></td>
+<td>(dictionary) A dictionary that documents the seed indexes per paddy iteration.</td>
+</tr>
+<tr class="row-odd"><td><strong>generation_fitness</strong></td>
+<td>(dictionary) A dictionary of iterations and the fitness values of their respective seeds.</td>
+</tr>
+<tr class="row-even"><td><strong>top_values</strong></td>
+<td>(dictionary) A dictionary of the top seed per iteration, and their respective fitness value and parameters.</td>
+</tr>
+<tr class="row-odd"><td><strong>s</strong></td>
+<td>(array-like, shape = (yt, 2)) A numpy array containing seed indexes and the number of unpolinated seeds.</td>
+</tr>
+<tr class="row-even"><td><strong>Un</strong></td>
+<td>(array-like, shape = (yt, 2)) A numpy array containing seed indexes and neighbor count values.</td>
+</tr>
+<tr class="row-odd"><td><strong>S</strong></td>
+<td>(array-like, shape = (yt, 2)) A numpy array containing seed indexes and the number of polinated seeds.</td>
+</tr>
+<tr class="row-even"><td><strong>recover</strong></td>
+<td>(bool (default) A boolean that determines if the instance of <cite>PFARunner</cite> has been recovered.</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Methods</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="34%" />
+<col width="66%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><strong>run_paddy(file_name=None, verbose=None)</strong></td>
+<td>Executes the paddy field algorithm.  <cite>PFARunner</cite> methods utilized by <cite>run_paddy</cite> are described in the respective note section per method.</td>
+</tr>
+<tr class="row-even"><td><strong>paddy_plot_and_print(verbose=None)</strong></td>
+<td>Used to print, and or graph, results.</td>
+</tr>
+<tr class="row-odd"><td><strong>save_paddy(new_file_name=None)</strong></td>
+<td>Saves the given instance of <cite>PFARunner</cite>.</td>
+</tr>
+<tr class="row-even"><td><strong>recover_run(new_verbose=None)</strong></td>
+<td>Resumes the paddy field algorithm if otherwise interupted or recovered.</td>
+</tr>
+<tr class="row-odd"><td><strong>extend_paddy(new_iterations, new_file_name=None, new_verbose=None)</strong></td>
+<td>Extends the iterations of a previously completed instance of <cite>PFARunner</cite>.</td>
+</tr>
+<tr class="row-even"><td><strong>get_top_seed()</strong></td>
+<td>Provides the seed of greatest fitness in population.</td>
+</tr>
+<tr class="row-odd"><td><strong>get_generation_top_seed(counter=None, verbose=False)</strong></td>
+<td>Provides the seed of greatest fitness in a generation.</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="paddy.Paddy_Runner.PFARunner.extend_paddy">
+<code class="descname">extend_paddy</code><span class="sig-paren">(</span><em>new_iterations</em>, <em>new_file_name=None</em>, <em>new_verbose=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/paddy/Paddy_Runner.html#PFARunner.extend_paddy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#paddy.Paddy_Runner.PFARunner.extend_paddy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extend the iterations of a completed paddy runner.</p>
+<p>This method runs a <cite>PFARunner</cite> instance that has completed the amount
+of iterations set as its attribute.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>new_iterations</strong> : integer</p>
+<blockquote>
+<div><p>Integer to extend the iterations of the <cite>PFARunner</cite> by.</p>
+</div></blockquote>
+<p><strong>new_file_name</strong> : string, optional (default</p>
+<blockquote>
+<div><p>A string that is used for the file handle.  The same string is
+also used for generating the file handle of the backup pickle with
+the trailing ‘_backup.pickle’ added, and replaces the former file
+name used.</p>
+</div></blockquote>
+<p><strong>new_verbose</strong> : string or sequence of strings, optional (default</p>
+<blockquote>
+<div><p>See <cite>verbose</cite> parameter description for <cite>run_paddy</cite>.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first"><strong>PaddyRunnerError</strong></p>
+<blockquote class="last">
+<div><p>If parameter value(s) used to initialize an instance of
+<cite>PFARunner</cite> would raise an exception when calling methods of
+<cite>PFARunner</cite>.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<dl class="last docutils">
+<dt><a class="reference internal" href="#paddy.Paddy_Runner.PFARunner.run_paddy" title="paddy.Paddy_Runner.PFARunner.run_paddy"><code class="xref py py-meth docutils literal"><span class="pre">run_paddy()</span></code></a></dt>
+<dd><cite>PFARunner</cite> method that excecutes the paddy field algorithm.</dd>
+<dt><a class="reference internal" href="#paddy.Paddy_Runner.PFARunner.recover_run" title="paddy.Paddy_Runner.PFARunner.recover_run"><code class="xref py py-meth docutils literal"><span class="pre">recover_run()</span></code></a></dt>
+<dd><cite>PFARunner</cite> method that runs a recovered pickle run.</dd>
+</dl>
+</div>
+<p class="rubric">Notes</p>
+<p>This method can be used to extend the <cite>iterations</cite> of a <cite>PFARunner</cite>
+while changing the <cite>file_name</cite> and <cite>verbose</cite> atributes as well in
+one line rather than manualy for each and calling <a class="reference internal" href="#paddy.Paddy_Runner.PFARunner.run_paddy" title="paddy.Paddy_Runner.PFARunner.run_paddy"><code class="xref py py-meth docutils literal"><span class="pre">run_paddy()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="paddy.Paddy_Runner.PFARunner.get_generation_top_seed">
+<code class="descname">get_generation_top_seed</code><span class="sig-paren">(</span><em>counter=None</em>, <em>verbose=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/paddy/Paddy_Runner.html#PFARunner.get_generation_top_seed"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#paddy.Paddy_Runner.PFARunner.get_generation_top_seed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the max value of fitness in the generation.</p>
+<p>This method returns the top seed number of a given generation
+of a paddy run when called internally, though a user can call the
+method directly to print to terminal.  If called directly, a <cite>counter</cite>
+parameter value can be passed to specify which generation is acessed,
+where the default generation analyzed is the last evaluated.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>counter</strong> : integer, (default</p>
+<blockquote>
+<div><p>An integer that specifies which generation is analyzed.</p>
+</div></blockquote>
+<p><strong>verbose</strong> : bool, (default</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>temp_names</strong> : list of strings</p>
+<blockquote class="last">
+<div><p>A list of seed number string(s) in the form <cite>‘seed_#’</cite></p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<dl class="last docutils">
+<dt><a class="reference internal" href="#paddy.Paddy_Runner.PFARunner.run_paddy" title="paddy.Paddy_Runner.PFARunner.run_paddy"><code class="xref py py-meth docutils literal"><span class="pre">run_paddy()</span></code></a></dt>
+<dd><cite>PFARunner</cite> method that excecutes the paddy field algorithm.</dd>
+</dl>
+</div>
+<p class="rubric">Notes</p>
+<p>When running paddy via <a class="reference internal" href="#paddy.Paddy_Runner.PFARunner.run_paddy" title="paddy.Paddy_Runner.PFARunner.run_paddy"><code class="xref py py-meth docutils literal"><span class="pre">run_paddy()</span></code></a>, the <code class="docutils literal"><span class="pre">verbose</span></code> parameter
+will call <a class="reference internal" href="#paddy.Paddy_Runner.PFARunner.get_generation_top_seed" title="paddy.Paddy_Runner.PFARunner.get_generation_top_seed"><code class="xref py py-meth docutils literal"><span class="pre">get_generation_top_seed()</span></code></a> if the string command
+<cite>‘top_gen’</cite> is passed.</p>
+<p>In the case that multiple seeds are tied for having the greatest
+fitness value, they are appended to <cite>temp_names</cite>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="paddy.Paddy_Runner.PFARunner.get_top_seed">
+<code class="descname">get_top_seed</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/paddy/Paddy_Runner.html#PFARunner.get_top_seed"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#paddy.Paddy_Runner.PFARunner.get_top_seed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the seed with the greatest fitness in the paddy runner.</p>
+<p>This method returns the top seed number when called internally, though
+a user can simply call the method directly to print to terminal.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>temp_names</strong> : list of strings</p>
+<blockquote class="last">
+<div><p>A list of seed number string(s) in the form <cite>‘seed_#’</cite></p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<dl class="last docutils">
+<dt><a class="reference internal" href="#paddy.Paddy_Runner.PFARunner.run_paddy" title="paddy.Paddy_Runner.PFARunner.run_paddy"><code class="xref py py-meth docutils literal"><span class="pre">run_paddy()</span></code></a></dt>
+<dd><cite>PFARunner</cite> method that excecutes the paddy field algorithm.</dd>
+</dl>
+</div>
+<p class="rubric">Notes</p>
+<p>When running paddy via <a class="reference internal" href="#paddy.Paddy_Runner.PFARunner.run_paddy" title="paddy.Paddy_Runner.PFARunner.run_paddy"><code class="xref py py-meth docutils literal"><span class="pre">run_paddy()</span></code></a>, the <code class="docutils literal"><span class="pre">verbose</span></code> parameter
+will call <a class="reference internal" href="#paddy.Paddy_Runner.PFARunner.get_top_seed" title="paddy.Paddy_Runner.PFARunner.get_top_seed"><code class="xref py py-meth docutils literal"><span class="pre">get_top_seed()</span></code></a> if the string command <cite>‘pop’</cite> is
+passed.</p>
+<p>In the case that multiple seeds are tied for having the greatest
+fitness value, they are appended to <cite>temp_names</cite>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="paddy.Paddy_Runner.PFARunner.neighbor_counter">
+<code class="descname">neighbor_counter</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/paddy/Paddy_Runner.html#PFARunner.neighbor_counter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#paddy.Paddy_Runner.PFARunner.neighbor_counter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate neighbor counts and polinated seeds.</p>
+<p>Calculates the amount of neighbors per seed, and then uses the
+neighbor counts to calculate the polination factor per seed. Polinated
+seed values are defined as the rounded integer resulting from the
+product of the unpolinated seed term and polination term.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<dl class="last docutils">
+<dt><a class="reference internal" href="#paddy.Paddy_Runner.PFARunner.run_paddy" title="paddy.Paddy_Runner.PFARunner.run_paddy"><code class="xref py py-meth docutils literal"><span class="pre">run_paddy()</span></code></a></dt>
+<dd><cite>PFARunner</cite> method that excecutes the paddy field algorithm.</dd>
+<dt><a class="reference internal" href="paddy.Paddy_Parameter.html#paddy.Paddy_Parameter.PaddyParameter.get_ecludian_values" title="paddy.Paddy_Parameter.PaddyParameter.get_ecludian_values"><code class="xref py py-meth docutils literal"><span class="pre">paddy.Paddy_Parameter.PaddyParameter.get_ecludian_values()</span></code></a></dt>
+<dd>Function that retrieves values for calculating ecludian distance of parameters.</dd>
+</dl>
+</div>
+<p class="rubric">Notes</p>
+<p>Polinated seeds are calculated as the product of unpolinated seed
+numbers (<cite>s</cite>) and the polination factor (<cite>U</cite>).  The polination factor
+is varient and defined by the number of ‘neighbors’ within the
+population of seeds being evaluated.  Neighbors (<cite>u</cite>) are defined as
+seeds falling within the radius (<cite>r</cite>) of a multi-dimensional euclidean
+space as such:</p>
+<blockquote>
+<div><div class="math">
+\[u(x_{j},x_{k})=\left \| x_{j}-x_{k} \right \|-r&lt;0\]</div>
+</div></blockquote>
+<p>After calculating the number of neighbors per seed in the evaluated
+population, a polination factor is then calculated and assigned as a
+normalized value falling between zero and one via the expression:</p>
+<div class="math">
+\[U=e^{[{u\over u_{max}}-1]}\]</div>
+<p>If the radius parameter provided by the user fails to generate any
+neighbors for the evaluated seeds, an initial quantile cutoff of 0.75
+is applied to an internal list of euclidean distances to generate a
+new radius term for neighbor counting.  This corrective procedure
+itterates untill the evaluated population contains seeds with
+neighbors, with the quantile cutoff decreasing by 0.05 untill a cutoff
+of 0.05 is applied.  In the case that this fails, the number of
+neighbors per seed is simply assigned as one, effectively dropping the
+polination factor in the current iteration.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="paddy.Paddy_Runner.PFARunner.new_propogation">
+<code class="descname">new_propogation</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/paddy/Paddy_Runner.html#PFARunner.new_propogation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#paddy.Paddy_Runner.PFARunner.new_propogation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate new seeds and evaluate.</p>
+<p>Assignes parameters to new seeds, and evaluates them to generate
+respective fitness values.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<dl class="last docutils">
+<dt><a class="reference internal" href="#paddy.Paddy_Runner.PFARunner.run_paddy" title="paddy.Paddy_Runner.PFARunner.run_paddy"><code class="xref py py-meth docutils literal"><span class="pre">run_paddy()</span></code></a></dt>
+<dd><cite>PFARunner</cite> method that excecutes the paddy field algorithm.</dd>
+<dt><a class="reference internal" href="paddy.Paddy_Parameter.html#paddy.Paddy_Parameter.PaddyParameter.new_seed_init" title="paddy.Paddy_Parameter.PaddyParameter.new_seed_init"><code class="xref py py-meth docutils literal"><span class="pre">paddy.Paddy_Parameter.PaddyParameter.new_seed_init()</span></code></a></dt>
+<dd><cite>PaddyParameter</cite> method that generates new seed parameters.</dd>
+</dl>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="paddy.Paddy_Runner.PFARunner.paddy_plot_and_print">
+<code class="descname">paddy_plot_and_print</code><span class="sig-paren">(</span><em>verbose=None</em>, <em>figure_name=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/paddy/Paddy_Runner.html#PFARunner.paddy_plot_and_print"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#paddy.Paddy_Runner.PFARunner.paddy_plot_and_print" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot and print results.</p>
+<p>This method is used to generate results as either printed or plotted
+results.  The type of output is dictated by passed strings via the
+<cite>verbose</cite> parameter.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>verbose</strong> : string or sequence of string, optional (default</p>
+<blockquote>
+<div><p>String comand(s) that handle printing of values generated after
+completion of a paddy run.  Details regarding valid strings are
+discussed in the notes section below.</p>
+</div></blockquote>
+<p><strong>figure_name</strong> : string, (default</p>
+<blockquote class="last">
+<div><p>A string that is passed to <cite>writer.preformance_plotter</cite> that
+is used to save generated plots.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference internal" href="paddy.writer.html#paddy.writer.preformance_plotter" title="paddy.writer.preformance_plotter"><code class="xref py py-meth docutils literal"><span class="pre">paddy.writer.preformance_plotter()</span></code></a>, <a class="reference internal" href="paddy.writer.html#paddy.writer.clean_parameter_print" title="paddy.writer.clean_parameter_print"><code class="xref py py-meth docutils literal"><span class="pre">paddy.writer.clean_parameter_print()</span></code></a>, <a class="reference internal" href="paddy.utils.html#paddy.utils.get_top_fitness" title="paddy.utils.get_top_fitness"><code class="xref py py-meth docutils literal"><span class="pre">paddy.utils.get_top_fitness()</span></code></a></p>
+</div>
+<p class="rubric">Notes</p>
+<p><cite>paddy_plot_and_print</cite> coordinates with <cite>writer.preformance_plotter</cite>
+to generate desired representations of results via string arguments
+initially introduced via <cite>verbose</cite>.  Valid strings that will generate
+output without calling <cite>writer.preformance_plotter</cite> are:</p>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>‘generation’</dt>
+<dd>Simply prints the <cite>PFARunner</cite> attribute <code class="docutils literal"><span class="pre">generation_data</span></code>.</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>‘final_results’</dt>
+<dd>Prints results via <cite>clean_parameter_print</cite> with the <cite>PFARunner</cite>
+attribute <code class="docutils literal"><span class="pre">top_values</span></code> as input.</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>‘pop_fitness’</dt>
+<dd>Prints the list returned by <cite>get_top_fitness</cite> using the
+<cite>PFARunner</cite> attribute <code class="docutils literal"><span class="pre">top_values</span></code> as input.</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>‘gen_fitness’</dt>
+<dd>Prints the <cite>PFARunner</cite> attribute <code class="docutils literal"><span class="pre">generation_fitness</span></code>.</dd>
+</dl>
+</li>
+</ul>
+<p>Valid comands are passed to <cite>writer.preformance_plotter</cite> as described
+in detail in the notes section for
+<a class="reference internal" href="paddy.writer.html#paddy.writer.preformance_plotter" title="paddy.writer.preformance_plotter"><code class="xref py py-meth docutils literal"><span class="pre">paddy.writer.preformance_plotter()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="paddy.Paddy_Runner.PFARunner.random_step">
+<code class="descname">random_step</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/paddy/Paddy_Runner.html#PFARunner.random_step"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#paddy.Paddy_Runner.PFARunner.random_step" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate random seeds.</p>
+<p>Excecutes the initialization step of the paddy field algorithm via
+random propogation of <cite>PaddyParameter</cite> attributes in provided space.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<dl class="last docutils">
+<dt><a class="reference internal" href="paddy.utils.html#paddy.utils.random_propogation" title="paddy.utils.random_propogation"><code class="xref py py-func docutils literal"><span class="pre">paddy.utils.random_propogation()</span></code></a></dt>
+<dd>function that generates random seeds and an updated seed counter.</dd>
+<dt><a class="reference internal" href="#paddy.Paddy_Runner.PFARunner.run_paddy" title="paddy.Paddy_Runner.PFARunner.run_paddy"><code class="xref py py-meth docutils literal"><span class="pre">run_paddy()</span></code></a></dt>
+<dd><cite>PFARunner</cite> method that excecutes the paddy field algorithm.</dd>
+</dl>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="paddy.Paddy_Runner.PFARunner.recover_run">
+<code class="descname">recover_run</code><span class="sig-paren">(</span><em>new_verbose=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/paddy/Paddy_Runner.html#PFARunner.recover_run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#paddy.Paddy_Runner.PFARunner.recover_run" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run paddy after recovering a pickled run.</p>
+<p>This method runs a recovered depickled <cite>PFARunner</cite> instance, by
+resuming where the algorithm was functioning last.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>new_verbose</strong> : string or sequence of strings, optional (default</p>
+<blockquote class="last">
+<div><p>See <cite>verbose</cite> parameter description for <cite>run_paddy</cite>.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<dl class="last docutils">
+<dt><a class="reference internal" href="#paddy.Paddy_Runner.PFARunner.run_paddy" title="paddy.Paddy_Runner.PFARunner.run_paddy"><code class="xref py py-meth docutils literal"><span class="pre">run_paddy()</span></code></a></dt>
+<dd><cite>PFARunner</cite> method that excecutes the paddy field algorithm.</dd>
+<dt><a class="reference internal" href="paddy.utils.html#paddy.utils.paddy_recover" title="paddy.utils.paddy_recover"><code class="xref py py-func docutils literal"><span class="pre">paddy.utils.paddy_recover()</span></code></a></dt>
+<dd><cite>utils</cite> function that depickles a given pickled <cite>PFARunner</cite> instance.</dd>
+</dl>
+</div>
+<p class="rubric">Notes</p>
+<p>If a recovered <cite>PFARunner</cite> is unable to excicute <a class="reference internal" href="#paddy.Paddy_Runner.PFARunner.recover_run" title="paddy.Paddy_Runner.PFARunner.recover_run"><code class="xref py py-meth docutils literal"><span class="pre">recover_run()</span></code></a>,
+it may be needed to manualy decrease the <cite>paddy_counter</cite> attribute.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="paddy.Paddy_Runner.PFARunner.run_paddy">
+<code class="descname">run_paddy</code><span class="sig-paren">(</span><em>file_name=None</em>, <em>verbose=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/paddy/Paddy_Runner.html#PFARunner.run_paddy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#paddy.Paddy_Runner.PFARunner.run_paddy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Excecute paddy field algorithm :func:’run_paddy’.</p>
+<p>This method is used to run the paddy field algorithm.  A thorough
+explination of how the method works can be found in the notes section
+of the <a class="reference internal" href="#module-paddy.Paddy_Runner" title="paddy.Paddy_Runner"><code class="xref py py-mod docutils literal"><span class="pre">paddy.Paddy_Runner</span></code></a> module.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>file_name</strong> : string or nonetype, optional (default</p>
+<blockquote>
+<div><p>A user defined string that is used as the file handle for
+<cite>PFARunner</cite> instance pickling.</p>
+</div></blockquote>
+<p><strong>verbose</strong> : string or sequence of string, optional (default</p>
+<blockquote class="last">
+<div><p>String comand(s) that handle printing of values generated during
+paddy runs.  Valid strings include:
+<code class="docutils literal"><span class="pre">('status','top_gen','pop','all')</span></code>.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<dl class="last docutils">
+<dt><a class="reference internal" href="#paddy.Paddy_Runner.PFARunner.random_step" title="paddy.Paddy_Runner.PFARunner.random_step"><code class="xref py py-meth docutils literal"><span class="pre">random_step()</span></code></a></dt>
+<dd>Method that excecutes the random initiation step.</dd>
+<dt><a class="reference internal" href="#paddy.Paddy_Runner.PFARunner.sowing_function" title="paddy.Paddy_Runner.PFARunner.sowing_function"><code class="xref py py-meth docutils literal"><span class="pre">sowing_function()</span></code></a></dt>
+<dd>Method that calculates unpolinated seed values.</dd>
+<dt><a class="reference internal" href="#paddy.Paddy_Runner.PFARunner.neighbor_counter" title="paddy.Paddy_Runner.PFARunner.neighbor_counter"><code class="xref py py-meth docutils literal"><span class="pre">neighbor_counter()</span></code></a></dt>
+<dd>Method that calculates neighbor terms and the resulting polination term.</dd>
+<dt><a class="reference internal" href="#paddy.Paddy_Runner.PFARunner.new_propogation" title="paddy.Paddy_Runner.PFARunner.new_propogation"><code class="xref py py-meth docutils literal"><span class="pre">new_propogation()</span></code></a></dt>
+<dd>Method that generates new seeds and evaluates them.</dd>
+<dt><a class="reference internal" href="paddy.Paddy_Parameter.html#paddy.Paddy_Parameter.PaddyParameter" title="paddy.Paddy_Parameter.PaddyParameter"><code class="xref py py-class docutils literal"><span class="pre">paddy.Paddy_Parameter.PaddyParameter</span></code></a></dt>
+<dd>Class that handles calculations for specific parameters being optimized by paddy and communicates with <cite>PFARunner</cite> methods.</dd>
+</dl>
+</div>
+<p class="rubric">Notes</p>
+<p>For specifics regarding the dependant methods and
+<code class="xref py py-class docutils literal"><span class="pre">PaddyParameter</span></code>, refer to their respective documentation.</p>
+<p class="rubric">Examples</p>
+<p>Setting up a paddy run using default <cite>Polynomial</cite> parameter space
+generator function to optimize parameters for trigonometric polynomial
+interpolation of the Gramacy &amp; Lee function.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">paddy</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">paddy.Default_Numerics</span> <span class="k">import</span> <span class="o">*</span>
+</pre></div>
+</div>
+<p>The default polynomial class is used to set up parameter space:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">polly_space</span> <span class="o">=</span> <span class="n">Polynomial</span><span class="p">(</span><span class="n">length</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">scope</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+<span class="gp">... </span>                         <span class="n">gaussian_type</span><span class="o">=</span><span class="s1">&#39;scaled&#39;</span><span class="p">,</span>
+<span class="gp">... </span>                         <span class="n">normalization</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>A class instance with an evaluation method for optimization:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">RunFunc</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="gp">... </span>        <span class="bp">self</span><span class="o">.</span><span class="n">xs</span> <span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ys</span> <span class="o">=</span> <span class="n">gramacy_lee</span><span class="p">()</span>
+<span class="gp">... </span>    <span class="k">def</span> <span class="nf">eval</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">values</span><span class="p">):</span>
+<span class="gp">... </span>        <span class="n">score</span> <span class="o">=</span> <span class="n">eval_gl</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="n">values</span><span class="p">,</span><span class="n">x</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">xs</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">ys</span><span class="p">)</span>
+<span class="gp">... </span>        <span class="k">return</span> <span class="n">score</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rf</span> <span class="o">=</span> <span class="n">RunFunc</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>A <cite>PFARunner</cite> instance is generated and run using run_paddy:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">runner</span> <span class="o">=</span> <span class="n">paddy</span><span class="o">.</span><span class="n">PFARunner</span><span class="p">(</span><span class="n">space</span><span class="o">=</span><span class="n">polly_space</span><span class="p">,</span>
+<span class="gp">... </span>                           <span class="n">eval_func</span><span class="o">=</span><span class="n">rf</span><span class="o">.</span><span class="n">eval</span><span class="p">,</span>
+<span class="gp">... </span>                           <span class="n">rand_seed_number</span> <span class="o">=</span> <span class="mi">50</span><span class="p">,</span>
+<span class="gp">... </span>                           <span class="n">yt</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="n">paddy_type</span><span class="o">=</span><span class="s1">&#39;population&#39;</span><span class="p">,</span>
+<span class="gp">... </span>                           <span class="n">Qmax</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span> <span class="n">iterations</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><cite>PFARunner</cite> parameters can be changed before and after runs:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">runner</span><span class="o">.</span><span class="n">Qmax</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">runner</span><span class="o">.</span><span class="n">Qmax</span>
+<span class="go">10</span>
+</pre></div>
+</div>
+<p>The <cite>PFARunner</cite> instance can then run the paddy field algorithm:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">runner</span><span class="o">.</span><span class="n">run_paddy</span><span class="p">()</span>
+<span class="go">paddy is done!</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="paddy.Paddy_Runner.PFARunner.save_paddy">
+<code class="descname">save_paddy</code><span class="sig-paren">(</span><em>new_file_name=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/paddy/Paddy_Runner.html#PFARunner.save_paddy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#paddy.Paddy_Runner.PFARunner.save_paddy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save <a class="reference internal" href="#paddy.Paddy_Runner.PFARunner" title="paddy.Paddy_Runner.PFARunner"><code class="xref py py-class docutils literal"><span class="pre">PFARunner</span></code></a> as a pickled file.</p>
+<p>This method uses the python pickle serialization module to store class
+iterances of <cite>PFARunner</cite> to be recovered as needed by the user.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>new_file_name</strong> : string, (default</p>
+<blockquote class="last">
+<div><p>A string that is used for the file handle.  The same string is
+also used for generating the file handle of the backup pickle with
+the trailing ‘_backup.pickle’ added, and replaces the former file
+name used.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<dl class="last docutils">
+<dt><a class="reference internal" href="paddy.utils.html#paddy.utils.paddy_recover" title="paddy.utils.paddy_recover"><code class="xref py py-func docutils literal"><span class="pre">paddy.utils.paddy_recover()</span></code></a></dt>
+<dd><cite>utils</cite> function that depickles a given pickled <cite>PFARunner</cite> instance.</dd>
+</dl>
+</div>
+<p class="rubric">Notes</p>
+<p>The backup pickle is saved every other iteration of paddy after the
+primary pickle handle.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="paddy.Paddy_Runner.PFARunner.sowing_function">
+<code class="descname">sowing_function</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/paddy/Paddy_Runner.html#PFARunner.sowing_function"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#paddy.Paddy_Runner.PFARunner.sowing_function" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate unpolinated seeds.</p>
+<p>Applies the threshold operator <cite>yt</cite> on the seeds to be considered,
+defined by the paddy type, and calculates the number of unpolinated
+seeds for the subsequent steps in the paddy field algorithm.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<dl class="last docutils">
+<dt><a class="reference internal" href="#paddy.Paddy_Runner.PFARunner.run_paddy" title="paddy.Paddy_Runner.PFARunner.run_paddy"><code class="xref py py-obj docutils literal"><span class="pre">run_paddy</span></code></a></dt>
+<dd><cite>PFARunner</cite> method that excecutes the paddy field algorithm.</dd>
+</dl>
+</div>
+<p class="rubric">Notes</p>
+<p>The user defined threshold operator <cite>yt</cite> is used to select seeds
+to be subsequently considered for the remaining steps of the current
+paddy itteration, where <cite>yt</cite> is an integer that represents the nth
+fittest seed.  However, if <cite>yt</cite> is greater than the number of seeds
+being considered, <cite>yt</cite> is redefined as:</p>
+<div class="math">
+\[y_{t}\simeq 0.75 \ast y_{considered}\]</div>
+<p>New seeds (<cite>s</cite>) are then generated for evaluated seeds of fitness
+greater than <cite>yt</cite> using min-max feature scalling to the form of:</p>
+<div class="math">
+\[s=Q_{max^{\ast}}[{y-y_{t}\over y_{max}-y_{t}}]\]</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt>
+<em class="property">class </em><code class="descclassname">paddy.Paddy_Runner.</code><code class="descname">PFARunner</code><span class="sig-paren">(</span><em>space</em>, <em>eval_func</em>, <em>rand_seed_number</em>, <em>yt</em>, <em>Qmax</em>, <em>paddy_type</em>, <em>r</em>, <em>iterations</em>, <em>error_handling=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/paddy/Paddy_Runner.html#PFARunner"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>Class that runs PFA.</p>
+<p><cite>PFARunner</cite> handles the user defined parameters, and exicutes
+the paddy field algorithm for a defined amount of iterations.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>space</strong> : class</p>
+<blockquote>
+<div><p>A user defined class that is comprised of <cite>PaddyParameter</cite>
+instances for attributes.</p>
+</div></blockquote>
+<p><strong>eval_func</strong> : function, or method</p>
+<blockquote>
+<div><p>A function or method that returns a value to be maximized.
+The function must accept an array-type input where
+shape = (parameters,2) and reads the zeroth index of every
+two index lenght slice as a the parameter value where the
+first index position is the gaussian value which should be
+ignored.</p>
+</div></blockquote>
+<p><strong>paddy_type: string</strong></p>
+<blockquote>
+<div><p>The string ‘population’ or ‘generational’ to specify which
+method is used during the selection step.</p>
+</div></blockquote>
+<p><strong>rand_seed</strong> : integer</p>
+<blockquote>
+<div><p>A numeric that defines the number of random seeds generated.</p>
+</div></blockquote>
+<p><strong>yt</strong> : integer</p>
+<blockquote>
+<div><p>A numeric that defines the threshold operator for the
+evaluation step.</p>
+</div></blockquote>
+<p><strong>Qmax</strong> : integer</p>
+<blockquote>
+<div><p>A numeric that defines the maximum number of seeds posible
+that a plant can produce.</p>
+</div></blockquote>
+<p><strong>iterations</strong> : integer</p>
+<blockquote>
+<div><p>A numeric that defines the amount of iterations that paddy
+will run.</p>
+</div></blockquote>
+<p><strong>error_handling</strong> : bool, optional (default: True)</p>
+<blockquote>
+<div><p>A boolean that allows the user to bypass built in error
+handlings.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first"><strong>PaddyRunnerError</strong></p>
+<blockquote class="last">
+<div><p>If parameter value(s) used to initialize an instance of <cite>PFARunner</cite>
+would raise an exception when calling methods of <cite>PFARunner</cite>.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Attributes</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="12%" />
+<col width="88%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><strong>yt_prime</strong></td>
+<td>(integer or float) A numeric that is defined by the origional <cite>yt</cite> parameter and is called to reset <cite>yt</cite> if <cite>yt</cite> is modified otherwise while running paddy.</td>
+</tr>
+<tr class="row-even"><td><strong>seed_counter</strong></td>
+<td>(integer) A numeric that tracks the number of seeds generated.</td>
+</tr>
+<tr class="row-odd"><td><strong>paddy_counter</strong></td>
+<td>(integer) A numeric that tracks the number of iteration run.</td>
+</tr>
+<tr class="row-even"><td><strong>seed_params</strong></td>
+<td>(list) A list of seed parameters generated while running paddy.</td>
+</tr>
+<tr class="row-odd"><td><strong>seed_fitness: list</strong></td>
+<td>A list of seed fitness values.</td>
+</tr>
+<tr class="row-even"><td><strong>generation_data</strong></td>
+<td>(dictionary) A dictionary that documents the seed indexes per paddy iteration.</td>
+</tr>
+<tr class="row-odd"><td><strong>generation_fitness</strong></td>
+<td>(dictionary) A dictionary of iterations and the fitness values of their respective seeds.</td>
+</tr>
+<tr class="row-even"><td><strong>top_values</strong></td>
+<td>(dictionary) A dictionary of the top seed per iteration, and their respective fitness value and parameters.</td>
+</tr>
+<tr class="row-odd"><td><strong>s</strong></td>
+<td>(array-like, shape = (yt, 2)) A numpy array containing seed indexes and the number of unpolinated seeds.</td>
+</tr>
+<tr class="row-even"><td><strong>Un</strong></td>
+<td>(array-like, shape = (yt, 2)) A numpy array containing seed indexes and neighbor count values.</td>
+</tr>
+<tr class="row-odd"><td><strong>S</strong></td>
+<td>(array-like, shape = (yt, 2)) A numpy array containing seed indexes and the number of polinated seeds.</td>
+</tr>
+<tr class="row-even"><td><strong>recover</strong></td>
+<td>(bool (default) A boolean that determines if the instance of <cite>PFARunner</cite> has been recovered.</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Methods</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="34%" />
+<col width="66%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><strong>run_paddy(file_name=None, verbose=None)</strong></td>
+<td>Executes the paddy field algorithm.  <cite>PFARunner</cite> methods utilized by <cite>run_paddy</cite> are described in the respective note section per method.</td>
+</tr>
+<tr class="row-even"><td><strong>paddy_plot_and_print(verbose=None)</strong></td>
+<td>Used to print, and or graph, results.</td>
+</tr>
+<tr class="row-odd"><td><strong>save_paddy(new_file_name=None)</strong></td>
+<td>Saves the given instance of <cite>PFARunner</cite>.</td>
+</tr>
+<tr class="row-even"><td><strong>recover_run(new_verbose=None)</strong></td>
+<td>Resumes the paddy field algorithm if otherwise interupted or recovered.</td>
+</tr>
+<tr class="row-odd"><td><strong>extend_paddy(new_iterations, new_file_name=None, new_verbose=None)</strong></td>
+<td>Extends the iterations of a previously completed instance of <cite>PFARunner</cite>.</td>
+</tr>
+<tr class="row-even"><td><strong>get_top_seed()</strong></td>
+<td>Provides the seed of greatest fitness in population.</td>
+</tr>
+<tr class="row-odd"><td><strong>get_generation_top_seed(counter=None, verbose=False)</strong></td>
+<td>Provides the seed of greatest fitness in a generation.</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="paddy.Paddy_Runner.PFARunner.__weakref__">
+<code class="descname">__weakref__</code><a class="headerlink" href="#paddy.Paddy_Runner.PFARunner.__weakref__" title="Permalink to this definition">¶</a></dt>
+<dd><p>list of weak references to the object (if defined)</p>
+</dd></dl>
+
+<dl class="method">
+<dt>
+<code class="descname">extend_paddy</code><span class="sig-paren">(</span><em>new_iterations</em>, <em>new_file_name=None</em>, <em>new_verbose=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/paddy/Paddy_Runner.html#PFARunner.extend_paddy"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Extend the iterations of a completed paddy runner.</p>
+<p>This method runs a <cite>PFARunner</cite> instance that has completed the amount
+of iterations set as its attribute.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>new_iterations</strong> : integer</p>
+<blockquote>
+<div><p>Integer to extend the iterations of the <cite>PFARunner</cite> by.</p>
+</div></blockquote>
+<p><strong>new_file_name</strong> : string, optional (default</p>
+<blockquote>
+<div><p>A string that is used for the file handle.  The same string is
+also used for generating the file handle of the backup pickle with
+the trailing ‘_backup.pickle’ added, and replaces the former file
+name used.</p>
+</div></blockquote>
+<p><strong>new_verbose</strong> : string or sequence of strings, optional (default</p>
+<blockquote>
+<div><p>See <cite>verbose</cite> parameter description for <cite>run_paddy</cite>.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first"><strong>PaddyRunnerError</strong></p>
+<blockquote class="last">
+<div><p>If parameter value(s) used to initialize an instance of
+<cite>PFARunner</cite> would raise an exception when calling methods of
+<cite>PFARunner</cite>.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<dl class="last docutils">
+<dt><a class="reference internal" href="#paddy.Paddy_Runner.PFARunner.run_paddy" title="paddy.Paddy_Runner.PFARunner.run_paddy"><code class="xref py py-meth docutils literal"><span class="pre">run_paddy()</span></code></a></dt>
+<dd><cite>PFARunner</cite> method that excecutes the paddy field algorithm.</dd>
+<dt><a class="reference internal" href="#paddy.Paddy_Runner.PFARunner.recover_run" title="paddy.Paddy_Runner.PFARunner.recover_run"><code class="xref py py-meth docutils literal"><span class="pre">recover_run()</span></code></a></dt>
+<dd><cite>PFARunner</cite> method that runs a recovered pickle run.</dd>
+</dl>
+</div>
+<p class="rubric">Notes</p>
+<p>This method can be used to extend the <cite>iterations</cite> of a <cite>PFARunner</cite>
+while changing the <cite>file_name</cite> and <cite>verbose</cite> atributes as well in
+one line rather than manualy for each and calling <a class="reference internal" href="#paddy.Paddy_Runner.PFARunner.run_paddy" title="paddy.Paddy_Runner.PFARunner.run_paddy"><code class="xref py py-meth docutils literal"><span class="pre">run_paddy()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt>
+<code class="descname">get_generation_top_seed</code><span class="sig-paren">(</span><em>counter=None</em>, <em>verbose=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/paddy/Paddy_Runner.html#PFARunner.get_generation_top_seed"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Return the max value of fitness in the generation.</p>
+<p>This method returns the top seed number of a given generation
+of a paddy run when called internally, though a user can call the
+method directly to print to terminal.  If called directly, a <cite>counter</cite>
+parameter value can be passed to specify which generation is acessed,
+where the default generation analyzed is the last evaluated.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>counter</strong> : integer, (default</p>
+<blockquote>
+<div><p>An integer that specifies which generation is analyzed.</p>
+</div></blockquote>
+<p><strong>verbose</strong> : bool, (default</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>temp_names</strong> : list of strings</p>
+<blockquote class="last">
+<div><p>A list of seed number string(s) in the form <cite>‘seed_#’</cite></p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<dl class="last docutils">
+<dt><a class="reference internal" href="#paddy.Paddy_Runner.PFARunner.run_paddy" title="paddy.Paddy_Runner.PFARunner.run_paddy"><code class="xref py py-meth docutils literal"><span class="pre">run_paddy()</span></code></a></dt>
+<dd><cite>PFARunner</cite> method that excecutes the paddy field algorithm.</dd>
+</dl>
+</div>
+<p class="rubric">Notes</p>
+<p>When running paddy via <a class="reference internal" href="#paddy.Paddy_Runner.PFARunner.run_paddy" title="paddy.Paddy_Runner.PFARunner.run_paddy"><code class="xref py py-meth docutils literal"><span class="pre">run_paddy()</span></code></a>, the <code class="docutils literal"><span class="pre">verbose</span></code> parameter
+will call <a class="reference internal" href="#paddy.Paddy_Runner.PFARunner.get_generation_top_seed" title="paddy.Paddy_Runner.PFARunner.get_generation_top_seed"><code class="xref py py-meth docutils literal"><span class="pre">get_generation_top_seed()</span></code></a> if the string command
+<cite>‘top_gen’</cite> is passed.</p>
+<p>In the case that multiple seeds are tied for having the greatest
+fitness value, they are appended to <cite>temp_names</cite>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt>
+<code class="descname">get_top_seed</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/paddy/Paddy_Runner.html#PFARunner.get_top_seed"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Return the seed with the greatest fitness in the paddy runner.</p>
+<p>This method returns the top seed number when called internally, though
+a user can simply call the method directly to print to terminal.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>temp_names</strong> : list of strings</p>
+<blockquote class="last">
+<div><p>A list of seed number string(s) in the form <cite>‘seed_#’</cite></p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<dl class="last docutils">
+<dt><a class="reference internal" href="#paddy.Paddy_Runner.PFARunner.run_paddy" title="paddy.Paddy_Runner.PFARunner.run_paddy"><code class="xref py py-meth docutils literal"><span class="pre">run_paddy()</span></code></a></dt>
+<dd><cite>PFARunner</cite> method that excecutes the paddy field algorithm.</dd>
+</dl>
+</div>
+<p class="rubric">Notes</p>
+<p>When running paddy via <a class="reference internal" href="#paddy.Paddy_Runner.PFARunner.run_paddy" title="paddy.Paddy_Runner.PFARunner.run_paddy"><code class="xref py py-meth docutils literal"><span class="pre">run_paddy()</span></code></a>, the <code class="docutils literal"><span class="pre">verbose</span></code> parameter
+will call <a class="reference internal" href="#paddy.Paddy_Runner.PFARunner.get_top_seed" title="paddy.Paddy_Runner.PFARunner.get_top_seed"><code class="xref py py-meth docutils literal"><span class="pre">get_top_seed()</span></code></a> if the string command <cite>‘pop’</cite> is
+passed.</p>
+<p>In the case that multiple seeds are tied for having the greatest
+fitness value, they are appended to <cite>temp_names</cite>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt>
+<code class="descname">neighbor_counter</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/paddy/Paddy_Runner.html#PFARunner.neighbor_counter"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Generate neighbor counts and polinated seeds.</p>
+<p>Calculates the amount of neighbors per seed, and then uses the
+neighbor counts to calculate the polination factor per seed. Polinated
+seed values are defined as the rounded integer resulting from the
+product of the unpolinated seed term and polination term.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<dl class="last docutils">
+<dt><a class="reference internal" href="#paddy.Paddy_Runner.PFARunner.run_paddy" title="paddy.Paddy_Runner.PFARunner.run_paddy"><code class="xref py py-meth docutils literal"><span class="pre">run_paddy()</span></code></a></dt>
+<dd><cite>PFARunner</cite> method that excecutes the paddy field algorithm.</dd>
+<dt><a class="reference internal" href="paddy.Paddy_Parameter.html#paddy.Paddy_Parameter.PaddyParameter.get_ecludian_values" title="paddy.Paddy_Parameter.PaddyParameter.get_ecludian_values"><code class="xref py py-meth docutils literal"><span class="pre">paddy.Paddy_Parameter.PaddyParameter.get_ecludian_values()</span></code></a></dt>
+<dd>Function that retrieves values for calculating ecludian distance of parameters.</dd>
+</dl>
+</div>
+<p class="rubric">Notes</p>
+<p>Polinated seeds are calculated as the product of unpolinated seed
+numbers (<cite>s</cite>) and the polination factor (<cite>U</cite>).  The polination factor
+is varient and defined by the number of ‘neighbors’ within the
+population of seeds being evaluated.  Neighbors (<cite>u</cite>) are defined as
+seeds falling within the radius (<cite>r</cite>) of a multi-dimensional euclidean
+space as such:</p>
+<blockquote>
+<div><div class="math">
+\[u(x_{j},x_{k})=\left \| x_{j}-x_{k} \right \|-r&lt;0\]</div>
+</div></blockquote>
+<p>After calculating the number of neighbors per seed in the evaluated
+population, a polination factor is then calculated and assigned as a
+normalized value falling between zero and one via the expression:</p>
+<div class="math">
+\[U=e^{[{u\over u_{max}}-1]}\]</div>
+<p>If the radius parameter provided by the user fails to generate any
+neighbors for the evaluated seeds, an initial quantile cutoff of 0.75
+is applied to an internal list of euclidean distances to generate a
+new radius term for neighbor counting.  This corrective procedure
+itterates untill the evaluated population contains seeds with
+neighbors, with the quantile cutoff decreasing by 0.05 untill a cutoff
+of 0.05 is applied.  In the case that this fails, the number of
+neighbors per seed is simply assigned as one, effectively dropping the
+polination factor in the current iteration.</p>
+</dd></dl>
+
+<dl class="method">
+<dt>
+<code class="descname">new_propogation</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/paddy/Paddy_Runner.html#PFARunner.new_propogation"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Generate new seeds and evaluate.</p>
+<p>Assignes parameters to new seeds, and evaluates them to generate
+respective fitness values.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<dl class="last docutils">
+<dt><a class="reference internal" href="#paddy.Paddy_Runner.PFARunner.run_paddy" title="paddy.Paddy_Runner.PFARunner.run_paddy"><code class="xref py py-meth docutils literal"><span class="pre">run_paddy()</span></code></a></dt>
+<dd><cite>PFARunner</cite> method that excecutes the paddy field algorithm.</dd>
+<dt><a class="reference internal" href="paddy.Paddy_Parameter.html#paddy.Paddy_Parameter.PaddyParameter.new_seed_init" title="paddy.Paddy_Parameter.PaddyParameter.new_seed_init"><code class="xref py py-meth docutils literal"><span class="pre">paddy.Paddy_Parameter.PaddyParameter.new_seed_init()</span></code></a></dt>
+<dd><cite>PaddyParameter</cite> method that generates new seed parameters.</dd>
+</dl>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt>
+<code class="descname">paddy_plot_and_print</code><span class="sig-paren">(</span><em>verbose=None</em>, <em>figure_name=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/paddy/Paddy_Runner.html#PFARunner.paddy_plot_and_print"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Plot and print results.</p>
+<p>This method is used to generate results as either printed or plotted
+results.  The type of output is dictated by passed strings via the
+<cite>verbose</cite> parameter.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>verbose</strong> : string or sequence of string, optional (default</p>
+<blockquote>
+<div><p>String comand(s) that handle printing of values generated after
+completion of a paddy run.  Details regarding valid strings are
+discussed in the notes section below.</p>
+</div></blockquote>
+<p><strong>figure_name</strong> : string, (default</p>
+<blockquote class="last">
+<div><p>A string that is passed to <cite>writer.preformance_plotter</cite> that
+is used to save generated plots.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference internal" href="paddy.writer.html#paddy.writer.preformance_plotter" title="paddy.writer.preformance_plotter"><code class="xref py py-meth docutils literal"><span class="pre">paddy.writer.preformance_plotter()</span></code></a>, <a class="reference internal" href="paddy.writer.html#paddy.writer.clean_parameter_print" title="paddy.writer.clean_parameter_print"><code class="xref py py-meth docutils literal"><span class="pre">paddy.writer.clean_parameter_print()</span></code></a>, <a class="reference internal" href="paddy.utils.html#paddy.utils.get_top_fitness" title="paddy.utils.get_top_fitness"><code class="xref py py-meth docutils literal"><span class="pre">paddy.utils.get_top_fitness()</span></code></a></p>
+</div>
+<p class="rubric">Notes</p>
+<p><cite>paddy_plot_and_print</cite> coordinates with <cite>writer.preformance_plotter</cite>
+to generate desired representations of results via string arguments
+initially introduced via <cite>verbose</cite>.  Valid strings that will generate
+output without calling <cite>writer.preformance_plotter</cite> are:</p>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>‘generation’</dt>
+<dd>Simply prints the <cite>PFARunner</cite> attribute <code class="docutils literal"><span class="pre">generation_data</span></code>.</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>‘final_results’</dt>
+<dd>Prints results via <cite>clean_parameter_print</cite> with the <cite>PFARunner</cite>
+attribute <code class="docutils literal"><span class="pre">top_values</span></code> as input.</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>‘pop_fitness’</dt>
+<dd>Prints the list returned by <cite>get_top_fitness</cite> using the
+<cite>PFARunner</cite> attribute <code class="docutils literal"><span class="pre">top_values</span></code> as input.</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>‘gen_fitness’</dt>
+<dd>Prints the <cite>PFARunner</cite> attribute <code class="docutils literal"><span class="pre">generation_fitness</span></code>.</dd>
+</dl>
+</li>
+</ul>
+<p>Valid comands are passed to <cite>writer.preformance_plotter</cite> as described
+in detail in the notes section for
+<a class="reference internal" href="paddy.writer.html#paddy.writer.preformance_plotter" title="paddy.writer.preformance_plotter"><code class="xref py py-meth docutils literal"><span class="pre">paddy.writer.preformance_plotter()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt>
+<code class="descname">random_step</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/paddy/Paddy_Runner.html#PFARunner.random_step"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Generate random seeds.</p>
+<p>Excecutes the initialization step of the paddy field algorithm via
+random propogation of <cite>PaddyParameter</cite> attributes in provided space.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<dl class="last docutils">
+<dt><a class="reference internal" href="paddy.utils.html#paddy.utils.random_propogation" title="paddy.utils.random_propogation"><code class="xref py py-func docutils literal"><span class="pre">paddy.utils.random_propogation()</span></code></a></dt>
+<dd>function that generates random seeds and an updated seed counter.</dd>
+<dt><a class="reference internal" href="#paddy.Paddy_Runner.PFARunner.run_paddy" title="paddy.Paddy_Runner.PFARunner.run_paddy"><code class="xref py py-meth docutils literal"><span class="pre">run_paddy()</span></code></a></dt>
+<dd><cite>PFARunner</cite> method that excecutes the paddy field algorithm.</dd>
+</dl>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt>
+<code class="descname">recover_run</code><span class="sig-paren">(</span><em>new_verbose=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/paddy/Paddy_Runner.html#PFARunner.recover_run"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Run paddy after recovering a pickled run.</p>
+<p>This method runs a recovered depickled <cite>PFARunner</cite> instance, by
+resuming where the algorithm was functioning last.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>new_verbose</strong> : string or sequence of strings, optional (default</p>
+<blockquote class="last">
+<div><p>See <cite>verbose</cite> parameter description for <cite>run_paddy</cite>.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<dl class="last docutils">
+<dt><a class="reference internal" href="#paddy.Paddy_Runner.PFARunner.run_paddy" title="paddy.Paddy_Runner.PFARunner.run_paddy"><code class="xref py py-meth docutils literal"><span class="pre">run_paddy()</span></code></a></dt>
+<dd><cite>PFARunner</cite> method that excecutes the paddy field algorithm.</dd>
+<dt><a class="reference internal" href="paddy.utils.html#paddy.utils.paddy_recover" title="paddy.utils.paddy_recover"><code class="xref py py-func docutils literal"><span class="pre">paddy.utils.paddy_recover()</span></code></a></dt>
+<dd><cite>utils</cite> function that depickles a given pickled <cite>PFARunner</cite> instance.</dd>
+</dl>
+</div>
+<p class="rubric">Notes</p>
+<p>If a recovered <cite>PFARunner</cite> is unable to excicute <a class="reference internal" href="#paddy.Paddy_Runner.PFARunner.recover_run" title="paddy.Paddy_Runner.PFARunner.recover_run"><code class="xref py py-meth docutils literal"><span class="pre">recover_run()</span></code></a>,
+it may be needed to manualy decrease the <cite>paddy_counter</cite> attribute.</p>
+</dd></dl>
+
+<dl class="method">
+<dt>
+<code class="descname">run_paddy</code><span class="sig-paren">(</span><em>file_name=None</em>, <em>verbose=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/paddy/Paddy_Runner.html#PFARunner.run_paddy"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Excecute paddy field algorithm :func:’run_paddy’.</p>
+<p>This method is used to run the paddy field algorithm.  A thorough
+explination of how the method works can be found in the notes section
+of the <a class="reference internal" href="#module-paddy.Paddy_Runner" title="paddy.Paddy_Runner"><code class="xref py py-mod docutils literal"><span class="pre">paddy.Paddy_Runner</span></code></a> module.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>file_name</strong> : string or nonetype, optional (default</p>
+<blockquote>
+<div><p>A user defined string that is used as the file handle for
+<cite>PFARunner</cite> instance pickling.</p>
+</div></blockquote>
+<p><strong>verbose</strong> : string or sequence of string, optional (default</p>
+<blockquote class="last">
+<div><p>String comand(s) that handle printing of values generated during
+paddy runs.  Valid strings include:
+<code class="docutils literal"><span class="pre">('status','top_gen','pop','all')</span></code>.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<dl class="last docutils">
+<dt><a class="reference internal" href="#paddy.Paddy_Runner.PFARunner.random_step" title="paddy.Paddy_Runner.PFARunner.random_step"><code class="xref py py-meth docutils literal"><span class="pre">random_step()</span></code></a></dt>
+<dd>Method that excecutes the random initiation step.</dd>
+<dt><a class="reference internal" href="#paddy.Paddy_Runner.PFARunner.sowing_function" title="paddy.Paddy_Runner.PFARunner.sowing_function"><code class="xref py py-meth docutils literal"><span class="pre">sowing_function()</span></code></a></dt>
+<dd>Method that calculates unpolinated seed values.</dd>
+<dt><a class="reference internal" href="#paddy.Paddy_Runner.PFARunner.neighbor_counter" title="paddy.Paddy_Runner.PFARunner.neighbor_counter"><code class="xref py py-meth docutils literal"><span class="pre">neighbor_counter()</span></code></a></dt>
+<dd>Method that calculates neighbor terms and the resulting polination term.</dd>
+<dt><a class="reference internal" href="#paddy.Paddy_Runner.PFARunner.new_propogation" title="paddy.Paddy_Runner.PFARunner.new_propogation"><code class="xref py py-meth docutils literal"><span class="pre">new_propogation()</span></code></a></dt>
+<dd>Method that generates new seeds and evaluates them.</dd>
+<dt><a class="reference internal" href="paddy.Paddy_Parameter.html#paddy.Paddy_Parameter.PaddyParameter" title="paddy.Paddy_Parameter.PaddyParameter"><code class="xref py py-class docutils literal"><span class="pre">paddy.Paddy_Parameter.PaddyParameter</span></code></a></dt>
+<dd>Class that handles calculations for specific parameters being optimized by paddy and communicates with <cite>PFARunner</cite> methods.</dd>
+</dl>
+</div>
+<p class="rubric">Notes</p>
+<p>For specifics regarding the dependant methods and
+<code class="xref py py-class docutils literal"><span class="pre">PaddyParameter</span></code>, refer to their respective documentation.</p>
+<p class="rubric">Examples</p>
+<p>Setting up a paddy run using default <cite>Polynomial</cite> parameter space
+generator function to optimize parameters for trigonometric polynomial
+interpolation of the Gramacy &amp; Lee function.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">paddy</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">paddy.Default_Numerics</span> <span class="k">import</span> <span class="o">*</span>
+</pre></div>
+</div>
+<p>The default polynomial class is used to set up parameter space:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">polly_space</span> <span class="o">=</span> <span class="n">Polynomial</span><span class="p">(</span><span class="n">length</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">scope</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+<span class="gp">... </span>                         <span class="n">gaussian_type</span><span class="o">=</span><span class="s1">&#39;scaled&#39;</span><span class="p">,</span>
+<span class="gp">... </span>                         <span class="n">normalization</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>A class instance with an evaluation method for optimization:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">RunFunc</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="gp">... </span>        <span class="bp">self</span><span class="o">.</span><span class="n">xs</span> <span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ys</span> <span class="o">=</span> <span class="n">gramacy_lee</span><span class="p">()</span>
+<span class="gp">... </span>    <span class="k">def</span> <span class="nf">eval</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">values</span><span class="p">):</span>
+<span class="gp">... </span>        <span class="n">score</span> <span class="o">=</span> <span class="n">eval_gl</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="n">values</span><span class="p">,</span><span class="n">x</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">xs</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">ys</span><span class="p">)</span>
+<span class="gp">... </span>        <span class="k">return</span> <span class="n">score</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rf</span> <span class="o">=</span> <span class="n">RunFunc</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>A <cite>PFARunner</cite> instance is generated and run using run_paddy:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">runner</span> <span class="o">=</span> <span class="n">paddy</span><span class="o">.</span><span class="n">PFARunner</span><span class="p">(</span><span class="n">space</span><span class="o">=</span><span class="n">polly_space</span><span class="p">,</span>
+<span class="gp">... </span>                           <span class="n">eval_func</span><span class="o">=</span><span class="n">rf</span><span class="o">.</span><span class="n">eval</span><span class="p">,</span>
+<span class="gp">... </span>                           <span class="n">rand_seed_number</span> <span class="o">=</span> <span class="mi">50</span><span class="p">,</span>
+<span class="gp">... </span>                           <span class="n">yt</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="n">paddy_type</span><span class="o">=</span><span class="s1">&#39;population&#39;</span><span class="p">,</span>
+<span class="gp">... </span>                           <span class="n">Qmax</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span> <span class="n">iterations</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><cite>PFARunner</cite> parameters can be changed before and after runs:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">runner</span><span class="o">.</span><span class="n">Qmax</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">runner</span><span class="o">.</span><span class="n">Qmax</span>
+<span class="go">10</span>
+</pre></div>
+</div>
+<p>The <cite>PFARunner</cite> instance can then run the paddy field algorithm:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">runner</span><span class="o">.</span><span class="n">run_paddy</span><span class="p">()</span>
+<span class="go">paddy is done!</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt>
+<code class="descname">save_paddy</code><span class="sig-paren">(</span><em>new_file_name=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/paddy/Paddy_Runner.html#PFARunner.save_paddy"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Save <a class="reference internal" href="#paddy.Paddy_Runner.PFARunner" title="paddy.Paddy_Runner.PFARunner"><code class="xref py py-class docutils literal"><span class="pre">PFARunner</span></code></a> as a pickled file.</p>
+<p>This method uses the python pickle serialization module to store class
+iterances of <cite>PFARunner</cite> to be recovered as needed by the user.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>new_file_name</strong> : string, (default</p>
+<blockquote class="last">
+<div><p>A string that is used for the file handle.  The same string is
+also used for generating the file handle of the backup pickle with
+the trailing ‘_backup.pickle’ added, and replaces the former file
+name used.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<dl class="last docutils">
+<dt><a class="reference internal" href="paddy.utils.html#paddy.utils.paddy_recover" title="paddy.utils.paddy_recover"><code class="xref py py-func docutils literal"><span class="pre">paddy.utils.paddy_recover()</span></code></a></dt>
+<dd><cite>utils</cite> function that depickles a given pickled <cite>PFARunner</cite> instance.</dd>
+</dl>
+</div>
+<p class="rubric">Notes</p>
+<p>The backup pickle is saved every other iteration of paddy after the
+primary pickle handle.</p>
+</dd></dl>
+
+<dl class="method">
+<dt>
+<code class="descname">sowing_function</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/paddy/Paddy_Runner.html#PFARunner.sowing_function"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Generate unpolinated seeds.</p>
+<p>Applies the threshold operator <cite>yt</cite> on the seeds to be considered,
+defined by the paddy type, and calculates the number of unpolinated
+seeds for the subsequent steps in the paddy field algorithm.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<dl class="last docutils">
+<dt><a class="reference internal" href="#paddy.Paddy_Runner.PFARunner.run_paddy" title="paddy.Paddy_Runner.PFARunner.run_paddy"><code class="xref py py-obj docutils literal"><span class="pre">run_paddy</span></code></a></dt>
+<dd><cite>PFARunner</cite> method that excecutes the paddy field algorithm.</dd>
+</dl>
+</div>
+<p class="rubric">Notes</p>
+<p>The user defined threshold operator <cite>yt</cite> is used to select seeds
+to be subsequently considered for the remaining steps of the current
+paddy itteration, where <cite>yt</cite> is an integer that represents the nth
+fittest seed.  However, if <cite>yt</cite> is greater than the number of seeds
+being considered, <cite>yt</cite> is redefined as:</p>
+<div class="math">
+\[y_{t}\simeq 0.75 \ast y_{considered}\]</div>
+<p>New seeds (<cite>s</cite>) are then generated for evaluated seeds of fitness
+greater than <cite>yt</cite> using min-max feature scalling to the form of:</p>
+<div class="math">
+\[s=Q_{max^{\ast}}[{y-y_{t}\over y_{max}-y_{t}}]\]</div>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="paddy.Paddy_Parameter.html" class="btn btn-neutral float-right" title="paddy.PaddyParameter module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="paddy.html" class="btn btn-neutral float-left" title="Paddy Python Package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Armen Beck and Jonathan Fine
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

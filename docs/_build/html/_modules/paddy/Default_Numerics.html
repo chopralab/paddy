@@ -1,0 +1,495 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>paddy.Default_Numerics &mdash; Paddy Field Algortihm 3.63 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript">
+          var DOCUMENTATION_OPTIONS = {
+              URL_ROOT:'../../',
+              VERSION:'3.63',
+              LANGUAGE:'None',
+              COLLAPSE_INDEX:false,
+              FILE_SUFFIX:'.html',
+              HAS_SOURCE:  true,
+              SOURCELINK_SUFFIX: '.txt'
+          };
+      </script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Paddy Field Algortihm
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../paddy.html">Paddy Python Package</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Paddy Field Algortihm</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+      <li>paddy.Default_Numerics</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for paddy.Default_Numerics</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;The :mod:`paddy.Default_Numerics` module contains functions for numeric</span>
+<span class="sd">problems.</span>
+
+<span class="sd">Routine listings</span>
+<span class="sd">----------------</span>
+<span class="sd">eval_numeric(object)</span>
+
+<span class="sd">polynomial(object)</span>
+
+<span class="sd">poly(x,seed)</span>
+
+<span class="sd">trig_inter(x,seed)</span>
+
+<span class="sd">mse_func(target, output)</span>
+
+<span class="sd">gramacy_lee()</span>
+
+<span class="sd">See Also</span>
+<span class="sd">--------</span>
+<span class="sd">:mod:`paddy.Paddy_Runner`</span>
+
+<span class="sd">Notes</span>
+<span class="sd">-----</span>
+<span class="sd">The background information regarding how general functions and classes used to</span>
+<span class="sd">initiate an instance of :class:`~paddy.Paddy_Runner.PFARunner` that are also</span>
+<span class="sd">provided as builtins in the :mod:`~paddy.Default_Numerics` module is described</span>
+<span class="sd">in the :mod:`~paddy.Paddy_Runner` module.</span>
+
+<span class="sd">Examples</span>
+<span class="sd">--------</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">paddy.Paddy_Parameter</span> <span class="k">import</span> <span class="n">PaddyParameter</span>
+
+
+<div class="viewcode-block" id="gramacy_lee"><a class="viewcode-back" href="../../paddy.Default_Numerics.html#paddy.Default_Numerics.gramacy_lee">[docs]</a><span class="k">def</span> <span class="nf">gramacy_lee</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Return Gramacy and Lee function coordinates.</span>
+
+<span class="sd">    This function generates the *x-y* coordinates used to evaluate</span>
+<span class="sd">    interpolation of the Gramacy and Lee function via a default or user</span>
+<span class="sd">    defined intrerpolation function.</span>
+
+<span class="sd">    See Also</span>
+<span class="sd">    --------</span>
+<span class="sd">    :func:`eval_numeric`</span>
+
+<span class="sd">    References</span>
+<span class="sd">    ----------</span>
+<span class="sd">    .. [1] Gramacy, R. B., &amp; Lee, H. K. (2012). Cases for the nugget in</span>
+<span class="sd">       modeling computer experiments. Statistics and Computing, 22(3), 713-722</span>
+<span class="sd">       .</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">x_dummy</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.5</span>
+    <span class="n">y_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">x_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">x_range</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-.</span><span class="mi">5</span><span class="p">,</span> <span class="mf">2.501</span><span class="p">,</span> <span class="mf">0.001</span><span class="p">)</span>
+    <span class="k">while</span> <span class="n">counter</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">x_range</span><span class="p">):</span>
+        <span class="n">x_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">x_range</span><span class="p">[</span><span class="n">counter</span><span class="p">],</span> <span class="mi">3</span><span class="p">))</span>
+        <span class="n">counter</span> <span class="o">=</span> <span class="n">counter</span><span class="o">+</span><span class="mi">1</span>
+    <span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">while</span> <span class="n">counter</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">x_range</span><span class="p">):</span>
+        <span class="n">y_list</span><span class="o">.</span><span class="n">append</span><span class="p">(((</span><span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">10</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">x_dummy</span><span class="p">))</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">x_dummy</span><span class="p">))</span><span class="o">+</span><span class="p">((</span><span class="n">x_dummy</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="mi">4</span><span class="p">))</span>
+        <span class="n">x_dummy</span> <span class="o">=</span> <span class="n">x_dummy</span> <span class="o">+</span> <span class="mf">0.001</span>
+        <span class="n">counter</span> <span class="o">=</span> <span class="n">counter</span><span class="o">+</span><span class="mi">1</span>
+    <span class="k">return</span> <span class="n">x_list</span><span class="p">,</span> <span class="n">y_list</span></div>
+
+
+<div class="viewcode-block" id="mse_func"><a class="viewcode-back" href="../../paddy.Default_Numerics.html#paddy.Default_Numerics.mse_func">[docs]</a><span class="k">def</span> <span class="nf">mse_func</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="n">mse_input</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Return error of interpolation.</span>
+
+<span class="sd">    This function returns eval_numeric()the mean squared error for two sequences of</span>
+<span class="sd">    numeric values.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">error</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">while</span> <span class="n">counter</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">target</span><span class="p">):</span>
+        <span class="n">error</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="nb">abs</span><span class="p">(</span><span class="n">target</span><span class="p">[</span><span class="n">counter</span><span class="p">]</span><span class="o">-</span><span class="n">mse_input</span><span class="p">[</span><span class="n">counter</span><span class="p">]))</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">counter</span> <span class="o">=</span> <span class="n">counter</span><span class="o">+</span><span class="mi">1</span>
+    <span class="n">ave_error</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">error</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">target</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">ave_error</span></div>
+
+
+<div class="viewcode-block" id="poly"><a class="viewcode-back" href="../../paddy.Default_Numerics.html#paddy.Default_Numerics.poly">[docs]</a><span class="k">def</span> <span class="nf">poly</span><span class="p">(</span><span class="n">x_list</span><span class="p">,</span> <span class="n">seed</span><span class="p">):</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return cordinates of a polynomial.</span>
+
+<span class="sd">    This function returns the 2-D cordinates of a polynomial, and is used</span>
+<span class="sd">    for interpolation problems.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    x_list : list</span>
+<span class="sd">        A list of numerics that defines the x values evaluated over.</span>
+
+<span class="sd">    seed : array-like, shape = (parameters, 2)</span>
+<span class="sd">        A numpy array of parameters generated by paddy.  Refer to</span>
+<span class="sd">        :mod:`~paddy.Paddy_runner` for details regarding generation of the</span>
+<span class="sd">        array.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    output : list of floats</span>
+<span class="sd">        A list of float values representing the y values of the input x.</span>
+
+<span class="sd">    See Also</span>
+<span class="sd">    --------</span>
+<span class="sd">    :func:`eval_numeric`</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    The polynomial is defined as:</span>
+
+<span class="sd">    .. math:: \sum_{k=0}^{n}a_{k}x^k</span>
+
+<span class="sd">    Where ``a`` represents the sequence of parameter values generated by</span>
+<span class="sd">    paddy.  ``x`` is simply the `x` parameter of numeric values that the</span>
+<span class="sd">    polynomial is evaluated over.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">output</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">s_x</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">while</span> <span class="n">counter</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">x_list</span><span class="p">):</span>
+        <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">xn_out</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">while</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">seed</span><span class="p">):</span>
+            <span class="c1">###sums at x1###</span>
+            <span class="n">temp_y</span> <span class="o">=</span> <span class="n">seed</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="n">x_list</span><span class="p">[</span><span class="n">counter</span><span class="p">]</span><span class="o">**</span><span class="n">k</span><span class="p">)</span>
+            <span class="n">xn_out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">temp_y</span><span class="p">)</span>
+            <span class="n">k</span> <span class="o">=</span> <span class="n">k</span><span class="o">+</span><span class="mi">1</span>
+        <span class="n">s_x</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">xn_out</span><span class="p">))</span>
+        <span class="n">counter</span> <span class="o">=</span> <span class="n">counter</span><span class="o">+</span><span class="mi">1</span>
+    <span class="n">output</span> <span class="o">=</span> <span class="n">s_x</span>
+    <span class="k">return</span> <span class="n">output</span></div>
+
+<div class="viewcode-block" id="trig_inter"><a class="viewcode-back" href="../../paddy.Default_Numerics.html#paddy.Default_Numerics.trig_inter">[docs]</a><span class="k">def</span> <span class="nf">trig_inter</span><span class="p">(</span><span class="n">x_list</span><span class="p">,</span> <span class="n">seed</span><span class="p">):</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return cordinates of a trigonometric polynomial.</span>
+
+<span class="sd">    This function returns the 2-D cordinates of a trigonometric polynomial,</span>
+<span class="sd">    and is used for interpolation problems.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    x_list : list</span>
+<span class="sd">        A list of numerics that defines the x values evaluated over.</span>
+
+<span class="sd">    seed : array-like, shape = (parameters,2)</span>
+<span class="sd">        A numpy array of parameters generated by paddy.  Refer to</span>
+<span class="sd">        :mod:`~paddy.Paddy_runner` for details regarding generation of the</span>
+<span class="sd">        array.</span>
+
+<span class="sd">    See Also</span>
+<span class="sd">    --------</span>
+<span class="sd">    :func:`eval_numeric`</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    The trigonometric polynomial is defined as:</span>
+
+<span class="sd">    .. math:: t(x)=a_{0}+\sum_{n=1}^{N}a_{n}\cos(nx)+\sum_{n=1}^{N}b_{n}\sin(</span>
+<span class="sd">        nx)</span>
+
+<span class="sd">    Where ``a`` represents the sequence of parameter values generated by</span>
+<span class="sd">    paddy and are passed as the odd indices of `seed` and ``b`` being even.</span>
+<span class="sd">    Notice that this would mean that a trigonometric polynomial of the 10th</span>
+<span class="sd">    degree would be defined by a paddy space of 11 individual parameters.</span>
+
+<span class="sd">    Refrences</span>
+<span class="sd">    ---------</span>
+<span class="sd">    .. [1] Rudin, Walter (1987), Real and complex analysis (3rd ed.), New York</span>
+<span class="sd">        : McGraw-Hill, ISBN 978-0-07-054234-1, MR 0924157.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;must use odd value for dim greater than 1!&quot;</span><span class="p">)</span>
+        <span class="k">return</span>
+    <span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">s_x</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">while</span> <span class="n">counter</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">x_list</span><span class="p">):</span>
+        <span class="c1">###this evaluates over x</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="n">xn_out</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">while</span> <span class="n">n</span> <span class="o">&lt;=</span> <span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">):</span>
+            <span class="c1">###evaluates sums of cos and sin</span>
+            <span class="n">alpha</span> <span class="o">=</span> <span class="p">((</span><span class="n">n</span><span class="o">*</span><span class="mi">2</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">beta</span> <span class="o">=</span> <span class="p">(</span><span class="n">n</span><span class="o">*</span><span class="mi">2</span><span class="p">)</span>
+            <span class="n">temp_y</span> <span class="o">=</span> <span class="p">((</span>
+                <span class="n">seed</span><span class="p">[</span><span class="n">alpha</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span><span class="o">*</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">((</span><span class="n">n</span><span class="o">*</span><span class="n">x_list</span><span class="p">[</span><span class="n">counter</span><span class="p">]))))</span><span class="o">+</span><span class="p">(</span>
+                    <span class="p">(</span><span class="n">seed</span><span class="p">[</span><span class="n">beta</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span><span class="o">*</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">((</span><span class="n">n</span><span class="o">*</span><span class="n">x_list</span><span class="p">[</span><span class="n">counter</span><span class="p">]))))</span>
+            <span class="n">xn_out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">temp_y</span><span class="p">)</span>
+            <span class="n">n</span> <span class="o">=</span> <span class="n">n</span><span class="o">+</span><span class="mi">1</span>
+        <span class="n">xn_out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">seed</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">s_x</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">xn_out</span><span class="p">))</span>
+        <span class="n">counter</span> <span class="o">=</span> <span class="n">counter</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">s_x</span></div>
+
+
+<div class="viewcode-block" id="EvalNumeric"><a class="viewcode-back" href="../../paddy.Default_Numerics.html#paddy.Default_Numerics.EvalNumeric">[docs]</a><span class="k">class</span> <span class="nc">EvalNumeric</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return error after evaluating a numeric function.</span>
+
+<span class="sd">    This class can be used to evaluate an optimization problem where fiting</span>
+<span class="sd">    to a numeric value is the goal.  This can range from interpolation to</span>
+<span class="sd">    min-max optimization.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    seed : array-like, shape = (parameters,2)</span>
+<span class="sd">        A numpy array of parameters generated by paddy.  Refer to</span>
+<span class="sd">        :mod:`~paddy.Paddy_runner` for details regarding generation of the</span>
+<span class="sd">        array.</span>
+
+<span class="sd">    error_func : function, optional (default : mse_func)</span>
+<span class="sd">        An error function thats output is minimized by paddy.  If user defined</span>
+<span class="sd">        , make sure to note the internal sign change used to maximize the</span>
+<span class="sd">        negative error value returned by `eval_numeric`.</span>
+
+<span class="sd">    t_func : function, optional (default : gramacy_lee)</span>
+<span class="sd">        A target function that provides the input and target value(s) for the</span>
+<span class="sd">        error and fitting functions.</span>
+
+<span class="sd">    f_func : function, optional (default : trig_inter)</span>
+<span class="sd">        A fitting function that recieves an input generated by the target</span>
+<span class="sd">        function, and returns an output to compate with the desired answer</span>
+<span class="sd">        being optimized twards.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    error : float</span>
+<span class="sd">        A numeric value that serves as the fitness value for the seed</span>
+<span class="sd">        evaluated.  This is defined as the negative output of the error</span>
+<span class="sd">        function.</span>
+
+<span class="sd">    See Also</span>
+<span class="sd">    --------</span>
+<span class="sd">    :func:`mse_func`</span>
+
+<span class="sd">    :func:`gramacy_lee`</span>
+
+<span class="sd">    :func:`trig_inter`</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    The default functionalities of this function is evaluation of seed values</span>
+<span class="sd">    as the coeficents of a trigonometric polynomial used to interpolate the</span>
+<span class="sd">    Gramacy and Lee function, where the evaluation metric function is the</span>
+<span class="sd">    mean squared error of the x-y coordinates of Gramacy and Lee and the</span>
+<span class="sd">    generated polynomial where :math:`x\in[ -0.5,2.5 ]` with a resolution of</span>
+<span class="sd">    0.001.  The default and user defined instances of this class use the</span>
+<span class="sd">    method `eval(seed)` to evaluate and return results.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">error_func</span><span class="o">=</span><span class="n">mse_func</span><span class="p">,</span>
+                 <span class="n">t_func</span><span class="o">=</span><span class="n">gramacy_lee</span><span class="p">,</span> <span class="n">f_func</span><span class="o">=</span><span class="n">trig_inter</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">error_func</span> <span class="o">=</span> <span class="n">error_func</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">t_func</span> <span class="o">=</span> <span class="n">t_func</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">f_func</span> <span class="o">=</span> <span class="n">f_func</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">answer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">t_func</span><span class="p">()</span>
+
+<div class="viewcode-block" id="EvalNumeric.eval"><a class="viewcode-back" href="../../paddy.Default_Numerics.html#paddy.Default_Numerics.EvalNumeric.eval">[docs]</a>    <span class="k">def</span> <span class="nf">eval</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">seed</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Method of `eval_numeric`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">seed</span> <span class="o">=</span> <span class="n">seed</span>
+        <span class="n">y_val</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">f_func</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">seed</span><span class="p">)</span>
+        <span class="c1">#made negative for maximization problem</span>
+        <span class="n">error</span> <span class="o">=</span> <span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">error_func</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">answer</span><span class="p">,</span> <span class="n">y_val</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">error</span></div></div>
+
+
+<div class="viewcode-block" id="Polynomial"><a class="viewcode-back" href="../../paddy.Default_Numerics.html#paddy.Default_Numerics.Polynomial">[docs]</a><span class="k">class</span> <span class="nc">Polynomial</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Generate paddy space that is apt for polynomial fitting.</span>
+
+<span class="sd">    See Also</span>
+<span class="sd">    --------</span>
+<span class="sd">    :class:`eval_numeric`</span>
+
+<span class="sd">    :class:`paddy.Paddy_Parameter.PaddyParameter`</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">length</span><span class="p">,</span> <span class="n">scope</span><span class="p">,</span> <span class="n">gausian_type</span><span class="p">,</span> <span class="n">normalization</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                 <span class="n">limits</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">limits</span> <span class="ow">is</span> <span class="kc">False</span><span class="p">:</span>
+            <span class="n">limit_init</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">limit_init</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="n">scope</span><span class="p">,</span> <span class="n">scope</span><span class="p">]</span>
+        <span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">while</span> <span class="n">counter</span> <span class="o">&lt;</span> <span class="n">length</span><span class="p">:</span>
+            <span class="nb">vars</span><span class="p">(</span><span class="bp">self</span><span class="p">)[</span><span class="s1">&#39;polly</span><span class="si">{0}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">counter</span><span class="p">)]</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="n">PaddyParameter</span><span class="p">(</span><span class="n">param_range</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="n">scope</span><span class="p">,</span> <span class="n">scope</span><span class="p">,</span> <span class="n">scope</span><span class="o">*.</span><span class="mi">05</span><span class="p">],</span>
+                               <span class="n">param_type</span><span class="o">=</span><span class="s1">&#39;continuous&#39;</span><span class="p">,</span> <span class="n">limits</span><span class="o">=</span><span class="n">limit_init</span><span class="p">,</span>
+                               <span class="n">gaussian</span><span class="o">=</span><span class="n">gausian_type</span><span class="p">,</span>
+                               <span class="n">normalization</span><span class="o">=</span><span class="n">normalization</span><span class="p">)</span>
+            <span class="p">)</span>
+            <span class="n">counter</span> <span class="o">+=</span> <span class="mi">1</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Armen Beck and Jonathan Fine
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
