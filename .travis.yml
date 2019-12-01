@@ -39,3 +39,7 @@ deploy:
         branch: master
         condition: $DEPLOY_DOCS == ON
 
+deploy:
+  provider: pypi
+  user: "__token__"
+  password: pypi-AgEIcHlwaS5vcmcCJDczOWRiM2RlLTliYWMtNDAzOS04NWVhLTk2NTczZjliOGU4MwACJXsicGVybWlzc2lvbnMiOiAidXNlciIsICJ2ZXJzaW9uIjogMX0AAAYgiMZdcA0eaDiM6_VaQjXQd5oYgHcORJwKx2-gK349_Zc
