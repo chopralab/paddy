@@ -1,0 +1,352 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>paddy.utils module &mdash; Paddy Field Algortihm 3.63 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="paddy.Default_Numerics module" href="paddy.Default_Numerics.html" />
+    <link rel="prev" title="paddy.writer module" href="paddy.writer.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Paddy Field Algortihm
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="paddy.html">Paddy Python Package</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="paddy.html#parameter-optimization-package-for-python">Parameter optimization package for Python</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="paddy.html#modules">Modules</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="paddy.Paddy_Runner.html">paddy.Paddy_Runner module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="paddy.Paddy_Parameter.html">paddy.PaddyParameter module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="paddy.writer.html">paddy.writer module</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">paddy.utils module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#routine-listings">Routine listings</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="paddy.Default_Numerics.html">paddy.Default_Numerics module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Paddy Field Algortihm</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="paddy.html">Paddy Python Package</a> &raquo;</li>
+        
+      <li>paddy.utils module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/paddy.utils.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-paddy.utils">
+<span id="paddy-utils-module"></span><h1>paddy.utils module<a class="headerlink" href="#module-paddy.utils" title="Permalink to this headline">¶</a></h1>
+<p>The <a class="reference internal" href="#module-paddy.utils" title="paddy.utils"><code class="xref py py-mod docutils literal notranslate"><span class="pre">paddy.utils</span></code></a> module contains suporting functions for the
+<a class="reference internal" href="paddy.Paddy_Runner.html#module-paddy.Paddy_Runner" title="paddy.Paddy_Runner"><code class="xref py py-mod docutils literal notranslate"><span class="pre">paddy.Paddy_Runner</span></code></a> module.</p>
+<div class="section" id="routine-listings">
+<h2>Routine listings<a class="headerlink" href="#routine-listings" title="Permalink to this headline">¶</a></h2>
+<p>get_param_names(p_space)</p>
+<p>get_top_fitness(dirty_values)</p>
+<p>random_propogation(rand_seed_number, p_space, seed_counter)</p>
+<p>paddy_recover(file_name)</p>
+<dl class="function">
+<dt id="paddy.utils.get_param_names">
+<code class="sig-prename descclassname">paddy.utils.</code><code class="sig-name descname">get_param_names</code><span class="sig-paren">(</span><em class="sig-param">p_space</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/paddy/utils.html#get_param_names"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#paddy.utils.get_param_names" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return list of parameter names.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>p_space</strong><span class="classifier">class</span></dt><dd><p>A class containing attributes exclusively of <cite>PaddyParameter</cite>
+instances.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>param_name_list</strong><span class="classifier">list of strings</span></dt><dd><p>A list of <cite>PaddyParameter</cite> instances as string types of the instance
+variable name.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="paddy.utils.get_top_fitness">
+<code class="sig-prename descclassname">paddy.utils.</code><code class="sig-name descname">get_top_fitness</code><span class="sig-paren">(</span><em class="sig-param">dirty_values</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/paddy/utils.html#get_top_fitness"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#paddy.utils.get_top_fitness" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return top fitness value.</p>
+<p>Returns the top fitness values of a
+<a class="reference internal" href="paddy.Paddy_Runner.html#paddy.Paddy_Runner.PFARunner" title="paddy.Paddy_Runner.PFARunner"><code class="xref py py-class docutils literal notranslate"><span class="pre">PFARunner</span></code></a>, solely, for each iteration as a
+list when passed a dictionary with the structure type of
+<code class="xref py py-attr docutils literal notranslate"><span class="pre">top_values</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>dirty_values</strong><span class="classifier">dictionary</span></dt><dd><p>A dictionary in the form of <code class="xref py py-attr docutils literal notranslate"><span class="pre">top_values</span></code>.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>fitness_list</strong><span class="classifier">list of floats</span></dt><dd><p>A list of the top fitness value evaluated for sowing during each
+itteration.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="paddy.Paddy_Runner.html#paddy.Paddy_Runner.PFARunner.run_paddy" title="paddy.Paddy_Runner.PFARunner.run_paddy"><code class="xref py py-meth docutils literal notranslate"><span class="pre">paddy.Paddy_Runner.PFARunner.run_paddy()</span></code></a></dt><dd></dd>
+</dl>
+</div>
+<p class="rubric">Notes</p>
+<p>The top value evaluated for sowing when using ‘population’ for
+the <cite>paddy_type</cite> parameter of a <cite>PFARunner</cite> instance might not be the
+value of a seed generated during that itteration.  See (need to find home for the full description of the PFA)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="paddy.utils.paddy_recover">
+<code class="sig-prename descclassname">paddy.utils.</code><code class="sig-name descname">paddy_recover</code><span class="sig-paren">(</span><em class="sig-param">file_name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/paddy/utils.html#paddy_recover"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#paddy.utils.paddy_recover" title="Permalink to this definition">¶</a></dt>
+<dd><p>Recover pickled paddy file.</p>
+<p>Trys to recover the pickled <cite>PFARunner</cite> instance, and will
+then use the backup file if there is an issue recovering the
+origional.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>file_name</strong><span class="classifier">string or nonetype, optional (default</span></dt><dd><p>A user defined string that is used as the file handle for
+<cite>PFARunner</cite> instance pickling.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl>
+<dt><strong>recovered_paddy</strong><span class="classifier"><a class="reference internal" href="paddy.Paddy_Runner.html#paddy.Paddy_Runner.PFARunner" title="paddy.Paddy_Runner.PFARunner"><code class="xref py py-class docutils literal notranslate"><span class="pre">PFARunner</span></code></a></span></dt><dd><p>Depickled <cite>PFARunner</cite> class instance.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><dl class="simple">
+<dt>PaddyRecoveryError</dt><dd><p>If the recovery of a previous <cite>PFARunner</cite> fails.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The <a class="reference external" href="https://docs.python.org/3.6/library/pickle.html"><code class="docutils literal notranslate"><span class="pre">pickle</span></code></a> module is not secure against malicious data!</p>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="paddy.Paddy_Runner.html#paddy.Paddy_Runner.PFARunner.recover_run" title="paddy.Paddy_Runner.PFARunner.recover_run"><code class="xref py py-meth docutils literal notranslate"><span class="pre">paddy.Paddy_Runner.PFARunner.recover_run()</span></code></a></dt><dd></dd>
+<dt><a class="reference internal" href="paddy.Paddy_Runner.html#paddy.Paddy_Runner.PFARunner.run_paddy" title="paddy.Paddy_Runner.PFARunner.run_paddy"><code class="xref py py-meth docutils literal notranslate"><span class="pre">paddy.Paddy_Runner.PFARunner.run_paddy()</span></code></a></dt><dd></dd>
+<dt><code class="xref py py-meth docutils literal notranslate"><span class="pre">pickle.load()</span></code></dt><dd></dd>
+</dl>
+</div>
+<p class="rubric">Notes</p>
+<p>All functions that the <cite>PFARPaddyRecoveryErrorunner</cite> instance being recoverd is dependant
+on need to be defined for successfull depickling, namely the <cite>eval_func</cite>
+parameter input.</p>
+<p class="rubric">Examples</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">paddy</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">paddy.Default_Numerics</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">recovered_PFARunner</span> <span class="o">=</span> <span class="n">paddy</span><span class="o">.</span><span class="n">paddy_recover</span><span class="p">(</span><span class="s1">&#39;old_PFARunner&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="paddy.utils.random_propogation">
+<code class="sig-prename descclassname">paddy.utils.</code><code class="sig-name descname">random_propogation</code><span class="sig-paren">(</span><em class="sig-param">rand_seed_number</em>, <em class="sig-param">p_space</em>, <em class="sig-param">seed_counter</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/paddy/utils.html#random_propogation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#paddy.utils.random_propogation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return updatad seed counter and random seed parameters.</p>
+<p>This function takes parameter space and generates random seeds as an array
+with length determined by the user parameter rand_seed_number and returns
+the array as well as an updated seed_counter.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="paddy.Paddy_Runner.html#paddy.Paddy_Runner.PFARunner.run_paddy" title="paddy.Paddy_Runner.PFARunner.run_paddy"><code class="xref py py-meth docutils literal notranslate"><span class="pre">paddy.Paddy_Runner.PFARunner.run_paddy()</span></code></a></dt><dd></dd>
+</dl>
+</div>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="paddy.Default_Numerics.html" class="btn btn-neutral float-right" title="paddy.Default_Numerics module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="paddy.writer.html" class="btn btn-neutral float-left" title="paddy.writer module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Armen Beck and Jonathan Fine
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

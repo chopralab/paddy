@@ -1,0 +1,442 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>paddy.PaddyParameter module &mdash; Paddy Field Algortihm 3.63 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="paddy.writer module" href="paddy.writer.html" />
+    <link rel="prev" title="paddy.Paddy_Runner module" href="paddy.Paddy_Runner.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Paddy Field Algortihm
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="paddy.html">Paddy Python Package</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="paddy.html#parameter-optimization-package-for-python">Parameter optimization package for Python</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="paddy.html#modules">Modules</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="paddy.Paddy_Runner.html">paddy.Paddy_Runner module</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">paddy.PaddyParameter module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#routine-listings">Routine Listings</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="paddy.writer.html">paddy.writer module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="paddy.utils.html">paddy.utils module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="paddy.Default_Numerics.html">paddy.Default_Numerics module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Paddy Field Algortihm</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="paddy.html">Paddy Python Package</a> &raquo;</li>
+        
+      <li>paddy.PaddyParameter module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/paddy.Paddy_Parameter.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-paddy.Paddy_Parameter">
+<span id="paddy-paddyparameter-module"></span><h1>paddy.PaddyParameter module<a class="headerlink" href="#module-paddy.Paddy_Parameter" title="Permalink to this headline">¶</a></h1>
+<p>The <a class="reference internal" href="#module-paddy.Paddy_Parameter" title="paddy.Paddy_Parameter"><code class="xref py py-mod docutils literal notranslate"><span class="pre">paddy.Paddy_Parameter</span></code></a> module contains the
+<a class="reference internal" href="#paddy.Paddy_Parameter.PaddyParameter" title="paddy.Paddy_Parameter.PaddyParameter"><code class="xref py py-class docutils literal notranslate"><span class="pre">PaddyParameter</span></code></a> class and its associated
+methods.</p>
+<p>The <cite>PaddyParameter</cite> class is used to manage the generation of numeric values
+associated with parameters that are being optomized paddy.  Specific
+operations are detailed in the methods section of <cite>PaddyParameter</cite>.</p>
+<div class="section" id="routine-listings">
+<h2>Routine Listings<a class="headerlink" href="#routine-listings" title="Permalink to this headline">¶</a></h2>
+<dl class="simple">
+<dt>PaddyParameter(object)</dt><dd><p>Stores information regarding a parameter being optimized, and handles
+operations on associated values.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="see-also">
+<h2>See Also<a class="headerlink" href="#see-also" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference internal" href="paddy.Paddy_Runner.html#module-paddy.Paddy_Runner" title="paddy.Paddy_Runner"><code class="xref py py-mod docutils literal notranslate"><span class="pre">paddy.Paddy_Runner</span></code></a></p>
+<dl class="class">
+<dt id="paddy.Paddy_Parameter.PaddyParameter">
+<em class="property">class </em><code class="sig-prename descclassname">paddy.Paddy_Parameter.</code><code class="sig-name descname">PaddyParameter</code><span class="sig-paren">(</span><em class="sig-param">param_range</em>, <em class="sig-param">param_type</em>, <em class="sig-param">limits</em>, <em class="sig-param">gaussian</em>, <em class="sig-param">normalization</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/paddy/Paddy_Parameter.html#PaddyParameter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#paddy.Paddy_Parameter.PaddyParameter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>The class that handles operations and atributes used for
+generating random and new seed parameters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>param_range</strong><span class="classifier">list of integer or float</span></dt><dd><p>A list of three numeric values used to define what
+random seed value is possible for the specific <cite>PaddyParameter</cite>
+where the first position (a) is the lowest possible value, the
+second position (b) is the highest possible value, and the
+third position (c) is the incremental unit used to develop a
+range between a &amp; b to generate a random value in said range.</p>
+</dd>
+<dt><strong>param_type</strong><span class="classifier">string</span></dt><dd><p>A string that, unless using a custom class in place of
+<cite>PaddyParameter</cite>, should be either: ‘integer’ or ‘continuous’.
+This allows the algorithm to either pass integer or float
+class instances.</p>
+</dd>
+<dt><strong>limits</strong><span class="classifier">None or list of integer or float</span></dt><dd><p>A list of two values used to define if a new seed’s
+respective parameter value is permitted.  Additionally, these
+values are used to normalize values if the normalization
+argument is set as <cite>True</cite>.  The fist value in the limits list is
+the minimum value, and the second value is the maximum value
+permitted as defined by user.  If <cite>None</cite> is used in the list,
+possible values are unbound in that direction.  If a unbound
+limit term exists, normalization is defined as <cite>False</cite> internally,
+overriding a user input.</p>
+</dd>
+<dt><strong>gaussian</strong><span class="classifier">string</span></dt><dd><p>A string that, unless using a custom class in place of
+<cite>PaddyParameter</cite>, should be either: ‘default’ or ‘scaled’.
+This allows the algorithm to determine if scaling of the standard
+deviation, used by the gaussian distribution that new paddy
+parameter values are generated along, is desired by the user.</p>
+</dd>
+<dt><strong>normalization</strong><span class="classifier">bool</span></dt><dd><p>A boolean to determine if min-max normalization is used when using the
+methods <cite>random_init</cite>, <cite>new_seed_init</cite>, and <cite>get_ecludian_values</cite>.
+The minimum and maximum values for normalization are defined by the
+limits argument, and cannont contain inf for normalization to be
+<cite>True</cite>.  If limits is <cite>None</cite> normalization again must be <cite>False</cite>.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><dl class="simple">
+<dt>PaddyParamError</dt><dd><p>If parameter value(s) used to initialize an instance of
+<cite>PaddyParameter</cite> would raise an exception when calling
+methods of <cite>PaddyParameter</cite>.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Methods</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 37%" />
+<col style="width: 63%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><strong>random_init()</strong></p></td>
+<td><p>Generates random new values defined by <cite>param_range</cite>.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>new_seed_init(values)</strong></p></td>
+<td><p>Generates new values for the parameter and gaussian.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>norm_p(p_val)</strong></p></td>
+<td><p>Normalizes a seed parameter.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>inverse_norm_p(ip_val)</strong></p></td>
+<td><p>Returns a denormalized seed parameter.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>get_ecludian_values(p_vals)</strong></p></td>
+<td><p>Returns apropriate value for euclidean evaluation.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="paddy.Paddy_Parameter.PaddyParameter.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">param_range</em>, <em class="sig-param">param_type</em>, <em class="sig-param">limits</em>, <em class="sig-param">gaussian</em>, <em class="sig-param">normalization</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/paddy/Paddy_Parameter.html#PaddyParameter.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#paddy.Paddy_Parameter.PaddyParameter.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="paddy.Paddy_Parameter.PaddyParameter.__weakref__">
+<code class="sig-name descname">__weakref__</code><a class="headerlink" href="#paddy.Paddy_Parameter.PaddyParameter.__weakref__" title="Permalink to this definition">¶</a></dt>
+<dd><p>list of weak references to the object (if defined)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="paddy.Paddy_Parameter.PaddyParameter.get_ecludian_values">
+<code class="sig-name descname">get_ecludian_values</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">p_vals</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/paddy/Paddy_Parameter.html#PaddyParameter.get_ecludian_values"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#paddy.Paddy_Parameter.PaddyParameter.get_ecludian_values" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the ecludian value for a paddy parameter.</p>
+<p>This allows normalization of a parameter to be considered during
+neighbor counting, prior to returning the apropriate ecludian value.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>p_vals</strong><span class="classifier">list, shape (2)</span></dt><dd></dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>e_val</strong><span class="classifier">integer, float</span></dt><dd><p>A numeric value that is used during neighbor counting.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><code class="xref py py-meth docutils literal notranslate"><span class="pre">paddy.PaddyRunner.neighbor_counter()</span></code></dt><dd></dd>
+</dl>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="paddy.Paddy_Parameter.PaddyParameter.inverse_norm_p">
+<code class="sig-name descname">inverse_norm_p</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">ip_val</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/paddy/Paddy_Parameter.html#PaddyParameter.inverse_norm_p"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#paddy.Paddy_Parameter.PaddyParameter.inverse_norm_p" title="Permalink to this definition">¶</a></dt>
+<dd><p>Inverses min-max feature scaling.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="#paddy.Paddy_Parameter.PaddyParameter.norm_p" title="paddy.Paddy_Parameter.PaddyParameter.norm_p"><code class="xref py py-meth docutils literal notranslate"><span class="pre">norm_p()</span></code></a></dt><dd></dd>
+</dl>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="paddy.Paddy_Parameter.PaddyParameter.new_seed_init">
+<code class="sig-name descname">new_seed_init</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">values</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/paddy/Paddy_Parameter.html#PaddyParameter.new_seed_init"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#paddy.Paddy_Parameter.PaddyParameter.new_seed_init" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return values for a new seed.</p>
+<p>Takes values from previous seed and generates seeds for a new paddy
+iteration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>values</strong><span class="classifier">list, shape (2)</span></dt><dd></dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>b</strong><span class="classifier">list, shape (2)</span></dt><dd><p>A list containing the numeric values for the parameter and
+associated gaussian of a new seed.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><code class="xref py py-meth docutils literal notranslate"><span class="pre">paddy.PaddyRunner.new_propogation()</span></code></dt><dd></dd>
+</dl>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="paddy.Paddy_Parameter.PaddyParameter.norm_p">
+<code class="sig-name descname">norm_p</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">p_val</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/paddy/Paddy_Parameter.html#PaddyParameter.norm_p"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#paddy.Paddy_Parameter.PaddyParameter.norm_p" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return normalized paddy value via min-max feature scaling.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>p_val</strong><span class="classifier">integer or float</span></dt><dd><p>Single seed parameter value from previous itteration.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>np_val</strong><span class="classifier">integer or float</span></dt><dd><p>Normalized parameter value used to generate a new seed
+or undergo euclidean evaluation.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="paddy.Paddy_Parameter.PaddyParameter.random_init">
+<code class="sig-name descname">random_init</code><span class="sig-paren">(</span><em class="sig-param">self</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/paddy/Paddy_Parameter.html#PaddyParameter.random_init"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#paddy.Paddy_Parameter.PaddyParameter.random_init" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generates and returns random value for seeds.</p>
+<p>This is used to generate random values during the random propogation
+step when initializing the paddy algorithm.  The param_range parameter
+of <cite>PaddyParameter</cite> is used to define a range of posible values from
+which the new seed uses during evaluation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>value</strong><span class="classifier">integer or float</span></dt><dd><p>New numeric value for a parameter evaluated by paddy.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><code class="xref py py-meth docutils literal notranslate"><span class="pre">paddy.PaddyRunner.random_step()</span></code></dt><dd></dd>
+</dl>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="paddy.writer.html" class="btn btn-neutral float-right" title="paddy.writer module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="paddy.Paddy_Runner.html" class="btn btn-neutral float-left" title="paddy.Paddy_Runner module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Armen Beck and Jonathan Fine
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,519 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>paddy.writer module &mdash; Paddy Field Algortihm 3.63 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="paddy.utils module" href="paddy.utils.html" />
+    <link rel="prev" title="paddy.PaddyParameter module" href="paddy.Paddy_Parameter.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Paddy Field Algortihm
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="paddy.html">Paddy Python Package</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="paddy.html#parameter-optimization-package-for-python">Parameter optimization package for Python</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="paddy.html#modules">Modules</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="paddy.Paddy_Runner.html">paddy.Paddy_Runner module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="paddy.Paddy_Parameter.html">paddy.PaddyParameter module</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">paddy.writer module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#routine-listings">Routine Listings</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#see-also">See Also</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#notes">Notes</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="paddy.utils.html">paddy.utils module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="paddy.Default_Numerics.html">paddy.Default_Numerics module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Paddy Field Algortihm</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="paddy.html">Paddy Python Package</a> &raquo;</li>
+        
+      <li>paddy.writer module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/paddy.writer.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-paddy.writer">
+<span id="paddy-writer-module"></span><h1>paddy.writer module<a class="headerlink" href="#module-paddy.writer" title="Permalink to this headline">¶</a></h1>
+<p>The <a class="reference internal" href="#module-paddy.writer" title="paddy.writer"><code class="xref py py-mod docutils literal notranslate"><span class="pre">paddy.writer</span></code></a> module contains built in data display functions.</p>
+<p>Module functions are used to print specific data to terminal, formating
+output in a user friendly manner, and quickly generate plots via the
+<cite>matplotlib.pyplot</cite> module.  Data is often passed via methods found in
+<a class="reference internal" href="paddy.Paddy_Runner.html#module-paddy.Paddy_Runner" title="paddy.Paddy_Runner"><code class="xref py py-mod docutils literal notranslate"><span class="pre">paddy.Paddy_Runner</span></code></a>.</p>
+<div class="section" id="routine-listings">
+<h2>Routine Listings<a class="headerlink" href="#routine-listings" title="Permalink to this headline">¶</a></h2>
+<dl class="simple">
+<dt>box(g_data, box_type)</dt><dd><p>Function that produces box plots.</p>
+</dd>
+<dt>average_gen_plot(g_data)</dt><dd><p>Function that plots the average fitness for each <em>generation</em>.</p>
+</dd>
+<dt>average_population_plot(g_data)</dt><dd><p>Function that plots the average fitness for the <em>population</em>
+during each itteration.</p>
+</dd>
+<dt>preformace_plotter(info,verbose)</dt><dd><p>Function that handles other module level functions for plotting.</p>
+</dd>
+<dt>clean_parameter_print(dirty_values)</dt><dd><p>Function that prints information regarding the top evaluated seed for
+each iteration, including a list of parameter values on a single line.</p>
+</dd>
+<dt>single_param_print(dirty_values,value_key)</dt><dd><p>Function that prints the parameters for a user specified seed.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="see-also">
+<h2>See Also<a class="headerlink" href="#see-also" title="Permalink to this headline">¶</a></h2>
+<dl>
+<dt><a class="reference internal" href="paddy.Paddy_Runner.html#paddy.Paddy_Runner.PFARunner.paddy_plot_and_print" title="paddy.Paddy_Runner.PFARunner.paddy_plot_and_print"><code class="xref py py-meth docutils literal notranslate"><span class="pre">paddy.Paddy_Runner.PFARunner.paddy_plot_and_print()</span></code></a><span class="classifier"><cite>PFARunner</cite> method</span></dt><dd><p>that handles data output functions.</p>
+</dd>
+<dt>matplotlib.pyplot<span class="classifier">Plotting package dependancy.</span></dt><dd><p>See more at <cite>&lt;https://matplotlib.org/&gt;</cite> for specifics.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="notes">
+<h2>Notes<a class="headerlink" href="#notes" title="Permalink to this headline">¶</a></h2>
+<p>The <cite>PFARunner</cite> method <cite>paddy_plot_and_print</cite> calls <cite>preformace_plotter</cite>
+when passed relevant arguments such as ‘scatter’.  Refer to
+<cite>paddy_plot_and_print</cite> documentation for information regarding how data is
+generated and passed to <cite>preformace_plotter</cite></p>
+<dl class="function">
+<dt id="paddy.writer.average_gen_plot">
+<code class="sig-prename descclassname">paddy.writer.</code><code class="sig-name descname">average_gen_plot</code><span class="sig-paren">(</span><em class="sig-param">g_data</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/paddy/writer.html#average_gen_plot"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#paddy.writer.average_gen_plot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot average fitness for each generation.</p>
+<p>Function that plots the average fitness value for the seeds sown during
+each iteration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>g_data</strong><span class="classifier">dictionary</span></dt><dd><p>A dictionary with keys being the paddy iteration, with ‘0’
+representing the random initiation step, and values being a
+numpy-array containig parameter and gausian values.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="paddy.Paddy_Runner.html#paddy.Paddy_Runner.PFARunner.paddy_plot_and_print" title="paddy.Paddy_Runner.PFARunner.paddy_plot_and_print"><code class="xref py py-meth docutils literal notranslate"><span class="pre">paddy.Paddy_Runner.PFARunner.paddy_plot_and_print()</span></code></a></dt><dd><p><cite>PFARunner</cite> method that handles data output functions.</p>
+</dd>
+<dt><a class="reference internal" href="#paddy.writer.preformance_plotter" title="paddy.writer.preformance_plotter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">preformance_plotter</span></code></a></dt><dd><p>Function that manages plotting arguments passed by <cite>Paddy_Runner.PFARunner.paddy_plot_and_print</cite>.</p>
+</dd>
+<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">plt.plot</span></code></dt><dd><p>Plotting function as part of the <cite>matplotlib.pyplot</cite> module.</p>
+</dd>
+</dl>
+</div>
+<p class="rubric">Notes</p>
+<p><cite>average_gen_plot</cite> is typically called by <cite>preformance_plotter</cite> via the
+<cite>PFARunner</cite> method <cite>paddy_plot_and_print</cite>.  See respective documentation
+for detailes on how <cite>average_gen_plot</cite> is called.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="paddy.writer.average_population_plot">
+<code class="sig-prename descclassname">paddy.writer.</code><code class="sig-name descname">average_population_plot</code><span class="sig-paren">(</span><em class="sig-param">g_data</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/paddy/writer.html#average_population_plot"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#paddy.writer.average_population_plot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot average fitness for the population during each iteration.</p>
+<p>Function that plots the average fitness value for the seeds within
+the population of evaluated seeds at each given interation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>g_data</strong><span class="classifier">dictionary</span></dt><dd><p>A dictionary with keys being the paddy iteration, with ‘0’
+representing the random initiation step, and values being a
+numpy-array containig parameter and gausian values.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="paddy.Paddy_Runner.html#paddy.Paddy_Runner.PFARunner.paddy_plot_and_print" title="paddy.Paddy_Runner.PFARunner.paddy_plot_and_print"><code class="xref py py-meth docutils literal notranslate"><span class="pre">paddy.Paddy_Runner.PFARunner.paddy_plot_and_print()</span></code></a></dt><dd><p><cite>PFARunner</cite> method that handles data output functions.</p>
+</dd>
+<dt><a class="reference internal" href="#paddy.writer.preformance_plotter" title="paddy.writer.preformance_plotter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">preformance_plotter</span></code></a></dt><dd><p>Function that manages plotting arguments passed by <cite>paddy.Paddy_Runner.PFARunner.paddy_plot_and_print</cite></p>
+</dd>
+<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">matplotlib.pyplot</span></code></dt><dd></dd>
+</dl>
+</div>
+<p class="rubric">Notes</p>
+<p><cite>average_population_plot</cite> is typically called by <cite>preformance_plotter</cite> via
+the <cite>PFARunner</cite> method <cite>paddy_plot_and_print</cite>.  See respective
+documentation for detailes on how <cite>average_gen_plot</cite> is called.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="paddy.writer.box">
+<code class="sig-prename descclassname">paddy.writer.</code><code class="sig-name descname">box</code><span class="sig-paren">(</span><em class="sig-param">g_data</em>, <em class="sig-param">box_type</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/paddy/writer.html#box"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#paddy.writer.box" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot boxplots via <cite>preformance_plotter</cite>.</p>
+<p>Function that plots the desired box plot type as specified by the user.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>g_data</strong><span class="classifier">dictionary</span></dt><dd><p>A dictionary with keys being the paddy iteration, with ‘0’
+representing the random initiation step, and values being a
+numpy-array containig parameter and gausian values.</p>
+</dd>
+<dt><strong>box_type</strong><span class="classifier">integer</span></dt><dd><p>One of the integers: 1, 2, or 3.  The number is associated with a
+respective box plot type detailed in the notes section.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="paddy.Paddy_Runner.html#paddy.Paddy_Runner.PFARunner.paddy_plot_and_print" title="paddy.Paddy_Runner.PFARunner.paddy_plot_and_print"><code class="xref py py-meth docutils literal notranslate"><span class="pre">paddy.Paddy_Runner.PFARunner.paddy_plot_and_print()</span></code></a></dt><dd><p><cite>PFARunner</cite> method that handles data output functions.</p>
+</dd>
+<dt><a class="reference internal" href="#paddy.writer.preformance_plotter" title="paddy.writer.preformance_plotter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">preformance_plotter</span></code></a></dt><dd><p>Function that manages plotting arguments passed by <cite>paddy.Paddy_Runner.PFARunner.paddy_plot_and_print</cite></p>
+</dd>
+<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">plt.boxplot</span></code></dt><dd><p>Function that generates boxplots as part of the <cite>matplotlib.pyplot</cite> module.</p>
+</dd>
+</dl>
+</div>
+<p class="rubric">Notes</p>
+<p>The <cite>box_type</cite> parameter is an integer assigned as a numeric
+representation of a string argument passed via the <cite>verbose</cite> parameter of
+the <cite>preformance_plotter</cite> function.  The numeric values are related to the
+string arguments as:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>1: equivalent to ‘box’.</p></li>
+<li><p>2: equivalent to ‘box_hidden’</p></li>
+<li><p>3: equivalent to ‘box_notched’</p></li>
+</ul>
+</div></blockquote>
+<p>See documentation for <cite>preformance_plotter</cite> and <cite>paddy_plot_and_print</cite> for
+details on how <cite>box</cite> is called.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="paddy.writer.clean_parameter_print">
+<code class="sig-prename descclassname">paddy.writer.</code><code class="sig-name descname">clean_parameter_print</code><span class="sig-paren">(</span><em class="sig-param">dirty_values</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/paddy/writer.html#clean_parameter_print"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#paddy.writer.clean_parameter_print" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prints parameter values of <cite>PFARunner</cite> atribute <code class="docutils literal notranslate"><span class="pre">top_values</span></code>.</p>
+<p>Function that prints information regarding the top seed evaluated for
+sowing during each iteration of paddy.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>dirty_values</strong><span class="classifier">dictionary</span></dt><dd><p>Dictionary with the same structure of <cite>PFARunner.top_values</cite>.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="paddy.Paddy_Runner.html#paddy.Paddy_Runner.PFARunner.run_paddy" title="paddy.Paddy_Runner.PFARunner.run_paddy"><code class="xref py py-meth docutils literal notranslate"><span class="pre">paddy.Paddy_Runner.PFARunner.run_paddy()</span></code></a></dt><dd></dd>
+<dt><a class="reference internal" href="paddy.Paddy_Runner.html#paddy.Paddy_Runner.PFARunner.paddy_plot_and_print" title="paddy.Paddy_Runner.PFARunner.paddy_plot_and_print"><code class="xref py py-meth docutils literal notranslate"><span class="pre">paddy.Paddy_Runner.PFARunner.paddy_plot_and_print()</span></code></a></dt><dd></dd>
+</dl>
+</div>
+<p class="rubric">Notes</p>
+<p>This function prints two lines for each iteration, where the first line
+contains details on what seed was most fit during the selection step and
+the second line consists of a list of parameter values.  Be mindfull of
+this when using this function as it is intended for low iteration
+implementations of paddy, such as deep learning, and a high iteration run
+will result in a proportionaly long print time.</p>
+<p>The function is typically called by <cite>PFARunner.paddy_plot_and_print</cite>
+when passed the argument ‘final_results’.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="paddy.writer.preformance_plotter">
+<code class="sig-prename descclassname">paddy.writer.</code><code class="sig-name descname">preformance_plotter</code><span class="sig-paren">(</span><em class="sig-param">info</em>, <em class="sig-param">verbose</em>, <em class="sig-param">figure_name=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/paddy/writer.html#preformance_plotter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#paddy.writer.preformance_plotter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot preformance as specified.</p>
+<p>Function that plots the results from a completed paddy run.  The type of
+plot argument string is typically passed through the <cite>PFARunner</cite> method
+<cite>paddy_plot_and_print</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>info</strong><span class="classifier">list</span></dt><dd><p>A list containing a list generated by <cite>get_top_fitness</cite>, and a
+dictionary of the form <cite>PFARunner.generation_fitness</cite>.</p>
+</dd>
+<dt><strong>verbose</strong><span class="classifier">set of strings</span></dt><dd><p>A set of string comand(s), typically passed by <cite>paddy_plot_and_print</cite>.
+See the notes section for a full list of valid strings.</p>
+</dd>
+<dt><strong>figure_name</strong><span class="classifier">string</span></dt><dd><p>A string passed by <cite>paddy_plot_and_print</cite> that provides a file
+handle for the figure being saved.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="paddy.utils.html#paddy.utils.get_top_fitness" title="paddy.utils.get_top_fitness"><code class="xref py py-obj docutils literal notranslate"><span class="pre">paddy.utils.get_top_fitness</span></code></a></dt><dd><p>Function that returns a list of fitness values.</p>
+</dd>
+<dt><a class="reference internal" href="paddy.Paddy_Runner.html#paddy.Paddy_Runner.PFARunner.paddy_plot_and_print" title="paddy.Paddy_Runner.PFARunner.paddy_plot_and_print"><code class="xref py py-meth docutils literal notranslate"><span class="pre">paddy.Paddy_Runner.PFARunner.paddy_plot_and_print()</span></code></a></dt><dd><p><cite>PFARunner</cite> method that handles data output functions.</p>
+</dd>
+<dt><a class="reference internal" href="#paddy.writer.average_gen_plot" title="paddy.writer.average_gen_plot"><code class="xref py py-obj docutils literal notranslate"><span class="pre">average_gen_plot</span></code></a></dt><dd></dd>
+<dt><a class="reference internal" href="#paddy.writer.average_population_plot" title="paddy.writer.average_population_plot"><code class="xref py py-obj docutils literal notranslate"><span class="pre">average_population_plot</span></code></a></dt><dd></dd>
+<dt><a class="reference internal" href="#paddy.writer.box" title="paddy.writer.box"><code class="xref py py-obj docutils literal notranslate"><span class="pre">box</span></code></a></dt><dd></dd>
+<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">matplotlib.pyplot</span></code></dt><dd></dd>
+</dl>
+</div>
+<p class="rubric">Notes</p>
+<p><cite>preformance_plotter</cite> is typically called by the <cite>PFARunner</cite> method
+<cite>paddy_plot_and_print</cite> when valid string arguments are passed by the
+user.  Valid strings that will call <cite>preformace_plotter</cite> from the
+<cite>paddy_plot_and_print</cite> method are:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>‘best_sown’</dt><dd><p>A line plot of the best seed sown during each iteration.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>‘average_gen’</dt><dd><p>A line plot of the average fitness of the seeds sown during each
+iteration.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>‘average_population’</dt><dd><p>A line plot of the average fitness value of all seeds at the end of
+each iteration.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>‘scatter’</dt><dd><p>A scatter plot of each seeds fitness value for each iteration.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>‘box’</dt><dd><p>A box plot of the sown seeds for each iteration.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>‘box_notched’</dt><dd><p>Same as box, but with notched boxes.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>‘box_hidden’</dt><dd><p>Same as box, but with outliers ommited.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<p>Refer to <a class="reference external" href="https://matplotlib.org/">https://matplotlib.org/</a> for specifics regarding plotting.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="paddy.writer.single_param_print">
+<code class="sig-prename descclassname">paddy.writer.</code><code class="sig-name descname">single_param_print</code><span class="sig-paren">(</span><em class="sig-param">dirty_values</em>, <em class="sig-param">value_key</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/paddy/writer.html#single_param_print"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#paddy.writer.single_param_print" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prints the parameters for a specific seed.</p>
+<p>Function that typically prints parameter values stored in
+<cite>PFARunner.seed_params</cite> when called throughout a paddy run.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>dirty_values</strong><span class="classifier">list of array-like, shape = (seed_counter,parameters,2)</span></dt><dd><p>A list of numpy-arrays containing the parameter and gaussian values
+for each <cite>PaddyParameter</cite> instance in <cite>PFARunner.space</cite> of a given
+paddy run.  Typically the <cite>PFARunner.seed_params</cite> atribute.</p>
+</dd>
+<dt><strong>value_key</strong><span class="classifier">integer</span></dt><dd><p>A integer that represents the seed number that the parameters are to
+be printed for.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="paddy.Paddy_Runner.html#paddy.Paddy_Runner.PFARunner.run_paddy" title="paddy.Paddy_Runner.PFARunner.run_paddy"><code class="xref py py-meth docutils literal notranslate"><span class="pre">paddy.Paddy_Runner.PFARunner.run_paddy()</span></code></a></dt><dd><p>method that excecutes the paddy field algorithm.</p>
+</dd>
+</dl>
+</div>
+<p class="rubric">Notes</p>
+<p>This function is natively called when ‘top_gen’ or ‘pop’ are passed via
+<cite>paddy.Paddy_Runner.PFARunner.run_paddy</cite> when listed as an element in the
+<cite>verbose</cite> parameter. The list that is printed contains strictly the
+parameter values of the <cite>PFARunner.space</cite> atributes of a given seed,
+rather than the associated gaussian values.</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="paddy.utils.html" class="btn btn-neutral float-right" title="paddy.utils module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="paddy.Paddy_Parameter.html" class="btn btn-neutral float-left" title="paddy.PaddyParameter module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Armen Beck and Jonathan Fine
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

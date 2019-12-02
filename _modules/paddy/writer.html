@@ -1,0 +1,556 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>paddy.writer &mdash; Paddy Field Algortihm 3.63 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Paddy Field Algortihm
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../paddy.html">Paddy Python Package</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Paddy Field Algortihm</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+      <li>paddy.writer</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for paddy.writer</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">The :mod:`paddy.writer` module contains built in data display functions.</span>
+
+<span class="sd">Module functions are used to print specific data to terminal, formating</span>
+<span class="sd">output in a user friendly manner, and quickly generate plots via the</span>
+<span class="sd">`matplotlib.pyplot` module.  Data is often passed via methods found in</span>
+<span class="sd">:mod:`paddy.Paddy_Runner`.</span>
+
+<span class="sd">Routine Listings</span>
+<span class="sd">----------------</span>
+<span class="sd">box(g_data, box_type)</span>
+<span class="sd">    Function that produces box plots.</span>
+<span class="sd">average_gen_plot(g_data)</span>
+<span class="sd">    Function that plots the average fitness for each *generation*.</span>
+<span class="sd">average_population_plot(g_data)</span>
+<span class="sd">    Function that plots the average fitness for the *population*</span>
+<span class="sd">    during each itteration.</span>
+<span class="sd">preformace_plotter(info,verbose)</span>
+<span class="sd">    Function that handles other module level functions for plotting.</span>
+<span class="sd">clean_parameter_print(dirty_values)</span>
+<span class="sd">    Function that prints information regarding the top evaluated seed for</span>
+<span class="sd">    each iteration, including a list of parameter values on a single line.</span>
+<span class="sd">single_param_print(dirty_values,value_key)</span>
+<span class="sd">    Function that prints the parameters for a user specified seed.</span>
+
+
+<span class="sd">See Also</span>
+<span class="sd">--------</span>
+
+<span class="sd">:meth:`paddy.Paddy_Runner.PFARunner.paddy_plot_and_print` : `PFARunner` method</span>
+<span class="sd">    that handles data output functions.</span>
+
+<span class="sd">matplotlib.pyplot : Plotting package dependancy.</span>
+<span class="sd">    See more at `&lt;https://matplotlib.org/&gt;` for specifics.</span>
+
+<span class="sd">Notes</span>
+<span class="sd">-----</span>
+<span class="sd">The `PFARunner` method `paddy_plot_and_print` calls `preformace_plotter`</span>
+<span class="sd">when passed relevant arguments such as &#39;scatter&#39;.  Refer to</span>
+<span class="sd">`paddy_plot_and_print` documentation for information regarding how data is</span>
+<span class="sd">generated and passed to `preformace_plotter`</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="c1"># Authors: Armen Beck &amp; Jonathan Fine</span>
+<span class="c1"># License: BSD</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">paddy.utils</span> <span class="kn">import</span> <span class="p">(</span><span class="n">get_param_names</span><span class="p">,</span>
+                         <span class="n">get_top_fitness</span><span class="p">,</span>
+                         <span class="n">random_propogation</span><span class="p">)</span>
+
+
+
+<div class="viewcode-block" id="box"><a class="viewcode-back" href="../../paddy.writer.html#paddy.writer.box">[docs]</a><span class="k">def</span> <span class="nf">box</span><span class="p">(</span><span class="n">g_data</span><span class="p">,</span> <span class="n">box_type</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Plot boxplots via `preformance_plotter`.</span>
+
+<span class="sd">    Function that plots the desired box plot type as specified by the user.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    g_data : dictionary</span>
+<span class="sd">        A dictionary with keys being the paddy iteration, with &#39;0&#39;</span>
+<span class="sd">        representing the random initiation step, and values being a</span>
+<span class="sd">        numpy-array containig parameter and gausian values.</span>
+
+<span class="sd">    box_type : integer</span>
+<span class="sd">        One of the integers: 1, 2, or 3.  The number is associated with a</span>
+<span class="sd">        respective box plot type detailed in the notes section.</span>
+
+<span class="sd">    See Also</span>
+<span class="sd">    --------</span>
+<span class="sd">    :meth:`paddy.Paddy_Runner.PFARunner.paddy_plot_and_print` : `PFARunner`</span>
+<span class="sd">        method that handles data output functions.</span>
+
+<span class="sd">    preformance_plotter : Function that manages plotting arguments passed by</span>
+<span class="sd">        `paddy.Paddy_Runner.PFARunner.paddy_plot_and_print`</span>
+
+<span class="sd">    plt.boxplot : Function that generates boxplots as part of the</span>
+<span class="sd">        `matplotlib.pyplot` module.</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    The `box_type` parameter is an integer assigned as a numeric</span>
+<span class="sd">    representation of a string argument passed via the `verbose` parameter of</span>
+<span class="sd">    the `preformance_plotter` function.  The numeric values are related to the</span>
+<span class="sd">    string arguments as:</span>
+
+<span class="sd">        * 1: equivalent to &#39;box&#39;.</span>
+<span class="sd">        * 2: equivalent to &#39;box_hidden&#39;</span>
+<span class="sd">        * 3: equivalent to &#39;box_notched&#39;</span>
+
+<span class="sd">    See documentation for `preformance_plotter` and `paddy_plot_and_print` for</span>
+<span class="sd">    details on how `box` is called.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">plot_data</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">x_val</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">g_data</span><span class="p">:</span>
+        <span class="n">temp</span> <span class="o">=</span> <span class="n">g_data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">x_val</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">temp</span>
+        <span class="n">plot_data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">box_type</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="c1">#default box plot</span>
+        <span class="k">return</span> <span class="n">plt</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">plot_data</span><span class="p">,</span> <span class="n">positions</span><span class="o">=</span><span class="n">x_val</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">box_type</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="c1">#box plot without scatter</span>
+        <span class="k">return</span> <span class="n">plt</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">plot_data</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">positions</span><span class="o">=</span><span class="n">x_val</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">box_type</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+        <span class="c1">#box plot with indents</span>
+        <span class="k">return</span> <span class="n">plt</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">plot_data</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">positions</span><span class="o">=</span><span class="n">x_val</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="average_gen_plot"><a class="viewcode-back" href="../../paddy.writer.html#paddy.writer.average_gen_plot">[docs]</a><span class="k">def</span> <span class="nf">average_gen_plot</span><span class="p">(</span><span class="n">g_data</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Plot average fitness for each generation.</span>
+
+<span class="sd">    Function that plots the average fitness value for the seeds sown during</span>
+<span class="sd">    each iteration.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    g_data : dictionary</span>
+<span class="sd">        A dictionary with keys being the paddy iteration, with &#39;0&#39;</span>
+<span class="sd">        representing the random initiation step, and values being a</span>
+<span class="sd">        numpy-array containig parameter and gausian values.</span>
+
+<span class="sd">    See Also</span>
+<span class="sd">    --------</span>
+<span class="sd">    :meth:`paddy.Paddy_Runner.PFARunner.paddy_plot_and_print` : `PFARunner`</span>
+<span class="sd">        method that handles data output functions.</span>
+
+<span class="sd">    preformance_plotter : Function that manages plotting arguments passed by</span>
+<span class="sd">        `Paddy_Runner.PFARunner.paddy_plot_and_print`.</span>
+
+<span class="sd">    plt.plot : Plotting function as part of the `matplotlib.pyplot` module.</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    `average_gen_plot` is typically called by `preformance_plotter` via the</span>
+<span class="sd">    `PFARunner` method `paddy_plot_and_print`.  See respective documentation</span>
+<span class="sd">    for detailes on how `average_gen_plot` is called.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">ave</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">counter</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+    <span class="n">x_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">g_data</span><span class="p">:</span>
+        <span class="n">counter</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">x_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">counter</span><span class="p">)</span>
+        <span class="n">ave</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="n">g_data</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+    <span class="k">return</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_list</span><span class="p">,</span> <span class="n">ave</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;orange&#39;</span><span class="p">,</span>
+                    <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Average Fitness of Iteration&#39;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="average_population_plot"><a class="viewcode-back" href="../../paddy.writer.html#paddy.writer.average_population_plot">[docs]</a><span class="k">def</span> <span class="nf">average_population_plot</span><span class="p">(</span><span class="n">g_data</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Plot average fitness for the population during each iteration.</span>
+
+<span class="sd">    Function that plots the average fitness value for the seeds within</span>
+<span class="sd">    the population of evaluated seeds at each given interation.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    g_data : dictionary</span>
+<span class="sd">        A dictionary with keys being the paddy iteration, with &#39;0&#39;</span>
+<span class="sd">        representing the random initiation step, and values being a</span>
+<span class="sd">        numpy-array containig parameter and gausian values.</span>
+
+<span class="sd">    See Also</span>
+<span class="sd">    --------</span>
+<span class="sd">    :meth:`paddy.Paddy_Runner.PFARunner.paddy_plot_and_print` : `PFARunner`</span>
+<span class="sd">        method that handles data output functions.</span>
+
+<span class="sd">    preformance_plotter : Function that manages plotting arguments passed by</span>
+<span class="sd">        `paddy.Paddy_Runner.PFARunner.paddy_plot_and_print`</span>
+
+<span class="sd">    matplotlib.pyplot</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    `average_population_plot` is typically called by `preformance_plotter` via</span>
+<span class="sd">    the `PFARunner` method `paddy_plot_and_print`.  See respective</span>
+<span class="sd">    documentation for detailes on how `average_gen_plot` is called.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">temp</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">ave</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">counter</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+    <span class="n">x_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">g_data</span><span class="p">:</span>
+        <span class="n">counter</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">x_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">counter</span><span class="p">)</span>
+        <span class="n">temp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">g_data</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+        <span class="n">ave</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">temp</span><span class="p">)))</span>
+    <span class="k">return</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_list</span><span class="p">,</span> <span class="n">ave</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Average Fitness of Population&#39;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="preformance_plotter"><a class="viewcode-back" href="../../paddy.writer.html#paddy.writer.preformance_plotter">[docs]</a><span class="k">def</span> <span class="nf">preformance_plotter</span><span class="p">(</span><span class="n">info</span><span class="p">,</span> <span class="n">verbose</span><span class="p">,</span> <span class="n">figure_name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Plot preformance as specified.</span>
+
+<span class="sd">    Function that plots the results from a completed paddy run.  The type of</span>
+<span class="sd">    plot argument string is typically passed through the `PFARunner` method</span>
+<span class="sd">    `paddy_plot_and_print`.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    info : list</span>
+<span class="sd">        A list containing a list generated by `get_top_fitness`, and a</span>
+<span class="sd">        dictionary of the form `PFARunner.generation_fitness`.</span>
+
+<span class="sd">    verbose : set of strings</span>
+<span class="sd">        A set of string comand(s), typically passed by `paddy_plot_and_print`.</span>
+<span class="sd">        See the notes section for a full list of valid strings.</span>
+
+<span class="sd">    figure_name : string</span>
+<span class="sd">        A string passed by `paddy_plot_and_print` that provides a file</span>
+<span class="sd">        handle for the figure being saved.</span>
+
+<span class="sd">    See Also</span>
+<span class="sd">    --------</span>
+<span class="sd">    paddy.utils.get_top_fitness : Function that returns a list of fitness</span>
+<span class="sd">        values.</span>
+
+<span class="sd">    :meth:`paddy.Paddy_Runner.PFARunner.paddy_plot_and_print` : `PFARunner`</span>
+<span class="sd">        method that handles data output functions.</span>
+
+<span class="sd">    average_gen_plot</span>
+
+<span class="sd">    average_population_plot</span>
+
+<span class="sd">    box</span>
+
+<span class="sd">    matplotlib.pyplot</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    `preformance_plotter` is typically called by the `PFARunner` method</span>
+<span class="sd">    `paddy_plot_and_print` when valid string arguments are passed by the</span>
+<span class="sd">    user.  Valid strings that will call `preformace_plotter` from the</span>
+<span class="sd">    `paddy_plot_and_print` method are:</span>
+
+<span class="sd">    * &#39;best_sown&#39;</span>
+<span class="sd">        A line plot of the best seed sown during each iteration.</span>
+<span class="sd">    * &#39;average_gen&#39;</span>
+<span class="sd">        A line plot of the average fitness of the seeds sown during each</span>
+<span class="sd">        iteration.</span>
+<span class="sd">    * &#39;average_population&#39;</span>
+<span class="sd">        A line plot of the average fitness value of all seeds at the end of</span>
+<span class="sd">        each iteration.</span>
+<span class="sd">    * &#39;scatter&#39;</span>
+<span class="sd">        A scatter plot of each seeds fitness value for each iteration.</span>
+<span class="sd">    * &#39;box&#39;</span>
+<span class="sd">        A box plot of the sown seeds for each iteration.</span>
+<span class="sd">    * &#39;box_notched&#39;</span>
+<span class="sd">        Same as box, but with notched boxes.</span>
+<span class="sd">    * &#39;box_hidden&#39;</span>
+<span class="sd">        Same as box, but with outliers ommited.</span>
+
+<span class="sd">    Refer to `&lt;https://matplotlib.org/&gt;`_ for specifics regarding plotting.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">plotter_types</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;best_sown&#39;</span><span class="p">,</span> <span class="s1">&#39;average_population&#39;</span><span class="p">,</span>
+                     <span class="s1">&#39;average_gen&#39;</span><span class="p">,</span> <span class="s1">&#39;scatter&#39;</span><span class="p">,</span> <span class="s1">&#39;box&#39;</span><span class="p">,</span>
+                     <span class="s1">&#39;box_notched&#39;</span><span class="p">,</span> <span class="s1">&#39;box_hidden&#39;</span><span class="p">}</span>
+
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">plotter_types</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">verbose</span><span class="p">))</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">info</span><span class="p">[</span><span class="mi">0</span><span class="p">])))</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Error&quot;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Iteration&quot;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Fitness Throughout Paddy Iterations&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="s1">&#39;best_sown&#39;</span> <span class="ow">in</span> <span class="n">verbose</span><span class="p">:</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">info</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span>
+                     <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Best Seed During Sowing&#39;</span><span class="p">)</span>
+        <span class="n">g_data</span> <span class="o">=</span> <span class="n">info</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">x2</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">g_data</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">g_data</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span>
+                <span class="n">x2</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+            <span class="n">c</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="s1">&#39;average_gen&#39;</span> <span class="ow">in</span> <span class="n">verbose</span><span class="p">:</span>
+            <span class="n">average_gen_plot</span><span class="p">(</span><span class="n">g_data</span><span class="p">)</span>
+        <span class="k">if</span> <span class="s1">&#39;average_population&#39;</span> <span class="ow">in</span> <span class="n">verbose</span><span class="p">:</span>
+            <span class="n">average_population_plot</span><span class="p">(</span><span class="n">g_data</span><span class="p">)</span>
+        <span class="k">if</span> <span class="s2">&quot;scatter&quot;</span> <span class="ow">in</span> <span class="n">verbose</span><span class="p">:</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">g_data</span><span class="o">.</span><span class="n">values</span><span class="p">())),</span> <span class="n">x</span><span class="o">=</span><span class="n">x2</span><span class="p">)</span>
+        <span class="k">if</span> <span class="s1">&#39;box&#39;</span> <span class="ow">in</span> <span class="n">verbose</span><span class="p">:</span>
+            <span class="n">box</span><span class="p">(</span><span class="n">g_data</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="k">if</span> <span class="s1">&#39;box_notched&#39;</span> <span class="ow">in</span> <span class="n">verbose</span><span class="p">:</span>
+            <span class="n">box</span><span class="p">(</span><span class="n">g_data</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+        <span class="k">if</span> <span class="s1">&#39;box_hidden&#39;</span> <span class="ow">in</span> <span class="n">verbose</span><span class="p">:</span>
+            <span class="n">box</span><span class="p">(</span><span class="n">g_data</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">figure_name</span> <span class="o">!=</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">figure_name</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;preformance_ploter was not provided verbose containing valid argument&#39;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="clean_parameter_print"><a class="viewcode-back" href="../../paddy.writer.html#paddy.writer.clean_parameter_print">[docs]</a><span class="k">def</span> <span class="nf">clean_parameter_print</span><span class="p">(</span><span class="n">dirty_values</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Prints parameter values of `PFARunner` atribute ``top_values``.</span>
+
+<span class="sd">    Function that prints information regarding the top seed evaluated for</span>
+<span class="sd">    sowing during each iteration of paddy.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    dirty_values : dictionary</span>
+<span class="sd">        Dictionary with the same structure of `PFARunner.top_values`.</span>
+
+<span class="sd">    See Also</span>
+<span class="sd">    --------</span>
+<span class="sd">    :meth:`paddy.Paddy_Runner.PFARunner.run_paddy`</span>
+
+<span class="sd">    :meth:`paddy.Paddy_Runner.PFARunner.paddy_plot_and_print`</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    This function prints two lines for each iteration, where the first line</span>
+<span class="sd">    contains details on what seed was most fit during the selection step and</span>
+<span class="sd">    the second line consists of a list of parameter values.  Be mindfull of</span>
+<span class="sd">    this when using this function as it is intended for low iteration</span>
+<span class="sd">    implementations of paddy, such as deep learning, and a high iteration run</span>
+<span class="sd">    will result in a proportionaly long print time.</span>
+
+<span class="sd">    The function is typically called by `PFARunner.paddy_plot_and_print`</span>
+<span class="sd">    when passed the argument &#39;final_results&#39;.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">dirty_values</span><span class="p">:</span>
+        <span class="n">temp</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">dirty_values</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s1">&#39;parameters&#39;</span><span class="p">]:</span>
+            <span class="n">temp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">j</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="s1">&#39;:seed_&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">dirty_values</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s1">&#39;seed&#39;</span><span class="p">])</span>
+              <span class="o">+</span><span class="s1">&#39;:Fitness:&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">dirty_values</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s1">&#39;fitness&#39;</span><span class="p">])</span><span class="o">+</span><span class="s1">&#39;  Parameters:&#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">temp</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="single_param_print"><a class="viewcode-back" href="../../paddy.writer.html#paddy.writer.single_param_print">[docs]</a><span class="k">def</span> <span class="nf">single_param_print</span><span class="p">(</span><span class="n">dirty_values</span><span class="p">,</span> <span class="n">value_key</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Prints the parameters for a specific seed.</span>
+
+<span class="sd">    Function that typically prints parameter values stored in</span>
+<span class="sd">    `PFARunner.seed_params` when called throughout a paddy run.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    dirty_values : list of array-like, shape = (seed_counter,parameters,2)</span>
+<span class="sd">        A list of numpy-arrays containing the parameter and gaussian values</span>
+<span class="sd">        for each `PaddyParameter` instance in `PFARunner.space` of a given</span>
+<span class="sd">        paddy run.  Typically the `PFARunner.seed_params` atribute.</span>
+
+<span class="sd">    value_key : integer</span>
+<span class="sd">        A integer that represents the seed number that the parameters are to</span>
+<span class="sd">        be printed for.</span>
+
+<span class="sd">    See Also</span>
+<span class="sd">    --------</span>
+<span class="sd">    :meth:`paddy.Paddy_Runner.PFARunner.run_paddy` : method that excecutes the</span>
+<span class="sd">        paddy field algorithm.</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    This function is natively called when &#39;top_gen&#39; or &#39;pop&#39; are passed via</span>
+<span class="sd">    `paddy.Paddy_Runner.PFARunner.run_paddy` when listed as an element in the</span>
+<span class="sd">    `verbose` parameter. The list that is printed contains strictly the</span>
+<span class="sd">    parameter values of the `PFARunner.space` atributes of a given seed,</span>
+<span class="sd">    rather than the associated gaussian values.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">temp</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">dirty_values</span><span class="p">[</span><span class="n">value_key</span><span class="p">]:</span>
+        <span class="n">temp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">temp</span><span class="p">)</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Armen Beck and Jonathan Fine
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

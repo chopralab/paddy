@@ -1,0 +1,447 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>paddy.Paddy_Parameter &mdash; Paddy Field Algortihm 3.63 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Paddy Field Algortihm
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../paddy.html">Paddy Python Package</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Paddy Field Algortihm</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+      <li>paddy.Paddy_Parameter</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for paddy.Paddy_Parameter</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: UTF-8 -*-</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">The :mod:`paddy.Paddy_Parameter` module contains the</span>
+<span class="sd">:class:`~paddy.Paddy_Parameter.PaddyParameter` class and its associated</span>
+<span class="sd">methods.</span>
+
+<span class="sd">The `PaddyParameter` class is used to manage the generation of numeric values</span>
+<span class="sd">associated with parameters that are being optomized paddy.  Specific</span>
+<span class="sd">operations are detailed in the methods section of `PaddyParameter`.</span>
+
+<span class="sd">Routine Listings</span>
+<span class="sd">----------------</span>
+<span class="sd">PaddyParameter(object)</span>
+<span class="sd">    Stores information regarding a parameter being optimized, and handles</span>
+<span class="sd">    operations on associated values.</span>
+
+<span class="sd">See Also</span>
+<span class="sd">--------</span>
+<span class="sd">:mod:`paddy.Paddy_Runner`</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="c1"># Authors: Armen Beck &amp; Jonathan Fine</span>
+<span class="c1"># License: BSD</span>
+
+<span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">from</span> <span class="nn">paddy.exceptions</span> <span class="kn">import</span> <span class="p">(</span><span class="n">PaddyParamError</span><span class="p">,</span>
+                              <span class="n">PARAM_RANGE_ORDER_ERROR</span><span class="p">,</span>
+                              <span class="n">LIMIT_ORDER_ERROR</span><span class="p">,</span>
+                              <span class="n">EQUAL_LIMIT_ERROR</span><span class="p">,</span>
+                              <span class="n">RANGE_LIMIT_ERROR</span><span class="p">,</span>
+                              <span class="n">NONE_LIMITS_NORM_ERROR</span><span class="p">,</span>
+                              <span class="n">INF_NORM_ERROR</span><span class="p">,</span>
+                              <span class="n">GAUSSIAN_TYPE_ERROR</span><span class="p">,</span>
+                              <span class="n">PARAM_TYPE_ERROR</span><span class="p">)</span>
+
+<div class="viewcode-block" id="PaddyParameter"><a class="viewcode-back" href="../../paddy.Paddy_Parameter.html#paddy.Paddy_Parameter.PaddyParameter">[docs]</a><span class="k">class</span> <span class="nc">PaddyParameter</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;The class that handles operations and atributes used for</span>
+<span class="sd">    generating random and new seed parameters.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    param_range : list of integer or float</span>
+<span class="sd">        A list of three numeric values used to define what</span>
+<span class="sd">        random seed value is possible for the specific `PaddyParameter`</span>
+<span class="sd">        where the first position (a) is the lowest possible value, the</span>
+<span class="sd">        second position (b) is the highest possible value, and the</span>
+<span class="sd">        third position (c) is the incremental unit used to develop a</span>
+<span class="sd">        range between a &amp; b to generate a random value in said range.</span>
+
+<span class="sd">    param_type : string</span>
+<span class="sd">        A string that, unless using a custom class in place of</span>
+<span class="sd">        `PaddyParameter`, should be either: ‘integer’ or ‘continuous’.</span>
+<span class="sd">        This allows the algorithm to either pass integer or float</span>
+<span class="sd">        class instances.</span>
+
+<span class="sd">    limits : None or list of integer or float</span>
+<span class="sd">        A list of two values used to define if a new seed’s</span>
+<span class="sd">        respective parameter value is permitted.  Additionally, these</span>
+<span class="sd">        values are used to normalize values if the normalization</span>
+<span class="sd">        argument is set as `True`.  The fist value in the limits list is</span>
+<span class="sd">        the minimum value, and the second value is the maximum value</span>
+<span class="sd">        permitted as defined by user.  If `None` is used in the list,</span>
+<span class="sd">        possible values are unbound in that direction.  If a unbound</span>
+<span class="sd">        limit term exists, normalization is defined as `False` internally,</span>
+<span class="sd">        overriding a user input.</span>
+
+<span class="sd">    gaussian : string</span>
+<span class="sd">        A string that, unless using a custom class in place of</span>
+<span class="sd">        `PaddyParameter`, should be either: ‘default’ or ‘scaled’.</span>
+<span class="sd">        This allows the algorithm to determine if scaling of the standard</span>
+<span class="sd">        deviation, used by the gaussian distribution that new paddy</span>
+<span class="sd">        parameter values are generated along, is desired by the user.</span>
+
+<span class="sd">    normalization : bool</span>
+<span class="sd">        A boolean to determine if min-max normalization is used when using the</span>
+<span class="sd">        methods `random_init`, `new_seed_init`, and `get_ecludian_values`.</span>
+<span class="sd">        The minimum and maximum values for normalization are defined by the</span>
+<span class="sd">        limits argument, and cannont contain inf for normalization to be</span>
+<span class="sd">        `True`.  If limits is `None` normalization again must be `False`.</span>
+
+<span class="sd">    Methods</span>
+<span class="sd">    -------</span>
+<span class="sd">    random_init()</span>
+<span class="sd">        Generates random new values defined by `param_range`.</span>
+
+<span class="sd">    new_seed_init(values)</span>
+<span class="sd">        Generates new values for the parameter and gaussian.</span>
+
+<span class="sd">    norm_p(p_val)</span>
+<span class="sd">        Normalizes a seed parameter.</span>
+
+<span class="sd">    inverse_norm_p(ip_val)</span>
+<span class="sd">        Returns a denormalized seed parameter.</span>
+
+<span class="sd">    get_ecludian_values(p_vals)</span>
+<span class="sd">        Returns apropriate value for euclidean evaluation.</span>
+
+<span class="sd">    Raises</span>
+<span class="sd">    ------</span>
+<span class="sd">    PaddyParamError</span>
+<span class="sd">        If parameter value(s) used to initialize an instance of</span>
+<span class="sd">        `PaddyParameter` would raise an exception when calling</span>
+<span class="sd">        methods of `PaddyParameter`.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="PaddyParameter.__init__"><a class="viewcode-back" href="../../paddy.Paddy_Parameter.html#paddy.Paddy_Parameter.PaddyParameter.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">param_range</span><span class="p">,</span> <span class="n">param_type</span><span class="p">,</span> <span class="n">limits</span><span class="p">,</span>
+                 <span class="n">gaussian</span><span class="p">,</span> <span class="n">normalization</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">param_range</span> <span class="o">=</span> <span class="n">param_range</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">param_type</span> <span class="o">=</span> <span class="n">param_type</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">limits</span> <span class="o">=</span> <span class="n">limits</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gaussian</span> <span class="o">=</span> <span class="n">gaussian</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">normalization</span> <span class="o">=</span> <span class="n">normalization</span>
+        <span class="k">if</span> <span class="n">param_range</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">param_range</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span>
+            <span class="k">raise</span> <span class="n">PaddyParamError</span><span class="p">(</span><span class="n">PARAM_RANGE_ORDER_ERROR</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">limits</span> <span class="o">!=</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">limits</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">limits</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="ow">or</span> <span class="n">limits</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">limits</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+                <span class="k">raise</span> <span class="n">PaddyParamError</span><span class="p">(</span><span class="n">LIMIT_ORDER_ERROR</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">limits</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">limits</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span>
+                <span class="k">raise</span> <span class="n">PaddyParamError</span><span class="p">(</span><span class="n">EQUAL_LIMIT_ERROR</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">param_range</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">limits</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">or</span> <span class="n">param_range</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">limits</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span>
+                <span class="k">raise</span> <span class="n">PaddyParamError</span><span class="p">(</span><span class="n">RANGE_LIMIT_ERROR</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">limits</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">normalization</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">PaddyParamError</span><span class="p">(</span><span class="n">NONE_LIMITS_NORM_ERROR</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">limits</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span>
+                <span class="n">math</span><span class="o">.</span><span class="n">inf</span> <span class="ow">in</span> <span class="n">limits</span> <span class="ow">or</span> <span class="o">-</span><span class="n">math</span><span class="o">.</span><span class="n">inf</span> <span class="ow">in</span> <span class="n">limits</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">normalization</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">PaddyParamError</span><span class="p">(</span><span class="n">INF_NORM_ERROR</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">gaussian</span> <span class="o">!=</span> <span class="s1">&#39;default&#39;</span> <span class="ow">and</span> <span class="n">gaussian</span> <span class="o">!=</span> <span class="s1">&#39;scaled&#39;</span><span class="p">:</span>
+            <span class="n">error</span> <span class="o">=</span> <span class="n">GAUSSIAN_TYPE_ERROR</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">gaussian</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="n">PaddyParamError</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">param_type</span> <span class="o">!=</span> <span class="s1">&#39;integer&#39;</span> <span class="ow">and</span> <span class="n">param_type</span> <span class="o">!=</span> <span class="s1">&#39;continuous&#39;</span><span class="p">:</span>
+            <span class="n">error</span> <span class="o">=</span> <span class="n">PARAM_TYPE_ERROR</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">param_type</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="n">PaddyParamError</span><span class="p">(</span><span class="n">error</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="PaddyParameter.norm_p"><a class="viewcode-back" href="../../paddy.Paddy_Parameter.html#paddy.Paddy_Parameter.PaddyParameter.norm_p">[docs]</a>    <span class="k">def</span> <span class="nf">norm_p</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p_val</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return normalized paddy value via min-max feature scaling.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        p_val : integer or float</span>
+<span class="sd">            Single seed parameter value from previous itteration.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        np_val : integer or float</span>
+<span class="sd">            Normalized parameter value used to generate a new seed</span>
+<span class="sd">            or undergo euclidean evaluation.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">np_val</span> <span class="o">=</span> <span class="p">(</span><span class="n">p_val</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">limits</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">/</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">limits</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">limits</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="k">return</span> <span class="n">np_val</span></div>
+
+<div class="viewcode-block" id="PaddyParameter.inverse_norm_p"><a class="viewcode-back" href="../../paddy.Paddy_Parameter.html#paddy.Paddy_Parameter.PaddyParameter.inverse_norm_p">[docs]</a>    <span class="k">def</span> <span class="nf">inverse_norm_p</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ip_val</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Inverses min-max feature scaling.</span>
+
+<span class="sd">        See Also</span>
+<span class="sd">        --------</span>
+<span class="sd">        :meth:`norm_p`</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">ip_val</span> <span class="o">*</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">limits</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">limits</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">limits</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="PaddyParameter.random_init"><a class="viewcode-back" href="../../paddy.Paddy_Parameter.html#paddy.Paddy_Parameter.PaddyParameter.random_init">[docs]</a>    <span class="k">def</span> <span class="nf">random_init</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Generates and returns random value for seeds.</span>
+
+<span class="sd">        This is used to generate random values during the random propogation</span>
+<span class="sd">        step when initializing the paddy algorithm.  The param_range parameter</span>
+<span class="sd">        of `PaddyParameter` is used to define a range of posible values from</span>
+<span class="sd">        which the new seed uses during evaluation.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        value : integer or float</span>
+<span class="sd">            New numeric value for a parameter evaluated by paddy.</span>
+
+<span class="sd">        See Also</span>
+<span class="sd">        --------</span>
+<span class="sd">        :meth:`paddy.PaddyRunner.random_step`</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">range_v</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">param_range</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">param_range</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+            <span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">param_range</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">param_range</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="p">[</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">range_v</span><span class="p">)]</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">param_type</span> <span class="o">==</span> <span class="s1">&#39;integer&#39;</span><span class="p">:</span>
+            <span class="n">value</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">value</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+        <span class="n">value</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">value</span></div>
+
+<div class="viewcode-block" id="PaddyParameter.new_seed_init"><a class="viewcode-back" href="../../paddy.Paddy_Parameter.html#paddy.Paddy_Parameter.PaddyParameter.new_seed_init">[docs]</a>    <span class="k">def</span> <span class="nf">new_seed_init</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">values</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return values for a new seed.</span>
+
+<span class="sd">        Takes values from previous seed and generates seeds for a new paddy</span>
+<span class="sd">        iteration.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        values : list, shape (2)</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        b : list, shape (2)</span>
+<span class="sd">            A list containing the numeric values for the parameter and</span>
+<span class="sd">            associated gaussian of a new seed.</span>
+
+<span class="sd">        See Also</span>
+<span class="sd">        --------</span>
+<span class="sd">        :meth:`paddy.PaddyRunner.new_propogation`</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">b</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">normalization</span><span class="p">:</span>
+            <span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span>
+                <span class="n">loc</span><span class="o">=</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">scale</span><span class="o">=</span><span class="mf">0.2</span> <span class="o">**</span><span class="p">(</span><span class="mi">10</span><span class="o">**</span><span class="n">values</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">limits</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">gaussian</span> <span class="o">==</span> <span class="s1">&#39;scaled&#39;</span><span class="p">:</span>
+                    <span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="n">values</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">scale</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">limits</span> <span class="o">!=</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">limits</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">limits</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">gaussian</span> <span class="o">==</span> <span class="s1">&#39;scaled&#39;</span><span class="p">:</span>
+                    <span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="n">values</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">scale</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span>
+                <span class="n">loc</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">norm_p</span><span class="p">(</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span>
+                <span class="n">scale</span><span class="o">=</span><span class="mf">0.2</span> <span class="o">**</span><span class="p">(</span><span class="mi">10</span><span class="o">**</span><span class="n">values</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+            <span class="n">g</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">inverse_norm_p</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">limits</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">limits</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">gaussian</span> <span class="o">==</span> <span class="s1">&#39;scaled&#39;</span><span class="p">:</span>
+                <span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="n">values</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">scale</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">param_type</span> <span class="o">==</span> <span class="s1">&#39;integer&#39;</span><span class="p">:</span>
+            <span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+        <span class="k">return</span> <span class="n">b</span></div>
+
+<div class="viewcode-block" id="PaddyParameter.get_ecludian_values"><a class="viewcode-back" href="../../paddy.Paddy_Parameter.html#paddy.Paddy_Parameter.PaddyParameter.get_ecludian_values">[docs]</a>    <span class="k">def</span> <span class="nf">get_ecludian_values</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p_vals</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the ecludian value for a paddy parameter.</span>
+
+<span class="sd">        This allows normalization of a parameter to be considered during</span>
+<span class="sd">        neighbor counting, prior to returning the apropriate ecludian value.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        p_vals : list, shape (2)</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        e_val : integer, float</span>
+<span class="sd">            A numeric value that is used during neighbor counting.</span>
+
+<span class="sd">        See Also</span>
+<span class="sd">        --------</span>
+<span class="sd">        :meth:`paddy.PaddyRunner.neighbor_counter`</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">normalization</span><span class="p">:</span>
+            <span class="n">e_val</span> <span class="o">=</span> <span class="n">p_vals</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="k">return</span> <span class="n">e_val</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">e_val</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">norm_p</span><span class="p">(</span><span class="n">p_vals</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="k">return</span> <span class="n">e_val</span></div></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Armen Beck and Jonathan Fine
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
