@@ -3,6 +3,10 @@
 .vscode/
 docs/_*/
 build/
+dist/
+paddy.egg-info
 
-**/_build/
+*/_build/
+
+.cache/
 
