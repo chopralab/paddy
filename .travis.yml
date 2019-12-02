@@ -43,5 +43,4 @@ deploy:
     skip_cleanup: true
     on:
         tags: true
-        condition: $DEPLOY_MACOSX_WHEEL == true
 
