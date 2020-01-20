@@ -95,11 +95,13 @@ def box(g_data, box_type):
     """
     plot_data = []
     x_val = []
+    c = 0
     for i in g_data:
-        temp = g_data[i]
-        x_val.append(int(i))
+        temp = g_data['{0}'.format(c)]
+        x_val.append(c)
         data = temp
         plot_data.append(data)
+        c += 1
     if box_type == 1:
         #default box plot
         return plt.boxplot(plot_data, positions=x_val)
@@ -142,10 +144,12 @@ def average_gen_plot(g_data):
     ave = []
     counter = -1
     x_list = []
+    c = 0
     for i in g_data:
         counter += 1
         x_list.append(counter)
-        ave.append(np.average(g_data[i]))
+        ave.append(np.average(g_data['{0}'.format(c)]))
+        c += 1
     return plt.plot(x_list, ave, color='orange',
                     label='Average Fitness of Iteration')
 
@@ -183,11 +187,13 @@ def average_population_plot(g_data):
     ave = []
     counter = -1
     x_list = []
+    c = 0
     for i in g_data:
         counter += 1
         x_list.append(counter)
-        temp.append(g_data[i])
+        temp.append(g_data['{0}'.format(c)])
         ave.append(np.average(np.concatenate(temp)))
+        c += 1 
     return plt.plot(x_list, ave, color='green', label='Average Fitness of Population')
 
 def preformance_plotter(info, verbose, figure_name=None):
@@ -268,9 +274,11 @@ def preformance_plotter(info, verbose, figure_name=None):
                      label='Best Seed During Sowing')
         g_data = info[1]
         c = 0
+        ys = []
         x2 = []
         for i in g_data:
-            for j in g_data[i]:
+            for j in g_data[str(c)]:
+                ys.append(j)
                 x2.append(c)
             c += 1
         if 'average_gen' in verbose:
@@ -278,7 +286,7 @@ def preformance_plotter(info, verbose, figure_name=None):
         if 'average_population' in verbose:
             average_population_plot(g_data)
         if "scatter" in verbose:
-            plt.scatter(y=np.concatenate(list(g_data.values())), x=x2)
+            plt.scatter(y=ys, x=x2)
         if 'box' in verbose:
             box(g_data, 1)
         if 'box_notched' in verbose:
@@ -294,6 +302,7 @@ def preformance_plotter(info, verbose, figure_name=None):
         plt.close()
     else:
         print('preformance_ploter was not provided verbose containing valid argument')
+
 
 def clean_parameter_print(dirty_values):
     """Prints parameter values of `PFARunner` atribute ``top_values``.
@@ -324,13 +333,15 @@ def clean_parameter_print(dirty_values):
     The function is typically called by `PFARunner.paddy_plot_and_print`
     when passed the argument 'final_results'.
     """
+    c = 0
     for i in dirty_values:
         temp = []
-        for j in dirty_values[i]['parameters']:
+        for j in dirty_values[str(c)]['parameters']:
             temp.append(j[0])
-        print(i+':seed_'+str(dirty_values[i]['seed'])
-              +':Fitness:'+str(dirty_values[i]['fitness'])+'  Parameters:')
+        print(str(c)+':seed_'+str(dirty_values[str(c)]['seed'])
+              +':Fitness:'+str(dirty_values[str(c)]['fitness'])+'  Parameters:')
         print(temp)
+        c += 1
 
 def single_param_print(dirty_values, value_key):
     """Prints the parameters for a specific seed.

@@ -412,7 +412,7 @@ class PFARunner(object):
                           self.seed_fitness[int((ts[0]).split('_')[1])])
                 for i in ts:
                     if len(ts) > 1:
-                        print(int((i).split('_')[1]))
+                        print(int((i-1).split('_')[1]))
                     single_param_print(self.seed_params,
                                        int((i).split('_')[1]))
             #########Top in Population########
@@ -455,7 +455,7 @@ class PFARunner(object):
                 if yt_val != y_max:
                     self.s.append([int(gen_clone[-counter][0]),
                                    (self.Qmax * ((gen_clone[-counter][1] - yt_val)/
-                                                 (y_max - yt_val)))])
+                                                 float(y_max - yt_val)))])
                 counter += 1
             self.s = np.array(self.s)
         if self.paddy_type == 'population':
@@ -478,7 +478,7 @@ class PFARunner(object):
                 if yt_val != y_max:
                     self.s.append([np.argsort(np.array(self.seed_fitness))[-counter],
                                    (self.Qmax * ((population_fitness_keys[-counter] -
-                                                  yt_val) / (y_max - yt_val)))])
+                                                  yt_val) / float(y_max - yt_val)))])
                 counter += 1
             self.s = np.array(self.s)
 
@@ -575,7 +575,7 @@ class PFARunner(object):
         n_max = max(neighbors[:, 1])
         self.Un = []
         for i in neighbors:
-            self.Un.append([i[0], math.exp((i[1]/n_max)-1)])
+            self.Un.append([i[0], math.exp((i[1]/float(n_max))-1)])
         self.Un = np.array(self.Un)
         self.S = []
         c = 0

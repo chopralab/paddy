@@ -126,7 +126,7 @@ class PaddyParameter(object):
         if limits is None and normalization:
             raise PaddyParamError(NONE_LIMITS_NORM_ERROR)
         if isinstance(limits, list) and (
-                math.inf in limits or -math.inf in limits):
+                float('inf') in limits or -float('inf') in limits):
             if normalization:
                 raise PaddyParamError(INF_NORM_ERROR)
         if gaussian != 'default' and gaussian != 'scaled':
@@ -150,7 +150,7 @@ class PaddyParameter(object):
             Normalized parameter value used to generate a new seed
             or undergo euclidean evaluation.
         """
-        np_val = (p_val - self.limits[0]) / (self.limits[1]-self.limits[0])
+        np_val = (p_val - self.limits[0]) / float(self.limits[1]-self.limits[0])
         return np_val
 
     def inverse_norm_p(self, ip_val):
