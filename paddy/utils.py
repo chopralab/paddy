@@ -75,8 +75,10 @@ def get_top_fitness(dirty_values):
 
     """
     fitness_list = []
+    c = 0
     for i in dirty_values:
-        fitness_list.append(dirty_values[i]['fitness'])
+        fitness_list.append(dirty_values['{0}'.format(c)]['fitness'])
+        c += 1
     return fitness_list
 
 

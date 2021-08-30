@@ -64,7 +64,7 @@ def gramacy_lee():
         counter = counter+1
     counter = 0
     while counter < len(x_range):
-        y_list.append(((math.sin(10*math.pi*x_dummy))/(2*x_dummy))+((x_dummy-1)**4))
+        y_list.append(((math.sin(10*math.pi*x_dummy))/float(2*x_dummy))+((x_dummy-1)**4))
         x_dummy = x_dummy + 0.001
         counter = counter+1
     return x_list, y_list
@@ -82,7 +82,7 @@ def mse_func(target, mse_input):
     while counter < len(target):
         error.append((abs(target[counter]-mse_input[counter]))**2)
         counter = counter+1
-    ave_error = sum(error)/(len(target))
+    ave_error = sum(error)/float(len(target))
     return ave_error
 
 
@@ -185,7 +185,7 @@ def trig_inter(x_list, seed):
         ###this evaluates over x
         n = 1
         xn_out = []
-        while n <= ((len(seed)-1)/2):
+        while n <= ((len(seed)-1)/2.0):
             ###evaluates sums of cos and sin
             alpha = ((n*2)-1)
             beta = (n*2)
