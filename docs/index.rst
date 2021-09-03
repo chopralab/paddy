@@ -6,7 +6,7 @@
 =========
 **Paddy**
 =========
-*a python package designed for hyperparameter optimization*
+*a python package designed for parameter optimization*
 
 .. image:: figure2.png
 
