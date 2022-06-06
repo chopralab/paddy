@@ -34,8 +34,8 @@ coordinates for a paraboloid of :math:`z=-\frac{x^2}{7}-\frac{y^2}{2}+1`.
 
 >>> import paddy
 >>> def parabola(input):
-...     x = input[0]
-...     y = input[1]
+...     x = input[0][0]
+...     y = input[1][0]
 ...     return(((x**2)/7)-((y**2)/2)+1)# The maximum is when x and y are 0
 ...
 >>> # now we need to set our parameter space for x and y
@@ -74,8 +74,8 @@ Lets load the :mod:`~paddy.Paddy_Runner` and run it some more
 >>> import paddy
 >>> # we need to define the dependent evaluation function
 >>> def parabola(input):
-...     x = input[0]
-...     y = input[1]
+...     x = input[0][0]
+...     y = input[1][0]
 ...     return(((-x**2)/7)-((y**2)/2)+1)# The maximum is when x and y are 0
 ...
 >>> recovered_example = paddy.paddy_recover('paddy_example')
