@@ -7,8 +7,8 @@ Paddy Field Algorithm, a geneteic, plant based, global
 optimization algorithm proposed by Premaratne et al. (2009)
 
 Paddy was developed with the intention of being used to
-optimize hyperparameters of machine learning algorithms in
-a faster manner than bayesian inference based algorithms.
+optimize hyperparameters of machine learning algorithms and
+as a general metaheuristic.
 
 Routine listings
 ----------------
