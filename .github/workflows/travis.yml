@@ -5,10 +5,8 @@ sudo: false
 
 matrix:
   include:
-    - python: 2.7
-    - python: 3.5
-      env: DEPLOY_DOCS=ON
     - python: 3.6
+      env: DEPLOY_DOCS=ON
 
 install:
   - pip install --upgrade pip
