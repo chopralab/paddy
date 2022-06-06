@@ -23,7 +23,7 @@ Use the following command to install it.
 
 .. code::
 
-   $ python3 -m pip install candiy-paddy
+   $ python3 -m pip install paddy
 
 
 Building the ``Paddy`` module manually
