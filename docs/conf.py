@@ -50,9 +50,9 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = 'Paddy Field Algortihm'
+project = 'Paddy'
 copyright = '2019, Armen Beck and Jonathan Fine'
-author = 'Armen Beck and Jonathan Fine'
+author = 'Armen Beck and Jonathan Fine, Chopra Lab'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
