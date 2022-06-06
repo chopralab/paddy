@@ -1,3 +1,5 @@
+on: [push]
+
 language: python
 sudo: false
 
