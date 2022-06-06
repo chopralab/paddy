@@ -1,5 +1,5 @@
 
-# Paddy: A genetic algorithm for global optimization of numeric parameters
+# Paddy: A metaheuristic for optimization of numeric parameters
 
 ![logo](paddy.svg)
 
