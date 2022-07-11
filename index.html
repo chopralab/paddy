@@ -162,16 +162,6 @@ Use the following command to install it.</p>
 </pre></div>
 </div>
 </div>
-<div class="section" id="building-the-paddy-module-manually">
-<h2>Building the <code class="docutils literal notranslate"><span class="pre">Paddy</span></code> module manually<a class="headerlink" href="#building-the-paddy-module-manually" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git clone https://github.com/chopralab/paddy.git
-$ <span class="nb">cd</span> paddy
-$ python setup.py bdist_wheel --build-type MinSizeRel -- <span class="se">\</span>
-$   -DPYTHON_EXECUTABLE:FILEPATH<span class="o">=</span><span class="sb">`</span>which python<span class="sb">`</span> <span class="se">\</span>
-$   <span class="c1"># Other cmake options here</span>
-$ python -m pip install *.whl <span class="c1"># The name of the wheel file is dependant on the python version</span>
-</pre></div>
-</div>
 <div class="section" id="dependencies">
 <span id="sec-dependencies"></span><h3>Dependencies<a class="headerlink" href="#dependencies" title="Permalink to this headline">¶</a></h3>
 <div class="admonition note">
@@ -187,11 +177,6 @@ $ python -m pip install *.whl <span class="c1"># The name of the wheel file is d
 <li><p><a class="reference external" href="https://numpy.org"><code class="docutils literal notranslate"><span class="pre">Numpy</span></code></a> (<em>v1.15.1</em>)</p></li>
 <li><p><a class="reference external" href="https://scipy.org"><code class="docutils literal notranslate"><span class="pre">Scipy</span></code></a> (<em>v1.1.0</em>)</p></li>
 <li><p><a class="reference external" href="https://matplotlib.org/"><code class="docutils literal notranslate"><span class="pre">Matplotlib</span></code></a> (<em>v2.1.0</em>)</p></li>
-</ul>
-<p><em>optional dependencies needed to run</em> <code class="xref py py-mod docutils literal notranslate"><span class="pre">paddy.Default_Keras_MLP</span></code>:</p>
-<ul class="simple">
-<li><p><a class="reference external" href="https://keras.io/"><code class="docutils literal notranslate"><span class="pre">Keras</span></code></a></p></li>
-<li><p><a class="reference external" href="https://scikit-learn.org/stable/"><code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code></a></p></li>
 </ul>
 </div>
 </div>
