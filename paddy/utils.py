@@ -111,7 +111,7 @@ def paddy_recover(file_name):
 
     Trys to recover the pickled `PFARunner` instance, and will
     then use the backup file if there is an issue recovering the
-    origional.
+    original.
 
     Parameters
     ----------
@@ -147,8 +147,8 @@ def paddy_recover(file_name):
 
     Notes
     -----
-    All functions that the `PFARPaddyRecoveryErrorunner` instance being recoverd is dependant
-    on need to be defined for successfull depickling, namely the `eval_func`
+    All functions, that the `PFARPaddyRecoveryErrorunner` instance being recoverd is dependant
+    on, need to be defined for successfull depickling, namely the `eval_func`
     parameter input.
 
     Examples

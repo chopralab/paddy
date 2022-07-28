@@ -396,7 +396,7 @@ class PFARunner(object):
         """
         seed_key_numbers = self.generation_data[str(self.paddy_counter)]
         temp_gen_fit = []
-        for i in range(seed_key_numbers[0], seed_key_numbers[1]):
+        for i in range(seed_key_numbers[0], seed_key_numbers[1]+1):
             temp_gen_fit.append(self.seed_fitness[i])
         self.generation_fitness[str(self.paddy_counter)] = temp_gen_fit
         if self.verbose != None:
@@ -432,11 +432,11 @@ class PFARunner(object):
                                        int((i).split('_')[1]))
             ##################################
         if self.paddy_type == 'generational':
-            if self.yt > seed_key_numbers[1] - seed_key_numbers[0]:
-                self.yt = int(np.round((seed_key_numbers[1] -
-                                     seed_key_numbers[0])*.75))
+            if self.yt > seed_key_numbers[1]+1 - seed_key_numbers[0]:
+                self.yt = int(np.round((seed_key_numbers[1]+1 -
+                                        seed_key_numbers[0])*.75))
             gen_clone = []
-            for i in range(seed_key_numbers[0], seed_key_numbers[1]):
+            for i in range(seed_key_numbers[0], seed_key_numbers[1]+1):
                 gen_clone.append([i, self.seed_fitness[i]])
             gen_clone = np.array(gen_clone)
             gen_clone = gen_clone[gen_clone[:, 1].argsort()]
@@ -449,7 +449,6 @@ class PFARunner(object):
                 int(gen_clone[-1][0]))
             yt_val = [gen_clone[-self.yt][1]]
             counter = 1
-            self.s = np.empty([self.yt, 2])
             self.s = []
             while counter != self.yt +1:
                 if yt_val != y_max:
@@ -600,9 +599,8 @@ class PFARunner(object):
             `PaddyParameter` method that generates new seed parameters.
         """
         p_names = get_param_names(self.space)
-        iteration_seed_limits = [self.seed_counter]
         S_len = int(sum(self.S[:, 1]))
-        iteration_seed_limits = [self.seed_counter, self.seed_counter+S_len]
+        iteration_seed_limits = [self.seed_counter, self.seed_counter+S_len-1]
         S_len_counter = 1
         #Status#
         if self.verbose != None:
@@ -749,7 +747,7 @@ class PFARunner(object):
         self.top_values[str(self.paddy_counter)] = {}
         seed_key_numbers = self.generation_data[str(self.paddy_counter)]
         temp_gen_fit = []
-        for i in range(seed_key_numbers[0], seed_key_numbers[1]):
+        for i in range(seed_key_numbers[0], seed_key_numbers[1]+1):
             temp_gen_fit.append(self.seed_fitness[i])
         self.generation_fitness[str(self.paddy_counter)] = temp_gen_fit
         if self.paddy_type == 'generational':
