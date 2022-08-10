@@ -752,7 +752,7 @@ class PFARunner(object):
         self.generation_fitness[str(self.paddy_counter)] = temp_gen_fit
         if self.paddy_type == 'generational':
             gen_clone = []
-            for i in range(seed_key_numbers[0], seed_key_numbers[1]):
+            for i in range(seed_key_numbers[0], seed_key_numbers[1]+1):
                 gen_clone.append([i, self.seed_fitness[i]])
             gen_clone = np.array(gen_clone)
             gen_clone = gen_clone[gen_clone[:, 1].argsort()]

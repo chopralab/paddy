@@ -1,5 +1,8 @@
 import paddy
-
+import random
+import numpy as np
+random.seed(2)
+np.random.seed(2)
 def parabola(input):
     x = input[0][0]
     y = input[1][0]
@@ -23,12 +26,12 @@ class paraboloid_space(object):
 example_space = paraboloid_space() #the space parameter
 example_runner = paddy.PFARunner(space=example_space,
                                  eval_func=parabola,
-                                 paddy_type='population',
+                                 paddy_type='generational',
                                  rand_seed_number = 20,
                                  yt = 10,
                                  Qmax = 5,
                                  r=.2,
-                                 iterations = 1)
+                                 iterations = 3)
 
 example_runner.run_paddy()
 print(example_runner.S)
