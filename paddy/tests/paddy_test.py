@@ -218,7 +218,7 @@ class test_Eval(unittest.TestCase):
     test_polly_space = paddy.Default_Numerics.Polynomial(length=45,scope=10,gausian_type='scaled',normalization=False)
     test_runner = paddy.PFARunner( space= test_polly_space , eval_func = run_func.eval , 
     rand_seed_number = 50, yt = 10, paddy_type = 'generational' , Qmax = 50  , r = .75 , iterations = 3)
-    test_runner.run_paddy(file_name='test_files/paddy_test',verbose=None)
+    test_runner.run_paddy(file_name='paddy/tests/test_files/paddy_test',verbose=None)
     val =test_runner.generation_fitness
     recovered_runner = paddy.utils.paddy_recover(file_name='paddy/tests/test_files/paddy_test')
     recovered_runner.extend_paddy(new_iterations = 3)
@@ -263,7 +263,7 @@ except:
 	print('this should not print, line 263')
 
 try:
-	test_runner.save_paddy('test_files/a_test')
+	test_runner.save_paddy('paddy/tests/test_files/a_test')
 except:
 	print('this should not print, line 268')
 
@@ -348,7 +348,7 @@ except:
 	print('this should print, line 348')
 
 try:
-	only_backup = paddy.utils.paddy_recover("bo")
+	only_backup = paddy.utils.paddy_recover("paddy/tests/test_files/bo")
 except:
 	print('this should not print, line 353')
 
