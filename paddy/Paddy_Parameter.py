@@ -23,7 +23,6 @@ See Also
 # Authors: Armen Beck & Jonathan Fine
 # License: BSD
 
-import math
 import random
 import numpy as np
 
@@ -116,7 +115,7 @@ class PaddyParameter(object):
         self.normalization = normalization
         if param_range[0] > param_range[1]:
             raise PaddyParamError(PARAM_RANGE_ORDER_ERROR)
-        if limits != None:
+        if limits is not None:
             if limits[0] > limits[1] or limits[1] < limits[0]:
                 raise PaddyParamError(LIMIT_ORDER_ERROR)
             if limits[0] == limits[1]:
@@ -129,10 +128,10 @@ class PaddyParameter(object):
                 float('inf') in limits or -float('inf') in limits):
             if normalization:
                 raise PaddyParamError(INF_NORM_ERROR)
-        if gaussian != 'default' and gaussian != 'scaled':
+        if gaussian not in ('default', 'scaled'):
             error = GAUSSIAN_TYPE_ERROR.format(gaussian)
             raise PaddyParamError(error)
-        if param_type != 'integer' and param_type != 'continuous':
+        if param_type not in ('integer', 'continuous'):
             error = PARAM_TYPE_ERROR.format(param_type)
             raise PaddyParamError(error)
 
@@ -213,10 +212,10 @@ class PaddyParameter(object):
         if not self.normalization:
             b[0] = np.random.normal(
                 loc=values[0], scale=0.2 **(10**values[1]))
-            if self.limits == None:
+            if self.limits is None:
                 if self.gaussian == 'scaled':
                     b[1] = np.random.normal(loc=values[1], scale=0.2)
-            elif self.limits != None:
+            elif self.limits is not None:
                 b[0] = np.clip(b[0], self.limits[0], self.limits[1])
                 if self.gaussian == 'scaled':
                     b[1] = np.random.normal(loc=values[1], scale=0.2)
@@ -254,6 +253,5 @@ class PaddyParameter(object):
         if not self.normalization:
             e_val = p_vals[0]
             return e_val
-        else:
-            e_val = self.norm_p(p_vals[0])
-            return e_val
+        e_val = self.norm_p(p_vals[0])
+        return e_val

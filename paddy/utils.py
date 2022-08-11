@@ -71,14 +71,13 @@ def get_top_fitness(dirty_values):
     -----
     The top value evaluated for sowing when using 'population' for
     the `paddy_type` parameter of a `PFARunner` instance might not be the
-    value of a seed generated during that itteration.  See (need to find home for the full description of the PFA)
-
+    value of a seed generated during that itteration.  
     """
     fitness_list = []
-    c = 0
+    counter = 0
     for i in dirty_values:
-        fitness_list.append(dirty_values['{0}'.format(c)]['fitness'])
-        c += 1
+        fitness_list.append(dirty_values['{0}'.format(counter)]['fitness'])
+        counter += 1
     return fitness_list
 
 
@@ -111,7 +110,7 @@ def paddy_recover(file_name):
 
     Trys to recover the pickled `PFARunner` instance, and will
     then use the backup file if there is an issue recovering the
-    origional.
+    original.
 
     Parameters
     ----------
@@ -147,8 +146,8 @@ def paddy_recover(file_name):
 
     Notes
     -----
-    All functions that the `PFARPaddyRecoveryErrorunner` instance being recoverd is dependant
-    on need to be defined for successfull depickling, namely the `eval_func`
+    All functions, that the `PFARPaddyRecoveryErrorunner` instance being recoverd is dependant
+    on, need to be defined for successfull depickling, namely the `eval_func`
     parameter input.
 
     Examples
