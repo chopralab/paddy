@@ -70,7 +70,7 @@ for i in gl2:
     runner.run_paddy()
     runner.paddy_plot_and_print(['best_sown','average_population','average_gen'],
                                 figure_name="paddy/tests/test_files/{0}".format(pc))
-    runner.save_paddy("test_files/{0}".format(pc))
+    runner.save_paddy("paddy/tests/test_files/{0}".format(pc))
 
 print('paddy utils')
 
@@ -218,9 +218,9 @@ class test_Eval(unittest.TestCase):
     test_polly_space = paddy.Default_Numerics.Polynomial(length=45,scope=10,gausian_type='scaled',normalization=False)
     test_runner = paddy.PFARunner( space= test_polly_space , eval_func = run_func.eval , 
     rand_seed_number = 50, yt = 10, paddy_type = 'generational' , Qmax = 50  , r = .75 , iterations = 3)
-    test_runner.run_paddy(file_name='test_files/paddy_test',verbose=None)
+    test_runner.run_paddy(file_name='paddy/tests/test_files/paddy_test',verbose=None)
     val =test_runner.generation_fitness
-    recovered_runner = paddy.utils.paddy_recover(file_name='test_files/paddy_test')
+    recovered_runner = paddy.utils.paddy_recover(file_name='paddy/tests/test_files/paddy_test')
     recovered_runner.extend_paddy(new_iterations = 3)
     assert(recovered_runner.paddy_counter == 6)
 
@@ -263,7 +263,7 @@ except:
 	print('this should not print, line 263')
 
 try:
-	test_runner.save_paddy('test_files/a_test')
+	test_runner.save_paddy('paddy/tests/test_files/a_test')
 except:
 	print('this should not print, line 268')
 
@@ -285,7 +285,7 @@ except:
 
 
 try:
-	test_runner.extend_paddy(new_iterations=1,new_file_name='test_files/new_handel')
+	test_runner.extend_paddy(new_iterations=1,new_file_name='paddy/tests/test_files/new_handel')
 except:
 	print('this should not print, line 290')
 
@@ -303,26 +303,26 @@ except:
 
 ###recovers an incomplete run###
 try:
-	ic = paddy.utils.paddy_recover("test_files/incomplete")
+	ic = paddy.utils.paddy_recover("paddy/tests/test_files/incomplete")
 	ic.recover_run()
 except:
 	print('this should not print, line 309')
 ###recovery errors
 
 try:
-	will_recover_backup = paddy.utils.paddy_recover("test_files/only_backup")
+	will_recover_backup = paddy.utils.paddy_recover("paddy/tests/test_files/only_backup")
 	will_recover_backup.recover_run()
 except:
 	print('this should not print, line 316')
 
 
 try:
-	will_recover_backup = paddy.utils.paddy_recover("test_files/only_backup")
+	will_recover_backup = paddy.utils.paddy_recover("paddy/tests/test_files/only_backup")
 except:
 	print('this should not print, line 322')
 
 try:
-	no_backup = paddy.utils.paddy_recover("test_files/no_backup")
+	no_backup = paddy.utils.paddy_recover("paddy/tests/test_files/no_backup")
 except:
 	print('this should not print, line 327')
 
@@ -343,7 +343,7 @@ except:
 
 
 try:
-	again_these_pickles_are_garbage = paddy.utils.paddy_recover("test_files/also_bad")
+	again_these_pickles_are_garbage = paddy.utils.paddy_recover("paddy/tests/test_files/also_bad")
 except:
 	print('this should print, line 348')
 
