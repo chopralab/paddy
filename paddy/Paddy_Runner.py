@@ -406,7 +406,7 @@ class PFARunner(object):
                           self.seed_fitness[int((ts[0]).split('_')[1])])
                 for i in ts:
                     if len(ts) > 1:
-                        print(int((i-1).split('_')[1]))
+                        print(int((i).split('_')[1]))
                     single_param_print(self.seed_params,
                                        int((i).split('_')[1]))
             #########Top in Population########
