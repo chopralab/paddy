@@ -69,7 +69,7 @@ for i in gl2:
                             yt=i[2],Qmax=i[3],r=.02,iterations =i[4])
     runner.run_paddy()
     runner.paddy_plot_and_print(['best_sown','average_population','average_gen'],
-                                figure_name="test_files/{0}".format(pc))
+                                figure_name="paddy/test/test_files/{0}".format(pc))
     runner.save_paddy("test_files/{0}".format(pc))
 
 print('paddy utils')
