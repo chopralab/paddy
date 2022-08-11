@@ -183,20 +183,20 @@ def trig_inter(x_list, seed):
     s_x = []
     while counter < len(x_list):
         ###this evaluates over x
-        n = 1
+        number = 1
         xn_out = []
-        while n <= ((len(seed)-1)/2.0):
+        while number <= ((len(seed)-1)/2.0):
             ###evaluates sums of cos and sin
-            alpha = ((n*2)-1)
-            beta = (n*2)
+            alpha = ((number*2)-1)
+            beta = (number*2)
             temp_y = ((
-                seed[alpha][0])*(math.cos((n*x_list[counter]))))+(
-                    (seed[beta][0])*(math.sin((n*x_list[counter]))))
+                seed[alpha][0])*(math.cos((number*x_list[counter]))))+(
+                    (seed[beta][0])*(math.sin((number*x_list[counter]))))
             xn_out.append(temp_y)
-            n = n+1
+            number += 1
         xn_out.append(seed[0][0])
         s_x.append(sum(xn_out))
-        counter = counter + 1
+        counter += 1
     return s_x
 
 
@@ -259,17 +259,15 @@ class EvalNumeric(object):
         self.error_func = error_func
         self.t_func = t_func
         self.f_func = f_func
-        self.x, self.answer = self.t_func()
+        self.x_vals, self.answer = self.t_func()
 
     def eval(self, seed):
         """Method of `eval_numeric`.
         """
-        seed = seed
-        y_val = self.f_func(self.x, seed)
+        y_val = self.f_func(self.x_vals, seed)
         #made negative for maximization problem
         error = -self.error_func(self.answer, y_val)
         return error
-
 
 class Polynomial(object):
     """Generate paddy space that is apt for polynomial fitting.
@@ -296,3 +294,4 @@ class Polynomial(object):
                                normalization=normalization)
             )
             counter += 1
+            

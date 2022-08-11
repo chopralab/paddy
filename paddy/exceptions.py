@@ -56,13 +56,11 @@ class PaddyParamError(Exception):
     """Exception raised when initializing a PaddyParameter class instance.
 
     """
-    pass
 
 class PaddyRunnerError(Exception):
     """Exception raised when initalizing a PaddyRunner class instance.
 
     """
-    pass
 
 class PaddyRecoveryError(Exception):
     """Exception raised when paddy recovery fails.

@@ -46,11 +46,6 @@ generated and passed to `preformace_plotter`
 
 import numpy as np
 import matplotlib.pyplot as plt
-from paddy.utils import (get_param_names,
-                         get_top_fitness,
-                         random_propogation)
-
-
 
 def box(g_data, box_type):
     """Plot boxplots via `preformance_plotter`.
@@ -95,13 +90,13 @@ def box(g_data, box_type):
     """
     plot_data = []
     x_val = []
-    c = 0
+    counter = 0
     for i in g_data:
-        temp = g_data['{0}'.format(c)]
-        x_val.append(c)
+        temp = g_data['{0}'.format(counter)]
+        x_val.append(counter)
         data = temp
         plot_data.append(data)
-        c += 1
+        counter += 1
     if box_type == 1:
         #default box plot
         return plt.boxplot(plot_data, positions=x_val)
@@ -144,12 +139,12 @@ def average_gen_plot(g_data):
     ave = []
     counter = -1
     x_list = []
-    c = 0
+    counter_2 = 0
     for i in g_data:
         counter += 1
         x_list.append(counter)
-        ave.append(np.average(g_data['{0}'.format(c)]))
-        c += 1
+        ave.append(np.average(g_data['{0}'.format(counter_2)]))
+        counter_2 += 1
     return plt.plot(x_list, ave, color='orange',
                     label='Average Fitness of Iteration')
 
@@ -187,13 +182,13 @@ def average_population_plot(g_data):
     ave = []
     counter = -1
     x_list = []
-    c = 0
+    counter_2 = 0
     for i in g_data:
         counter += 1
         x_list.append(counter)
-        temp.append(g_data['{0}'.format(c)])
+        temp.append(g_data['{0}'.format(counter_2)])
         ave.append(np.average(np.concatenate(temp)))
-        c += 1 
+        counter_2 += 1
     return plt.plot(x_list, ave, color='green', label='Average Fitness of Population')
 
 def preformance_plotter(info, verbose, figure_name=None):
@@ -265,28 +260,28 @@ def preformance_plotter(info, verbose, figure_name=None):
 
     if len(plotter_types.intersection(verbose)) > 0:
         plt.figure()
-        x = list(range(len(info[0])))
+        x_1 = list(range(len(info[0])))
         plt.ylabel("Error")
         plt.xlabel("Iteration")
         plt.title("Fitness Throughout Paddy Iterations")
         if 'best_sown' in verbose:
-            plt.plot(x, info[0], color='blue',
+            plt.plot(x_1, info[0], color='blue',
                      label='Best Seed During Sowing')
         g_data = info[1]
-        c = 0
-        ys = []
-        x2 = []
+        counter = 0
+        y_s = []
+        x_2 = []
         for i in g_data:
-            for j in g_data[str(c)]:
-                ys.append(j)
-                x2.append(c)
-            c += 1
+            for j in g_data[str(counter)]:
+                y_s.append(j)
+                x_2.append(counter)
+            counter += 1
         if 'average_gen' in verbose:
             average_gen_plot(g_data)
         if 'average_population' in verbose:
             average_population_plot(g_data)
         if "scatter" in verbose:
-            plt.scatter(y=ys, x=x2)
+            plt.scatter(y=y_s, x=x_2)
         if 'box' in verbose:
             box(g_data, 1)
         if 'box_notched' in verbose:
@@ -295,7 +290,7 @@ def preformance_plotter(info, verbose, figure_name=None):
             box(g_data, 2)
         plt.tight_layout()
         plt.legend()
-        if figure_name != None:
+        if figure_name is not None:
             plt.savefig(figure_name, dpi=300)
         else:
             plt.show()
@@ -333,15 +328,15 @@ def clean_parameter_print(dirty_values):
     The function is typically called by `PFARunner.paddy_plot_and_print`
     when passed the argument 'final_results'.
     """
-    c = 0
+    counter = 0
     for i in dirty_values:
         temp = []
-        for j in dirty_values[str(c)]['parameters']:
+        for j in dirty_values[str(counter)]['parameters']:
             temp.append(j[0])
-        print(str(c)+':seed_'+str(dirty_values[str(c)]['seed'])
-              +':Fitness:'+str(dirty_values[str(c)]['fitness'])+'  Parameters:')
+        print(str(counter)+':seed_'+str(dirty_values[str(counter)]['seed'])
+              +':Fitness:'+str(dirty_values[str(counter)]['fitness'])+'  Parameters:')
         print(temp)
-        c += 1
+        counter += 1
 
 def single_param_print(dirty_values, value_key):
     """Prints the parameters for a specific seed.

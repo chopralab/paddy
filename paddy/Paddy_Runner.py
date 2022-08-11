@@ -242,7 +242,6 @@ class PFARunner(object):
         would raise an exception when calling methods of `PFARunner`.
 
     """
-
     def __init__(self, space, eval_func, rand_seed_number,
                  yt, Qmax, paddy_type, r, iterations,
                  error_handling=True):
@@ -256,20 +255,17 @@ class PFARunner(object):
                     if len(_int_params[i]) > 1:
                         error = CONTAINER_ERROR.format(ipn[i])
                         raise PaddyParamError(error)
-                    else:
-                        _int_params[i] = _int_params[i][0]
+                    _int_params[i] = _int_params[i][0]
                 if isinstance(_int_params[i], str):
                     if not _int_params[i].isdigit():
                         error = INT_PARAM_ERROR.format(ipn[i], _int_params[i])
                         raise PaddyParamError(error)
-                    else:
-                        _int_params[i] = float(_int_params[i])
+                    _int_params[i] = float(_int_params[i])
                 if isinstance(_int_params[i], float):
                     if not _int_params[i] % 1 == 0:
                         error = INT_PARAM_ERROR.format(ipn[i], _int_params[i])
                         raise PaddyParamError(error)
-                    else:
-                        _int_params[i] = int(_int_params[i])
+                    _int_params[i] = int(_int_params[i])
                 if isinstance(_int_params[i], int):
                     if _int_params[i] < 1:
                         error = INT_PARAM_ERROR.format(ipn[i], _int_params[i])
@@ -278,8 +274,7 @@ class PFARunner(object):
                 if len(r) > 1:
                     error = CONTAINER_ERROR.format('r')
                     raise PaddyParamError(error)
-                else:
-                    r = r[0]
+                r = r[0]
             if isinstance(r, str):
                 try:
                     r = float(r)
@@ -293,9 +288,8 @@ class PFARunner(object):
                 if len(paddy_type) > 1:
                     error = CONTAINER_ERROR.format('paddy_type')
                     raise PaddyParamError(error)
-                else:
-                    paddy_type = paddy_type[0]
-            if paddy_type != 'generational' and paddy_type != 'population':
+                paddy_type = paddy_type[0]
+            if paddy_type not in ('generational','population'):
                 error = PADDY_TYPE_ERROR.format(paddy_type)
                 raise PaddyParamError(error)
             (rand_seed_number, yt, Qmax, iterations) = (_int_params[0],
@@ -305,7 +299,6 @@ class PFARunner(object):
 
             if rand_seed_number < 4:
                 raise PaddyParamError(RANDOM_SEED_ERROR)
-
         self.Qmax = Qmax
         self.yt = yt
         self.yt_prime = yt
@@ -323,6 +316,7 @@ class PFARunner(object):
         self.paddy_type = paddy_type
         self.paddy_counter = 0
         self.s = np.array([])
+        self.S = np.array([])
         self.Un = np.array([])
         self.iterations = iterations
         self.generation_data = {}
@@ -346,21 +340,21 @@ class PFARunner(object):
         :meth:`run_paddy` : `PFARunner` method that excecutes the paddy field
             algorithm.
         """
-        sc, rs = random_propogation(rand_seed_number=self.rand_seed_number,
+        self.seed_counter, rand_seeds = random_propogation(
+                                    rand_seed_number=self.rand_seed_number,
                                     p_space=self.space,
                                     seed_counter=self.seed_counter)
-        self.seed_counter = sc
         c = 1
-        for i in rs:
+        for i in rand_seeds:
             self.seed_params.append(i)
             self.seed_fitness.append(self.eval_func(i))
-            if self.verbose != None:
+            if self.verbose is not None:
                 if 'status' in self.verbose:
-                    print(str(c)+" of "+str(len(rs))+" seeds", "  complete\r",)
+                    print(str(c)+" of "+str(len(rand_seeds))+" seeds", "  complete\r",)
                     c += 1
         self.generation_data['0'] = [0, int(self.rand_seed_number)-1]
         ############Top Gen Seed###########
-        if self.verbose != None:
+        if self.verbose is not None:
             if 'top_gen' in self.verbose:
                 best_rand_seed = self.get_top_seed()
                 print("Best seed(s) during random initiation was:\
@@ -399,7 +393,7 @@ class PFARunner(object):
         for i in range(seed_key_numbers[0], seed_key_numbers[1]+1):
             temp_gen_fit.append(self.seed_fitness[i])
         self.generation_fitness[str(self.paddy_counter)] = temp_gen_fit
-        if self.verbose != None:
+        if self.verbose is not None:
             ###########Top Gen Seed###########
             if 'top_gen' in self.verbose:
                 print('Top seed in generation:')
@@ -456,7 +450,7 @@ class PFARunner(object):
                                    (self.Qmax * ((gen_clone[-counter][1] - yt_val)/
                                                  float(y_max - yt_val)))])
                 counter += 1
-            self.s = np.array(self.s)
+            self.s = np.array(self.s,dtype='object')
         if self.paddy_type == 'population':
             pop_clone = []
             pop_clone.append([])
@@ -469,17 +463,17 @@ class PFARunner(object):
             self.top_values[str(self.paddy_counter)]['parameters'] = self.seed_params[
                 np.argmax(self.seed_fitness)]
             self.top_values[str(self.paddy_counter)]['seed'] = np.argsort(
-                np.array(self.seed_fitness))[-1]
+                np.array(self.seed_fitness,dtype='object'))[-1]
             yt_val = population_fitness_keys[-self.yt]
             counter = 1
             self.s = []
             while counter != self.yt + 1:
                 if yt_val != y_max:
-                    self.s.append([np.argsort(np.array(self.seed_fitness))[-counter],
+                    self.s.append([np.argsort(np.array(self.seed_fitness,dtype='object'))[-counter],
                                    (self.Qmax * ((population_fitness_keys[-counter] -
                                                   yt_val) / float(y_max - yt_val)))])
                 counter += 1
-            self.s = np.array(self.s)
+            self.s = np.array(self.s,dtype='object')
 
 
     def neighbor_counter(self):
@@ -551,7 +545,7 @@ class PFARunner(object):
                     if distance.euclidean(i[1:], j[1:])-self.r < 0:
                         n_count += 1
             neighbors.append([i[0], n_count])
-        neighbors = np.array(neighbors)
+        neighbors = np.array(neighbors,dtype='object')
         quantile_value = 0.75
         #this will let the paddy run even if there are no neighbors
         while all(x < 1 for x in neighbors[:, 1]):
@@ -569,20 +563,20 @@ class PFARunner(object):
                                 d_list, quantile_value) < 0):
                             n_count += 1
                 neighbors.append([i[0], n_count])
-            neighbors = np.array(neighbors)
+            neighbors = np.array(neighbors,dtype='object')
             quantile_value -= 0.05
         n_max = max(neighbors[:, 1])
         self.Un = []
         for i in neighbors:
             self.Un.append([i[0], math.exp((i[1]/float(n_max))-1)])
-        self.Un = np.array(self.Un)
+        self.Un = np.array(self.Un,dtype='object')
         self.S = []
         c = 0
         while c < len(neighbors):
             self.S.append([neighbors[c, 0],
                            np.round(self.Un[c, 1]*self.s[c, 1])])
             c += 1
-        self.S = np.array(self.S)
+        self.S = np.array(self.S,dtype='object')
 
     def new_propogation(self):
         """Generate new seeds and evaluate.
@@ -603,7 +597,7 @@ class PFARunner(object):
         iteration_seed_limits = [self.seed_counter, self.seed_counter+S_len-1]
         S_len_counter = 1
         #Status#
-        if self.verbose != None:
+        if self.verbose is not None:
             if 'status' in self.verbose:
                 print("Starting Iteration " +str(self.paddy_counter)+" of "
                       +str(self.iterations))
@@ -623,7 +617,7 @@ class PFARunner(object):
                 self.seed_fitness.append(self.eval_func(
                     self.seed_params[self.seed_counter]))
                 #Status#
-                if self.verbose != None:
+                if self.verbose is not None:
                     if 'status' in self.verbose:
                         print(str(S_len_counter)+" of "+str(S_len)
                               +" seeds", "  complete\r",)
@@ -725,12 +719,12 @@ class PFARunner(object):
         if self.verbose is None:
             self.verbose = {}
         #needs error handling for file_name
-        if file_name != None:
+        if file_name is not None:
             if not isinstance(file_name, str):
                 raise PaddyRunnerError(PADDY_FILE_ERROR)
         if not self.recover:
             self.random_step()
-            if self.file_name != None:
+            if self.file_name is not None:
                 self.save_paddy()
         while self.paddy_counter < self.iterations:
             self.sowing_function()
@@ -742,7 +736,7 @@ class PFARunner(object):
             self.neighbor_counter()
             self.paddy_counter += 1
             self.new_propogation()
-            if self.file_name != None:
+            if self.file_name is not None:
                 self.save_paddy()
         self.top_values[str(self.paddy_counter)] = {}
         seed_key_numbers = self.generation_data[str(self.paddy_counter)]
@@ -754,7 +748,7 @@ class PFARunner(object):
             gen_clone = []
             for i in range(seed_key_numbers[0], seed_key_numbers[1]+1):
                 gen_clone.append([i, self.seed_fitness[i]])
-            gen_clone = np.array(gen_clone)
+            gen_clone = np.array(gen_clone,dtype='object')
             gen_clone = gen_clone[gen_clone[:, 1].argsort()]
             y_max = gen_clone[-1][1]
             self.top_values[str(self.paddy_counter)] = {}
@@ -770,7 +764,7 @@ class PFARunner(object):
             self.top_values[str(self.paddy_counter)]['parameters'] = (
                 self.seed_params[(np.argmax(self.seed_fitness))])
             self.top_values[str(self.paddy_counter)]['seed'] = (
-                np.argsort(np.array(self.seed_fitness))[-1])
+                np.argsort(np.array(self.seed_fitness,dtype='object'))[-1])
         ###########Top Gen Seed###########
         #this prints the seed(s) id's and their fitness followed by parameters
         if 'top_gen' in self.verbose:
@@ -800,7 +794,7 @@ class PFARunner(object):
                 single_param_print(self.seed_params, int((i).split('_')[1]))
         ##################################
         print("paddy is done!")
-        if self.file_name != None:
+        if self.file_name is not None:
             self.save_paddy()
 
     def paddy_plot_and_print(self, verbose=None, figure_name=None):
@@ -872,7 +866,6 @@ class PFARunner(object):
         for comand in verbose:
             if paddy_plot_and_write_comands.issuperset({comand}):
                 is_running = True
-                pass
             else:
                 print(str(comand)+' is not a valid input for plot and print')
                 return
@@ -931,7 +924,6 @@ class PFARunner(object):
                 PaddyRunnerError(error)
         else:
             self.file_name = new_file_name
-
         with open('{0}.pickle'.format(self.file_name), 'wb') as handle:
             pickle.dump(self, handle, protocol=pickle.HIGHEST_PROTOCOL)
             handle.close()
@@ -1024,7 +1016,7 @@ class PFARunner(object):
         if new_iterations < 1 or new_iterations % 1 != 0:
             raise PaddyRunnerError(EXTENSION_ERROR)
         self.recover = True
-        if new_verbose != None:
+        if new_verbose is not None:
             self.verbose = new_verbose
         if isinstance(new_file_name, (str, int)):
             self.file_name = new_file_name
@@ -1119,10 +1111,10 @@ class PFARunner(object):
             print('multiple seeds of maximum fitness value:'+str(max_fit))
         temp_names = []
         if counter is None:
-            tg = self.generation_data[str(self.paddy_counter)]
+            gen_seeds = self.generation_data[str(self.paddy_counter)]
         else:
-            tg = self.generation_data[str(counter)]
-        for i in np.arange(tg[0], tg[1]):
+            gen_seeds = self.generation_data[str(counter)]
+        for i in np.arange(gen_seeds[0], gen_seeds[1]+1):
             if self.seed_fitness[i] == max_fit:
                 if verbose:
                     print('seed_{0}'.format(i))
