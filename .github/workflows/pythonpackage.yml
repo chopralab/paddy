@@ -35,4 +35,4 @@ jobs:
     - name: Deploy
       run: |
         ls
-        ./upload_pypi.sh
+        bash upload_pypi.sh
