@@ -34,4 +34,4 @@ jobs:
         pytest
     - name: Deploy
       run: |
-        ./scripts/upload_pypi.sh
+        ./upload_pypi.sh
