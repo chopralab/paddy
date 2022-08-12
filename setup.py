@@ -85,7 +85,7 @@ setuptools.setup(
     name="paddy",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    version=0.2,
+    version="0.2.1",
     author="Armen Beck",
     author_email="beck177@purdue.edu",
     description="Optimize hyperparameters using the Paddy field algorithm",
@@ -93,7 +93,7 @@ setuptools.setup(
     url="http://github.com/chopralab/paddy",
     packages=packages,
     zip_safe=False,
-    install_requires=['sklearn', 'future', 'numpy'],
+    install_requires=['sklearn', 'future', 'numpy', 'matplotlib'],
     tests_require=['pandas'],
     classifiers=[
         "Development Status :: 4 - Beta",
@@ -104,10 +104,12 @@ setuptools.setup(
         "Operating System :: MacOS :: MacOS X",
         "Operating System :: Microsoft :: Windows",
         "Operating System :: Unix",
-        "Programming Language :: Python :: 2",
-        "Programming Language :: Python :: 3",
+        "Programming Language :: Python :: 2.7",
+        "Programming Language :: Python :: 3.6",
+        "Programming Language :: Python :: 3.7",
+        "Programming Language :: Python :: 3.9",
+        "Programming Language :: Python :: 3.10",
         "Topic :: Scientific/Engineering",
         "Topic :: Software Development",
     ]
 )
-
