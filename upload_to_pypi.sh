@@ -8,4 +8,4 @@ echo -e "password = $API_TOKEN" >> ~/.pypirc
 python setup.py install --user
 
 pip install twine
-twine upload dist/*
+twine --verbose upload dist/*
