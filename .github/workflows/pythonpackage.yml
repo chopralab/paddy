@@ -35,5 +35,5 @@ jobs:
     - name: Deploy
       run: |
         ./upload_to_pypi.sh
-      with:
+      env:
         API_TOKEN: ${{ secrets.PYPI_API_TOKEN }}
