@@ -7,7 +7,7 @@ echo -e "password = $API_TOKEN" >> ~/.pypirc
 
 echo -e "[testpypi]" >> ~/.pypirc
 echo -e "username = armenbeck" >> ~/.pypirc
-#echo -e "password = $API_TOKEN" >> ~/.pypirc
+echo -e "password = $TEST_TOKEN" >> ~/.pypirc
 
 python setup.py install --user
 
