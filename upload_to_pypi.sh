@@ -13,5 +13,6 @@ python setup.py install --user
 pip install build
 pip install twine
 python -m build --wheel 
+rm dist/*.egg
 twine upload --repository testpypi dist/*
 twine upload dist/*
