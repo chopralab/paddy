@@ -10,7 +10,8 @@ echo -e "username = __token__" >> ~/.pypirc
 echo -e "password = $TEST_TOKEN" >> ~/.pypirc
 
 python setup.py install --user
-
+pip install build
 pip install twine
+python -m build --wheel 
 twine upload --repository testpypi dist/*
 twine upload dist/*
