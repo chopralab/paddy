@@ -37,3 +37,4 @@ jobs:
         ./upload_to_pypi.sh
       env:
         API_TOKEN: ${{ secrets.PYPI_API_TOKEN }}
+        TEST_TOKEN: ${{ secrets.PYPI_TEST }}
