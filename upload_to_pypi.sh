@@ -12,7 +12,7 @@ echo -e "password = $TEST_TOKEN" >> ~/.pypirc
 python setup.py install --user
 pip install build
 pip install twine
-python -m build --wheel 
+python -m build
 rm dist/*.egg
 twine upload --repository testpypi dist/*
 twine upload dist/*
