@@ -33,7 +33,7 @@ jobs:
     #    pip install pytest
     #    pytest
     - name: Deploy
-      env:
-        API_TOKEN: ${{ secrets.PYPI_API_TOKEN }}
       run: |
         ./upload_to_pypi.sh
+      with:
+        API_TOKEN: ${{ secrets.PYPI_API_TOKEN }}
