@@ -85,7 +85,7 @@ setuptools.setup(
     name="paddy",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    version="0.2.1",
+    version="0.2.2",
     author="Armen Beck",
     author_email="beck177@purdue.edu",
     description="Optimize hyperparameters using the Paddy field algorithm",
