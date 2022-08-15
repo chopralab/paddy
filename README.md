@@ -1,5 +1,5 @@
 
-# Paddy: A metaheuristic for optimization of numeric parameters
+# Paddy: Evolutionary Optimization Algorithm for Chemical Systems and Spaces
 
 ![logo](https://github.com/chopralab/Paddy/blob/master/paddy.svg?raw=True)
 
