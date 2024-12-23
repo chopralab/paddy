@@ -85,4 +85,4 @@ Visualizing results is made simple with built in plotting capabilities.
 ```
 ![example](example_figure.png)
 
-Full documentation of the code is available at: (https://chopralab.github.io/paddy/index.html)[https://chopralab.github.io/paddy/index.html]
+Full documentation of the code is available at: https://chopralab.github.io/paddy/index.html
