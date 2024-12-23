@@ -19,7 +19,7 @@ pip install pip
 
 ## Example
 
-To run paddy, one simply needs to define their evaluation function, and parameter space:
+To run paddy, one simply needs to define their evaluation function, and parameter space.
 
 ```
 >>> import paddy
@@ -59,4 +59,29 @@ To run paddy, one simply needs to define their evaluation function, and paramete
 >>> example_runner.run_paddy(file_name='paddy_example')
 paddy is done!
 ```
+Saved instances of Paddy can be extended, even once the initial code has be run.
+
+```
+>>> import paddy
+>>> # we need to define the dependent evaluation function
+>>> def parabola(input):
+...     x = input[0][0]
+...     y = input[1][0]
+...     return(((-x**2)/7)-((y**2)/2)+1)# The maximum is when x and y are 0
+...
+>>> recovered_example = paddy.paddy_recover('paddy_example')
+>>> recovered_example.extend_paddy(5)
+paddy is done!
+```
+
+Visualizing results is made simple with built in plotting capabilities.
+
+```
+>>> example_runner.paddy_plot_and_print(('scatter',
+...                                      'average_gen',
+...                                      'average_population'))
+...
+```
+![example](example_figure.png)
+
 Full documentation of the code is available at: https://chopralab.github.io/paddy/index.html
