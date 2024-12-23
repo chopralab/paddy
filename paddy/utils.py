@@ -191,3 +191,170 @@ def paddy_recover(file_name):
     else:
         #error for no path to origional file
         raise PaddyRecoveryError(PFA_PATH_ERROR.format(file_name))
+
+
+
+class Numeric_Assistant(object):
+    """
+    Sampling assistant that manages numeric space.
+    Repeats if false will remove observations after
+    a set of observations
+
+    Parameters
+    ----------
+    observations : array_like, shape(N+1,M)
+        A rank-2 array of M observations where rows contain
+        the cordinates in N-dimensional parameter space, with
+        the last row being the response value.
+
+    repeats : bool (default: True)
+        Boolean to determine if observations can be repeatedly
+        sampled.
+
+    raw_responce : bool (default: False)
+        Boolean to determine if the responce is normalized
+        when an observation is sampled.
+
+
+    Attributes
+    ----------
+    obs_clone : array_like, shape(,2)
+        Array that is initially a clone of the observation
+        parameter, and has observations removed by the 
+        `obs_cloner` method.
+
+    norm_clone : array_like, shape(,2)
+
+
+    Methods
+    ------- 
+    sample(inputs)
+
+    norm_cloner()
+        Clones 
+
+    obs_cloner()
+        Uses `black_list` to ommit observations before
+        cloning to `obs_clone`.
+
+    min_max(x, minV, maxV)
+        Used for normalizing rows in `observations` or 
+        `obs_clone` if `repeats` is False.
+
+    """
+    def __init__(self,observations,repeats=True,raw_responce=False):
+        self.observations = observations
+        self.repeats = repeats
+        self.obs_clone = np.array(copy.deepcopy(observations))
+        self.black_list = []
+        self.norm_cloner()
+        self.raw_responce = raw_responce
+
+    def sample(self,inputs):
+        temp = []
+        for i in inputs:
+            temp.append(i[0])
+        inputs = temp
+        distance_list = []
+        distance_vectors = []
+        c = 0
+        for i in range(len(self.obs_clone[0])):#get distances for every param combo
+            distance_vectors.append(np.linalg.norm(self.norm_clone[:-1,c] - inputs))
+            c += 1
+        distance_list.append(distance_vectors)#append distances for each domain/param
+        score_list = []
+        if not self.repeats:#doesnt have error handling for equal distances
+            self.black_list = []
+            #print("distance list:",distance_list)
+            #print("norm clone", self.norm_clone)
+            #print("distance list len:",len(distance_list[0]))
+            if len(distance_list[0]) > 1:
+                for i in distance_list:
+                    repeats = i.count(min(i))
+                    if repeats == 1:
+                        if self.raw_responce:
+                            print(self.obs_clone[:-1,np.argmin(i)])
+                            score_list.append(self.obs_clone[-1][np.argmin(i)])
+                        else:
+                            score_list.append(self.norm_clone[-1][np.argmin(i)])
+                        self.black_list.append(np.argmin(i))
+                    if repeats > 1:
+                        d = 0
+                        r_list = []
+                        for j in i:
+                            if j == min(i):
+                                r_list.append(d)
+                            d +=1
+                        rc = random.choice(r_list)
+                        if self.raw_responce:
+                            score_list.append(self.obs_clone[-1][rc])
+                        else:
+                            score_list.append(self.norm_clone[-1][rc])
+                        self.black_list.append(rc)
+            if len(distance_list[0]) == 1:
+                if self.raw_responce:
+                    score_list.append(self.obs_clone[-1][0])
+                else:
+                    score_list.append(self.norm_clone[-1][0])
+                self.black_list.append(0)
+
+            self.norm_cloner()#renormalizes after sampling and removes observations
+            #distance_list is values of selection out of vector of posibilites
+            #print("Black list len:", len(self.black_list))
+            #print("# Observations:", len(self.obs_clone[0]))
+        else:
+            for i in distance_list:
+                if self.raw_responce:
+                    score_list.append(self.obs_clone[-1][np.argmin(i)])
+                else:
+                    score_list.append(self.norm_clone[-1][np.argmin(i)])
+        #print(score_list)
+        return(score_list)
+
+    def min_max(self, x, minV, maxV):
+        if minV != maxV:
+            x = x
+            minV = minV
+            maxV = maxV
+            return((x-minV)/(maxV-minV))
+        else:
+            return(1)
+
+    def norm_cloner(self):
+        #clones observations with normalized values between 0 and 1
+        self.norm_clone =[]
+        if self.repeats:
+            for row in self.observations:
+                minV, maxV = min(row), max(row)
+                temp =[]
+                for value in row:
+                    normed = self.min_max(value, minV, maxV)
+                    temp.append(normed)
+                self.norm_clone.append(temp)
+        else: 
+            self.obs_cloner()
+            if len(self.obs_clone[0]) > 0: 
+                for row in self.obs_clone:
+                    minV, maxV = min(row), max(row)
+                    temp =[]
+                    for value in row:
+                        normed = self.min_max(value, minV, maxV)
+                        temp.append(normed)
+                    self.norm_clone.append(temp)
+        self.norm_clone = np.array(self.norm_clone)    
+
+    def obs_cloner(self):
+        #uses black list to ommit prior observations
+        obs_clone2 = []
+        c2 = 0
+        for i in self.obs_clone:
+            obs_clone2.append([])
+            c = 0
+            for j in i:
+                if c in self.black_list:
+                    pass
+                else:
+                    obs_clone2[c2].append(j)
+                c += 1
+            c2 += 1
+        self.obs_clone = np.array(obs_clone2)
