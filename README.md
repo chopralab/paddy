@@ -10,6 +10,8 @@
 Paddy is an evolutionary optimization platform, writen in Python.
 Our preprint with benchmarking and cheminformatic experimentation can be found on [arXiv](https://arxiv.org/abs/2403.15101).
 
+The GitHub repo for computational experiments used in the preprint can be found at: https://github.com/chopralab/Paddy_Manuscript_Repo
+
 ## Installation
 
 Paddy can be installed from PyPI with the command:
