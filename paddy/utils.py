@@ -19,6 +19,7 @@ paddy_recover(file_name)
 import pickle
 import os
 import numpy as np
+import random
 from paddy.exceptions import (PADDY_FILE_ERROR, PFA_PATH_ERROR,
                               BAD_PICKLES, NULL_BACKUP,
                               PaddyRecoveryError)
