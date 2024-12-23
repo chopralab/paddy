@@ -8,6 +8,7 @@
 ![pylint](https://github.com/chopralab/Paddy/blob/master/pylint.svg?raw=True)
 
 Paddy is an evolutionary optimization platform, writen in Python.
+Our preprint with benchmarking and cheminformatic experimentation can be found on [arXiv](https://arxiv.org/abs/2403.15101).
 
 ## Installation
 
@@ -84,4 +85,4 @@ Visualizing results is made simple with built in plotting capabilities.
 ```
 ![example](example_figure.png)
 
-Full documentation of the code is available at: https://chopralab.github.io/paddy/index.html
+Full documentation of the code is available at: (https://chopralab.github.io/paddy/index.html)[https://chopralab.github.io/paddy/index.html]
