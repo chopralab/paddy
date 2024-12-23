@@ -7,7 +7,7 @@
 [![Coverage Status](https://coveralls.io/repos/github/chopralab/paddy/badge.svg?branch=master)](https://coveralls.io/github/chopralab/paddy?branch=master)
 ![pylint](https://github.com/chopralab/Paddy/blob/master/pylint.svg?raw=True)
 
-Paddy is a platform, writen in Python, for using the Paddy Field Algorithm, and evolutionary optimization algorithm.
+Paddy is an evolutionary optimization platform, writen in Python.
 
 ## Installation
 
